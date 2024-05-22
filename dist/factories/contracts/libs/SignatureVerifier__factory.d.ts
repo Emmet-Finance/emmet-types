@@ -1,0 +1,173 @@
+import { ContractFactory, ContractTransactionResponse } from "ethers";
+import type { Signer, ContractDeployTransaction, ContractRunner } from "ethers";
+import type { NonPayableOverrides } from "../../../common";
+import type { SignatureVerifier, SignatureVerifierInterface } from "../../../contracts/libs/SignatureVerifier";
+type SignatureVerifierConstructorParams = [signer?: Signer] | ConstructorParameters<typeof ContractFactory>;
+export declare class SignatureVerifier__factory extends ContractFactory {
+    constructor(...args: SignatureVerifierConstructorParams);
+    getDeployTransaction(overrides?: NonPayableOverrides & {
+        from?: string;
+    }): Promise<ContractDeployTransaction>;
+    deploy(overrides?: NonPayableOverrides & {
+        from?: string;
+    }): Promise<SignatureVerifier & {
+        deploymentTransaction(): ContractTransactionResponse;
+    }>;
+    connect(runner: ContractRunner | null): SignatureVerifier__factory;
+    static readonly bytecode = "0x610c2761003a600b82828239805160001a60731461002d57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100615760003560e01c806315706fdf146100665780635aa7e789146100965780636e718888146100b6578063786568da146100d957806380e16031146100ec575b600080fd5b6100796100743660046106b2565b61010c565b6040516001600160a01b0390911681526020015b60405180910390f35b6100a96100a4366004610716565b6102f9565b60405161008d919061083d565b6100c96100c4366004610857565b610334565b604051901515815260200161008d565b6100c96100e7366004610857565b61039f565b6100ff6100fa3660046106b2565b61042b565b60405161008d91906108da565b60008181808060025b602a8110156102ee5761012a6101008561099e565b935084818151811061013e5761013e6109d0565b016020015160f81c9250846101548260016109e6565b81518110610164576101646109d0565b016020015160f81c915060616001600160a01b0384161080159061019257506066836001600160a01b031611155b156101a9576101a26057846109ff565b9250610214565b6030836001600160a01b0316101580156101cd57506039836001600160a01b031611155b156101dd576101a26030846109ff565b6041836001600160a01b03161015801561020157506046836001600160a01b031611155b15610214576102116037846109ff565b92505b6061826001600160a01b03161015801561023857506066826001600160a01b031611155b1561024f576102486057836109ff565b91506102ba565b6030826001600160a01b03161015801561027357506039826001600160a01b031611155b15610283576102486030836109ff565b6041826001600160a01b0316101580156102a757506046826001600160a01b031611155b156102ba576102b76037836109ff565b91505b816102c684601061099e565b6102d09190610a26565b6102da9085610a26565b93506102e76002826109e6565b9050610115565b509195945050505050565b6060878787878787876040516020016103189796959493929190610a46565b6040516020818303038152906040529050979650505050505050565b6000806103408461042b565b90504681602001516001600160401b03161461038b576020810151604051638b0d417760e01b81524660048201526001600160401b0390911660248201526044015b60405180910390fd5b61039685858561039f565b95945050505050565b8151602083012060009081610401826040517f19457468657265756d205369676e6564204d6573736167653a0a3332000000006020820152603c8101829052600090605c01604051602081830303815290604052805190602001209050919050565b9050836001600160a01b031661041782886104e7565b6001600160a01b0316149695505050505050565b61047d6040518060e0016040528060006001600160401b0316815260200160006001600160401b0316815260200160008152602001606081526020016060815260200160608152602001606081525090565b60008060008060008060008880602001905181019061049c9190610b10565b6040805160e0810182526001600160401b039889168152979096166020880152948601939093526060850191909152608084015260a083015260c08201529998505050505050505050565b6000806000806104f685610566565b6040805160008152602081018083528b905260ff8316918101919091526060810184905260808101839052929550909350915060019060a0016020604051602081039080840390855afa158015610551573d6000803e3d6000fd5b5050604051601f190151979650505050505050565b600080600083516041146105bc5760405162461bcd60e51b815260206004820152601860248201527f496e76616c6964207369676e6174757265206c656e67746800000000000000006044820152606401610382565b50505060208101516040820151606083015160001a601b8110156105e8576105e5601b82610bd8565b90505b9193909250565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f191681016001600160401b038111828210171561062d5761062d6105ef565b604052919050565b60006001600160401b0382111561064e5761064e6105ef565b50601f01601f191660200190565b600082601f83011261066d57600080fd5b813561068061067b82610635565b610605565b81815284602083860101111561069557600080fd5b816020850160208301376000918101602001919091529392505050565b6000602082840312156106c457600080fd5b81356001600160401b038111156106da57600080fd5b6106e68482850161065c565b949350505050565b6001600160401b038116811461070357600080fd5b50565b8035610711816106ee565b919050565b600080600080600080600060e0888a03121561073157600080fd5b61073a88610706565b965061074860208901610706565b95506040880135945060608801356001600160401b038082111561076b57600080fd5b6107778b838c0161065c565b955060808a013591508082111561078d57600080fd5b6107998b838c0161065c565b945060a08a01359150808211156107af57600080fd5b6107bb8b838c0161065c565b935060c08a01359150808211156107d157600080fd5b506107de8a828b0161065c565b91505092959891949750929550565b60005b838110156108085781810151838201526020016107f0565b50506000910152565b600081518084526108298160208601602086016107ed565b601f01601f19169290920160200192915050565b6020815260006108506020830184610811565b9392505050565b60008060006060848603121561086c57600080fd5b83356001600160401b038082111561088357600080fd5b61088f8783880161065c565b945060208601359150808211156108a557600080fd5b506108b28682870161065c565b92505060408401356001600160a01b03811681146108cf57600080fd5b809150509250925092565b602081526001600160401b0382511660208201526000602083015161090a60408401826001600160401b03169052565b5060408301516060830152606083015160e0608084015261092f610100840182610811565b90506080840151601f19808584030160a086015261094d8383610811565b925060a08601519150808584030160c086015261096a8383610811565b925060c08601519150808584030160e0860152506103968282610811565b634e487b7160e01b600052601160045260246000fd5b6001600160a01b038281168282168181028316929181158285048214176109c7576109c7610988565b50505092915050565b634e487b7160e01b600052603260045260246000fd5b808201808211156109f9576109f9610988565b92915050565b6001600160a01b03828116828216039080821115610a1f57610a1f610988565b5092915050565b6001600160a01b03818116838216019080821115610a1f57610a1f610988565b60006001600160401b03808a16835280891660208401525086604083015260e06060830152610a7860e0830187610811565b8281036080840152610a8a8187610811565b905082810360a0840152610a9e8186610811565b905082810360c0840152610ab28185610811565b9a9950505050505050505050565b8051610711816106ee565b600082601f830112610adc57600080fd5b8151610aea61067b82610635565b818152846020838601011115610aff57600080fd5b6106e68260208301602087016107ed565b600080600080600080600060e0888a031215610b2b57600080fd5b610b3488610ac0565b9650610b4260208901610ac0565b95506040880151945060608801516001600160401b0380821115610b6557600080fd5b610b718b838c01610acb565b955060808a0151915080821115610b8757600080fd5b610b938b838c01610acb565b945060a08a0151915080821115610ba957600080fd5b610bb58b838c01610acb565b935060c08a0151915080821115610bcb57600080fd5b506107de8a828b01610acb565b60ff81811683821601908111156109f9576109f961098856fea26469706673582212204d4ab275e22e0fff16e5f4a4d7a8df0a16c4c25b03684e346321de744e055b9964736f6c63430008180033";
+    static readonly abi: readonly [{
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "thisChainId";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint64";
+            readonly name: "provided";
+            readonly type: "uint64";
+        }];
+        readonly name: "WrongDestinationChain";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes";
+            readonly name: "data";
+            readonly type: "bytes";
+        }];
+        readonly name: "decodeCommonData";
+        readonly outputs: readonly [{
+            readonly components: readonly [{
+                readonly internalType: "uint64";
+                readonly name: "fromChainId";
+                readonly type: "uint64";
+            }, {
+                readonly internalType: "uint64";
+                readonly name: "toChainId";
+                readonly type: "uint64";
+            }, {
+                readonly internalType: "uint256";
+                readonly name: "amount";
+                readonly type: "uint256";
+            }, {
+                readonly internalType: "string";
+                readonly name: "fromToken";
+                readonly type: "string";
+            }, {
+                readonly internalType: "string";
+                readonly name: "toToken";
+                readonly type: "string";
+            }, {
+                readonly internalType: "string";
+                readonly name: "recipient";
+                readonly type: "string";
+            }, {
+                readonly internalType: "string";
+                readonly name: "fromChainHash";
+                readonly type: "string";
+            }];
+            readonly internalType: "struct SignatureVerifier.DecodedData";
+            readonly name: "decoded";
+            readonly type: "tuple";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint64";
+            readonly name: "fromChainId";
+            readonly type: "uint64";
+        }, {
+            readonly internalType: "uint64";
+            readonly name: "toChainId";
+            readonly type: "uint64";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "amount";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "toToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "recipient";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromChainHash";
+            readonly type: "string";
+        }];
+        readonly name: "encodeCommonData";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes";
+            readonly name: "encoded";
+            readonly type: "bytes";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "addr_";
+            readonly type: "string";
+        }];
+        readonly name: "stringToAddress";
+        readonly outputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "addr";
+            readonly type: "address";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes";
+            readonly name: "signature";
+            readonly type: "bytes";
+        }, {
+            readonly internalType: "bytes";
+            readonly name: "data";
+            readonly type: "bytes";
+        }, {
+            readonly internalType: "address";
+            readonly name: "signer";
+            readonly type: "address";
+        }];
+        readonly name: "verifyLocalSignature";
+        readonly outputs: readonly [{
+            readonly internalType: "bool";
+            readonly name: "";
+            readonly type: "bool";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes";
+            readonly name: "signature";
+            readonly type: "bytes";
+        }, {
+            readonly internalType: "bytes";
+            readonly name: "data";
+            readonly type: "bytes";
+        }, {
+            readonly internalType: "address";
+            readonly name: "signer";
+            readonly type: "address";
+        }];
+        readonly name: "verifySignature";
+        readonly outputs: readonly [{
+            readonly internalType: "bool";
+            readonly name: "result";
+            readonly type: "bool";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }];
+    static createInterface(): SignatureVerifierInterface;
+    static connect(address: string, runner?: ContractRunner | null): SignatureVerifier;
+}
+export {};

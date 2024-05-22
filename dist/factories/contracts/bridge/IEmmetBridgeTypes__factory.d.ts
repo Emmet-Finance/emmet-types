@@ -1,0 +1,75 @@
+import { type ContractRunner } from "ethers";
+import type { IEmmetBridgeTypes, IEmmetBridgeTypesInterface } from "../../../contracts/bridge/IEmmetBridgeTypes";
+export declare class IEmmetBridgeTypes__factory {
+    static readonly abi: readonly [{
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "message";
+            readonly type: "string";
+        }];
+        readonly name: "EmmetBridgeError";
+        readonly type: "error";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "bytes32";
+            readonly name: "txHash";
+            readonly type: "bytes32";
+        }];
+        readonly name: "ReceiveInstallment";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "bytes32";
+            readonly name: "txHash";
+            readonly type: "bytes32";
+        }];
+        readonly name: "SendInstallment";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "address";
+            readonly name: "oldAddress";
+            readonly type: "address";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "address";
+            readonly name: "newAddress";
+            readonly type: "address";
+        }];
+        readonly name: "UpdateGasFeeAddress";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "bytes32";
+            readonly name: "bridgeHash";
+            readonly type: "bytes32";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "bytes32";
+            readonly name: "txHash";
+            readonly type: "bytes32";
+        }];
+        readonly name: "UpdateTxHash";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "address";
+            readonly name: "newContract";
+            readonly type: "address";
+        }];
+        readonly name: "UpdatedEmmetData";
+        readonly type: "event";
+    }];
+    static createInterface(): IEmmetBridgeTypesInterface;
+    static connect(address: string, runner?: ContractRunner | null): IEmmetBridgeTypes;
+}
