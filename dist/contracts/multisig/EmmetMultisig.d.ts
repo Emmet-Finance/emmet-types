@@ -1,10 +1,11 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetMultisigInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "SIGNER_ROLE" | "claimRole" | "emmetToken" | "getRoleAdmin" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "previouslyProcessedTransactions" | "propose" | "renounceRole" | "revokeRole" | "roleRequests" | "sign" | "stake" | "stakes" | "supportsInterface" | "threshold" | "totalSigners" | "transactions" | "unstake"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "SIGNER_ROLE" | "claimReward" | "claimRole" | "emmetToken" | "getRoleAdmin" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "previouslyProcessedTransactions" | "propose" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "sign" | "stake" | "stakes" | "supportsInterface" | "threshold" | "totalSigners" | "transactions" | "unstake"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "DoubleSigning" | "NewSigner" | "PartialSignature" | "Proposal" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "SIGNER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "claimReward", values?: undefined): string;
     encodeFunctionData(functionFragment: "claimRole", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetToken", values?: undefined): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
@@ -17,6 +18,8 @@ export interface EmmetMultisigInterface extends Interface {
     encodeFunctionData(functionFragment: "propose", values: [BytesLike, BytesLike]): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "rewardAmounts", values?: undefined): string;
+    encodeFunctionData(functionFragment: "rewards", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "roleRequests", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "sign", values: [BytesLike, BigNumberish, BytesLike, BytesLike, string]): string;
     encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
@@ -28,6 +31,7 @@ export interface EmmetMultisigInterface extends Interface {
     encodeFunctionData(functionFragment: "unstake", values?: undefined): string;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "SIGNER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "claimReward", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "claimRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "emmetToken", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
@@ -40,6 +44,8 @@ export interface EmmetMultisigInterface extends Interface {
     decodeFunctionResult(functionFragment: "propose", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "rewardAmounts", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "rewards", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "roleRequests", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "sign", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
@@ -232,6 +238,7 @@ export interface EmmetMultisig extends BaseContract {
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
     DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
     SIGNER_ROLE: TypedContractMethod<[], [string], "view">;
+    claimReward: TypedContractMethod<[], [void], "nonpayable">;
     claimRole: TypedContractMethod<[], [void], "nonpayable">;
     emmetToken: TypedContractMethod<[], [string], "view">;
     getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
@@ -274,6 +281,14 @@ export interface EmmetMultisig extends BaseContract {
     ], [
         void
     ], "nonpayable">;
+    rewardAmounts: TypedContractMethod<[
+    ], [
+        [bigint, bigint] & {
+            proposeReward: bigint;
+            signReward: bigint;
+        }
+    ], "view">;
+    rewards: TypedContractMethod<[signer: AddressLike], [bigint], "view">;
     roleRequests: TypedContractMethod<[
         arg0: AddressLike
     ], [
@@ -292,7 +307,7 @@ export interface EmmetMultisig extends BaseContract {
         void
     ], "nonpayable">;
     stake: TypedContractMethod<[amount: BigNumberish], [void], "nonpayable">;
-    stakes: TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+    stakes: TypedContractMethod<[staker: AddressLike], [bigint], "view">;
     supportsInterface: TypedContractMethod<[
         interfaceId: BytesLike
     ], [
@@ -317,6 +332,7 @@ export interface EmmetMultisig extends BaseContract {
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "SIGNER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "claimReward"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "claimRole"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "emmetToken"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
@@ -359,6 +375,14 @@ export interface EmmetMultisig extends BaseContract {
     ], [
         void
     ], "nonpayable">;
+    getFunction(nameOrSignature: "rewardAmounts"): TypedContractMethod<[
+    ], [
+        [bigint, bigint] & {
+            proposeReward: bigint;
+            signReward: bigint;
+        }
+    ], "view">;
+    getFunction(nameOrSignature: "rewards"): TypedContractMethod<[signer: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "roleRequests"): TypedContractMethod<[
         arg0: AddressLike
     ], [
@@ -377,7 +401,7 @@ export interface EmmetMultisig extends BaseContract {
         void
     ], "nonpayable">;
     getFunction(nameOrSignature: "stake"): TypedContractMethod<[amount: BigNumberish], [void], "nonpayable">;
-    getFunction(nameOrSignature: "stakes"): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "stakes"): TypedContractMethod<[staker: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
     getFunction(nameOrSignature: "threshold"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "totalSigners"): TypedContractMethod<[], [bigint], "view">;

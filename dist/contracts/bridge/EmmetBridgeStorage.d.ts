@@ -1,50 +1,22 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
-export interface EmmetBridgeAdminInterface extends Interface {
-    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getRoleAdmin" | "grantRole" | "hasRole" | "incommingTransactions" | "manageSigner" | "outgoingTransactions" | "renounceRole" | "revokeRole" | "supportsInterface" | "updateEmmetData" | "updateGasLimitAddress" | "updateTxHash" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
-    getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "ReceiveInstallment" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "SendInstallment" | "SignerManaged" | "TokenDeleted" | "TokenUpdate" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
+export interface EmmetBridgeStorageInterface extends Interface {
+    getFunction(nameOrSignature: "CFO_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "incommingTransactions" | "outgoingTransactions"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "ReceiveInstallment" | "SendInstallment" | "SignerManaged" | "TokenDeleted" | "TokenUpdate" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
-    encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
-    encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "SIGNER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetData", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetTokenVault", values?: undefined): string;
     encodeFunctionData(functionFragment: "gasFeesAdmin", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
-    encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "incommingTransactions", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "manageSigner", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "outgoingTransactions", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
-    encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
-    encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "updateEmmetData", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateGasLimitAddress", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateTxHash", values: [BytesLike, BytesLike]): string;
-    encodeFunctionData(functionFragment: "withdrawProtocolFee", values?: undefined): string;
-    encodeFunctionData(functionFragment: "withdrawTokenFee", values: [string]): string;
     decodeFunctionResult(functionFragment: "CFO_ROLE", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "MANAGER_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "SIGNER_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "emmetData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "emmetTokenVault", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "gasFeesAdmin", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "incommingTransactions", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "manageSigner", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "outgoingTransactions", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateEmmetData", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateGasLimitAddress", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateTxHash", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "withdrawProtocolFee", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "withdrawTokenFee", data: BytesLike): Result;
 }
 export declare namespace CCTPChainDeletedEvent {
     type InputTuple = [chainId: BigNumberish];
@@ -124,61 +96,6 @@ export declare namespace ReceiveInstallmentEvent {
     type OutputTuple = [txHash: string];
     interface OutputObject {
         txHash: string;
-    }
-    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
-    type Filter = TypedDeferredTopicFilter<Event>;
-    type Log = TypedEventLog<Event>;
-    type LogDescription = TypedLogDescription<Event>;
-}
-export declare namespace RoleAdminChangedEvent {
-    type InputTuple = [
-        role: BytesLike,
-        previousAdminRole: BytesLike,
-        newAdminRole: BytesLike
-    ];
-    type OutputTuple = [
-        role: string,
-        previousAdminRole: string,
-        newAdminRole: string
-    ];
-    interface OutputObject {
-        role: string;
-        previousAdminRole: string;
-        newAdminRole: string;
-    }
-    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
-    type Filter = TypedDeferredTopicFilter<Event>;
-    type Log = TypedEventLog<Event>;
-    type LogDescription = TypedLogDescription<Event>;
-}
-export declare namespace RoleGrantedEvent {
-    type InputTuple = [
-        role: BytesLike,
-        account: AddressLike,
-        sender: AddressLike
-    ];
-    type OutputTuple = [role: string, account: string, sender: string];
-    interface OutputObject {
-        role: string;
-        account: string;
-        sender: string;
-    }
-    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
-    type Filter = TypedDeferredTopicFilter<Event>;
-    type Log = TypedEventLog<Event>;
-    type LogDescription = TypedLogDescription<Event>;
-}
-export declare namespace RoleRevokedEvent {
-    type InputTuple = [
-        role: BytesLike,
-        account: AddressLike,
-        sender: AddressLike
-    ];
-    type OutputTuple = [role: string, account: string, sender: string];
-    interface OutputObject {
-        role: string;
-        account: string;
-        sender: string;
     }
     type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
     type Filter = TypedDeferredTopicFilter<Event>;
@@ -295,10 +212,10 @@ export declare namespace UpdatedProtocolFeeEvent {
     type Log = TypedEventLog<Event>;
     type LogDescription = TypedLogDescription<Event>;
 }
-export interface EmmetBridgeAdmin extends BaseContract {
-    connect(runner?: ContractRunner | null): EmmetBridgeAdmin;
+export interface EmmetBridgeStorage extends BaseContract {
+    connect(runner?: ContractRunner | null): EmmetBridgeStorage;
     waitForDeployment(): Promise<this>;
-    interface: EmmetBridgeAdminInterface;
+    interface: EmmetBridgeStorageInterface;
     queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
     queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
     on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
@@ -309,25 +226,10 @@ export interface EmmetBridgeAdmin extends BaseContract {
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
     CFO_ROLE: TypedContractMethod<[], [string], "view">;
-    DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
-    MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
     SIGNER_ROLE: TypedContractMethod<[], [string], "view">;
     emmetData: TypedContractMethod<[], [string], "view">;
     emmetTokenVault: TypedContractMethod<[], [string], "view">;
     gasFeesAdmin: TypedContractMethod<[], [string], "view">;
-    getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
-    grantRole: TypedContractMethod<[
-        role: BytesLike,
-        account: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    hasRole: TypedContractMethod<[
-        role: BytesLike,
-        account: AddressLike
-    ], [
-        boolean
-    ], "view">;
     incommingTransactions: TypedContractMethod<[
         txHash: BytesLike
     ], [
@@ -349,12 +251,6 @@ export interface EmmetBridgeAdmin extends BaseContract {
             originHash: string;
         }
     ], "view">;
-    manageSigner: TypedContractMethod<[
-        signer_: AddressLike,
-        operation: BigNumberish
-    ], [
-        void
-    ], "nonpayable">;
     outgoingTransactions: TypedContractMethod<[
         txHash: BytesLike
     ], [
@@ -376,66 +272,12 @@ export interface EmmetBridgeAdmin extends BaseContract {
             receiver: string;
         }
     ], "view">;
-    renounceRole: TypedContractMethod<[
-        role: BytesLike,
-        callerConfirmation: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    revokeRole: TypedContractMethod<[
-        role: BytesLike,
-        account: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    supportsInterface: TypedContractMethod<[
-        interfaceId: BytesLike
-    ], [
-        boolean
-    ], "view">;
-    updateEmmetData: TypedContractMethod<[
-        emmetData_: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    updateGasLimitAddress: TypedContractMethod<[
-        gasFeesAdmin_: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    updateTxHash: TypedContractMethod<[
-        bridgeHash_: BytesLike,
-        txHash_: BytesLike
-    ], [
-        void
-    ], "nonpayable">;
-    withdrawProtocolFee: TypedContractMethod<[], [void], "nonpayable">;
-    withdrawTokenFee: TypedContractMethod<[
-        symbol_: string
-    ], [
-        void
-    ], "nonpayable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "CFO_ROLE"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "SIGNER_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "emmetData"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "emmetTokenVault"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "gasFeesAdmin"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
-    getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
-        role: BytesLike,
-        account: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    getFunction(nameOrSignature: "hasRole"): TypedContractMethod<[
-        role: BytesLike,
-        account: AddressLike
-    ], [
-        boolean
-    ], "view">;
     getFunction(nameOrSignature: "incommingTransactions"): TypedContractMethod<[
         txHash: BytesLike
     ], [
@@ -457,12 +299,6 @@ export interface EmmetBridgeAdmin extends BaseContract {
             originHash: string;
         }
     ], "view">;
-    getFunction(nameOrSignature: "manageSigner"): TypedContractMethod<[
-        signer_: AddressLike,
-        operation: BigNumberish
-    ], [
-        void
-    ], "nonpayable">;
     getFunction(nameOrSignature: "outgoingTransactions"): TypedContractMethod<[
         txHash: BytesLike
     ], [
@@ -484,37 +320,11 @@ export interface EmmetBridgeAdmin extends BaseContract {
             receiver: string;
         }
     ], "view">;
-    getFunction(nameOrSignature: "renounceRole"): TypedContractMethod<[
-        role: BytesLike,
-        callerConfirmation: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    getFunction(nameOrSignature: "revokeRole"): TypedContractMethod<[
-        role: BytesLike,
-        account: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
-    getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
-    getFunction(nameOrSignature: "updateEmmetData"): TypedContractMethod<[emmetData_: AddressLike], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateGasLimitAddress"): TypedContractMethod<[gasFeesAdmin_: AddressLike], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateTxHash"): TypedContractMethod<[
-        bridgeHash_: BytesLike,
-        txHash_: BytesLike
-    ], [
-        void
-    ], "nonpayable">;
-    getFunction(nameOrSignature: "withdrawProtocolFee"): TypedContractMethod<[], [void], "nonpayable">;
-    getFunction(nameOrSignature: "withdrawTokenFee"): TypedContractMethod<[symbol_: string], [void], "nonpayable">;
     getEvent(key: "CCTPChainDeleted"): TypedContractEvent<CCTPChainDeletedEvent.InputTuple, CCTPChainDeletedEvent.OutputTuple, CCTPChainDeletedEvent.OutputObject>;
     getEvent(key: "CctpChainUpdated"): TypedContractEvent<CctpChainUpdatedEvent.InputTuple, CctpChainUpdatedEvent.OutputTuple, CctpChainUpdatedEvent.OutputObject>;
     getEvent(key: "ChainDeleted"): TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
     getEvent(key: "ChainUpdate"): TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
     getEvent(key: "ReceiveInstallment"): TypedContractEvent<ReceiveInstallmentEvent.InputTuple, ReceiveInstallmentEvent.OutputTuple, ReceiveInstallmentEvent.OutputObject>;
-    getEvent(key: "RoleAdminChanged"): TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
-    getEvent(key: "RoleGranted"): TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
-    getEvent(key: "RoleRevoked"): TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
     getEvent(key: "SendInstallment"): TypedContractEvent<SendInstallmentEvent.InputTuple, SendInstallmentEvent.OutputTuple, SendInstallmentEvent.OutputObject>;
     getEvent(key: "SignerManaged"): TypedContractEvent<SignerManagedEvent.InputTuple, SignerManagedEvent.OutputTuple, SignerManagedEvent.OutputObject>;
     getEvent(key: "TokenDeleted"): TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;
@@ -535,12 +345,6 @@ export interface EmmetBridgeAdmin extends BaseContract {
         ChainUpdate: TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         "ReceiveInstallment(bytes32)": TypedContractEvent<ReceiveInstallmentEvent.InputTuple, ReceiveInstallmentEvent.OutputTuple, ReceiveInstallmentEvent.OutputObject>;
         ReceiveInstallment: TypedContractEvent<ReceiveInstallmentEvent.InputTuple, ReceiveInstallmentEvent.OutputTuple, ReceiveInstallmentEvent.OutputObject>;
-        "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
-        RoleAdminChanged: TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
-        "RoleGranted(bytes32,address,address)": TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
-        RoleGranted: TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
-        "RoleRevoked(bytes32,address,address)": TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
-        RoleRevoked: TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
         "SendInstallment(bytes32)": TypedContractEvent<SendInstallmentEvent.InputTuple, SendInstallmentEvent.OutputTuple, SendInstallmentEvent.OutputObject>;
         SendInstallment: TypedContractEvent<SendInstallmentEvent.InputTuple, SendInstallmentEvent.OutputTuple, SendInstallmentEvent.OutputObject>;
         "SignerManaged(address,string)": TypedContractEvent<SignerManagedEvent.InputTuple, SignerManagedEvent.OutputTuple, SignerManagedEvent.OutputObject>;

@@ -34,6 +34,21 @@ export declare class IEmmetBridgeTypes__factory {
         readonly inputs: readonly [{
             readonly indexed: false;
             readonly internalType: "address";
+            readonly name: "signer";
+            readonly type: "address";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "string";
+            readonly name: "operation";
+            readonly type: "string";
+        }];
+        readonly name: "SignerManaged";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "address";
             readonly name: "oldAddress";
             readonly type: "address";
         }, {

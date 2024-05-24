@@ -2,6 +2,22 @@ import { type ContractRunner } from "ethers";
 import type { EmmetBridgeUtilities, EmmetBridgeUtilitiesInterface } from "../../../contracts/bridge/EmmetBridgeUtilities";
 export declare class EmmetBridgeUtilities__factory {
     static readonly abi: readonly [{
+        readonly inputs: readonly [];
+        readonly name: "AccessControlBadConfirmation";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "account";
+            readonly type: "address";
+        }, {
+            readonly internalType: "bytes32";
+            readonly name: "neededRole";
+            readonly type: "bytes32";
+        }];
+        readonly name: "AccessControlUnauthorizedAccount";
+        readonly type: "error";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "string";
             readonly name: "message";
@@ -9,6 +25,109 @@ export declare class EmmetBridgeUtilities__factory {
         }];
         readonly name: "EmmetBridgeError";
         readonly type: "error";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "message";
+            readonly type: "string";
+        }];
+        readonly name: "GassFeesUpdateError";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "StringOver32Charachters";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint128";
+            readonly name: "chainId";
+            readonly type: "uint128";
+        }];
+        readonly name: "UnsupportedChain";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "symbol";
+            readonly type: "string";
+        }];
+        readonly name: "UnsupportedToken";
+        readonly type: "error";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "chainId";
+            readonly type: "uint128";
+        }];
+        readonly name: "CCTPChainDeleted";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "chainId";
+            readonly type: "uint128";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "cctpDestId";
+            readonly type: "uint128";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint8";
+            readonly name: "awaitMinutes";
+            readonly type: "uint8";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint8";
+            readonly name: "awaitSeconds";
+            readonly type: "uint8";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint8";
+            readonly name: "numberOfAwaitedBlocks";
+            readonly type: "uint8";
+        }];
+        readonly name: "CctpChainUpdated";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "chainId";
+            readonly type: "uint128";
+        }];
+        readonly name: "ChainDeleted";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "chainId";
+            readonly type: "uint128";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "cctpDestId";
+            readonly type: "uint128";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "string";
+            readonly name: "name";
+            readonly type: "string";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "string";
+            readonly name: "token";
+            readonly type: "string";
+        }];
+        readonly name: "ChainUpdate";
+        readonly type: "event";
     }, {
         readonly anonymous: false;
         readonly inputs: readonly [{
@@ -22,12 +141,117 @@ export declare class EmmetBridgeUtilities__factory {
     }, {
         readonly anonymous: false;
         readonly inputs: readonly [{
+            readonly indexed: true;
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }, {
+            readonly indexed: true;
+            readonly internalType: "bytes32";
+            readonly name: "previousAdminRole";
+            readonly type: "bytes32";
+        }, {
+            readonly indexed: true;
+            readonly internalType: "bytes32";
+            readonly name: "newAdminRole";
+            readonly type: "bytes32";
+        }];
+        readonly name: "RoleAdminChanged";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: true;
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }, {
+            readonly indexed: true;
+            readonly internalType: "address";
+            readonly name: "account";
+            readonly type: "address";
+        }, {
+            readonly indexed: true;
+            readonly internalType: "address";
+            readonly name: "sender";
+            readonly type: "address";
+        }];
+        readonly name: "RoleGranted";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: true;
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }, {
+            readonly indexed: true;
+            readonly internalType: "address";
+            readonly name: "account";
+            readonly type: "address";
+        }, {
+            readonly indexed: true;
+            readonly internalType: "address";
+            readonly name: "sender";
+            readonly type: "address";
+        }];
+        readonly name: "RoleRevoked";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
             readonly indexed: false;
             readonly internalType: "bytes32";
             readonly name: "txHash";
             readonly type: "bytes32";
         }];
         readonly name: "SendInstallment";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "address";
+            readonly name: "signer";
+            readonly type: "address";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "string";
+            readonly name: "operation";
+            readonly type: "string";
+        }];
+        readonly name: "SignerManaged";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "string";
+            readonly name: "symbol";
+            readonly type: "string";
+        }];
+        readonly name: "TokenDeleted";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "address";
+            readonly name: "addr";
+            readonly type: "address";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint8";
+            readonly name: "decimals";
+            readonly type: "uint8";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "string";
+            readonly name: "symbol";
+            readonly type: "string";
+        }];
+        readonly name: "TokenUpdate";
         readonly type: "event";
     }, {
         readonly anonymous: false;
@@ -70,6 +294,76 @@ export declare class EmmetBridgeUtilities__factory {
         readonly name: "UpdatedEmmetData";
         readonly type: "event";
     }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "address";
+            readonly name: "oldGasFees";
+            readonly type: "address";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "address";
+            readonly name: "newGasFees";
+            readonly type: "address";
+        }];
+        readonly name: "UpdatedGasFeesAddress";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "oldFee";
+            readonly type: "uint128";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint128";
+            readonly name: "newFee";
+            readonly type: "uint128";
+        }];
+        readonly name: "UpdatedProtocolFee";
+        readonly type: "event";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "CFO_ROLE";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "DEFAULT_ADMIN_ROLE";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "MANAGER_ROLE";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "SIGNER_ROLE";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [];
         readonly name: "emmetData";
         readonly outputs: readonly [{
@@ -96,6 +390,52 @@ export declare class EmmetBridgeUtilities__factory {
             readonly internalType: "contract ICombinedGasFees";
             readonly name: "";
             readonly type: "address";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }];
+        readonly name: "getRoleAdmin";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }, {
+            readonly internalType: "address";
+            readonly name: "account";
+            readonly type: "address";
+        }];
+        readonly name: "grantRole";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }, {
+            readonly internalType: "address";
+            readonly name: "account";
+            readonly type: "address";
+        }];
+        readonly name: "hasRole";
+        readonly outputs: readonly [{
+            readonly internalType: "bool";
+            readonly name: "";
+            readonly type: "bool";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -172,6 +512,48 @@ export declare class EmmetBridgeUtilities__factory {
             readonly internalType: "string";
             readonly name: "receiver";
             readonly type: "string";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }, {
+            readonly internalType: "address";
+            readonly name: "callerConfirmation";
+            readonly type: "address";
+        }];
+        readonly name: "renounceRole";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "role";
+            readonly type: "bytes32";
+        }, {
+            readonly internalType: "address";
+            readonly name: "account";
+            readonly type: "address";
+        }];
+        readonly name: "revokeRole";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes4";
+            readonly name: "interfaceId";
+            readonly type: "bytes4";
+        }];
+        readonly name: "supportsInterface";
+        readonly outputs: readonly [{
+            readonly internalType: "bool";
+            readonly name: "";
+            readonly type: "bool";
         }];
         readonly stateMutability: "view";
         readonly type: "function";

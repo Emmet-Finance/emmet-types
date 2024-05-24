@@ -1,7 +1,7 @@
 import type { BaseContract, BytesLike, FunctionFragment, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener } from "../../common";
 export interface IEmmetBridgeTypesInterface extends Interface {
-    getEvent(nameOrSignatureOrTopic: "ReceiveInstallment" | "SendInstallment" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "ReceiveInstallment" | "SendInstallment" | "SignerManaged" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData"): EventFragment;
 }
 export declare namespace ReceiveInstallmentEvent {
     type InputTuple = [txHash: BytesLike];
@@ -19,6 +19,18 @@ export declare namespace SendInstallmentEvent {
     type OutputTuple = [txHash: string];
     interface OutputObject {
         txHash: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace SignerManagedEvent {
+    type InputTuple = [signer: AddressLike, operation: string];
+    type OutputTuple = [signer: string, operation: string];
+    interface OutputObject {
+        signer: string;
+        operation: string;
     }
     type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
     type Filter = TypedDeferredTopicFilter<Event>;
@@ -76,6 +88,7 @@ export interface IEmmetBridgeTypes extends BaseContract {
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getEvent(key: "ReceiveInstallment"): TypedContractEvent<ReceiveInstallmentEvent.InputTuple, ReceiveInstallmentEvent.OutputTuple, ReceiveInstallmentEvent.OutputObject>;
     getEvent(key: "SendInstallment"): TypedContractEvent<SendInstallmentEvent.InputTuple, SendInstallmentEvent.OutputTuple, SendInstallmentEvent.OutputObject>;
+    getEvent(key: "SignerManaged"): TypedContractEvent<SignerManagedEvent.InputTuple, SignerManagedEvent.OutputTuple, SignerManagedEvent.OutputObject>;
     getEvent(key: "UpdateGasFeeAddress"): TypedContractEvent<UpdateGasFeeAddressEvent.InputTuple, UpdateGasFeeAddressEvent.OutputTuple, UpdateGasFeeAddressEvent.OutputObject>;
     getEvent(key: "UpdateTxHash"): TypedContractEvent<UpdateTxHashEvent.InputTuple, UpdateTxHashEvent.OutputTuple, UpdateTxHashEvent.OutputObject>;
     getEvent(key: "UpdatedEmmetData"): TypedContractEvent<UpdatedEmmetDataEvent.InputTuple, UpdatedEmmetDataEvent.OutputTuple, UpdatedEmmetDataEvent.OutputObject>;
@@ -84,6 +97,8 @@ export interface IEmmetBridgeTypes extends BaseContract {
         ReceiveInstallment: TypedContractEvent<ReceiveInstallmentEvent.InputTuple, ReceiveInstallmentEvent.OutputTuple, ReceiveInstallmentEvent.OutputObject>;
         "SendInstallment(bytes32)": TypedContractEvent<SendInstallmentEvent.InputTuple, SendInstallmentEvent.OutputTuple, SendInstallmentEvent.OutputObject>;
         SendInstallment: TypedContractEvent<SendInstallmentEvent.InputTuple, SendInstallmentEvent.OutputTuple, SendInstallmentEvent.OutputObject>;
+        "SignerManaged(address,string)": TypedContractEvent<SignerManagedEvent.InputTuple, SignerManagedEvent.OutputTuple, SignerManagedEvent.OutputObject>;
+        SignerManaged: TypedContractEvent<SignerManagedEvent.InputTuple, SignerManagedEvent.OutputTuple, SignerManagedEvent.OutputObject>;
         "UpdateGasFeeAddress(address,address)": TypedContractEvent<UpdateGasFeeAddressEvent.InputTuple, UpdateGasFeeAddressEvent.OutputTuple, UpdateGasFeeAddressEvent.OutputObject>;
         UpdateGasFeeAddress: TypedContractEvent<UpdateGasFeeAddressEvent.InputTuple, UpdateGasFeeAddressEvent.OutputTuple, UpdateGasFeeAddressEvent.OutputObject>;
         "UpdateTxHash(bytes32,bytes32)": TypedContractEvent<UpdateTxHashEvent.InputTuple, UpdateTxHashEvent.OutputTuple, UpdateTxHashEvent.OutputObject>;

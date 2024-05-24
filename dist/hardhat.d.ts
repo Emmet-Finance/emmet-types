@@ -82,6 +82,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetBridgeAdmin__factory>;
     getContractFactory(
+      name: "EmmetBridgeStorage",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetBridgeStorage__factory>;
+    getContractFactory(
       name: "EmmetBridgeUtilities",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetBridgeUtilities__factory>;
@@ -222,6 +226,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetMultisig__factory>;
     getContractFactory(
+      name: "EmmetToken",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetToken__factory>;
+    getContractFactory(
       name: "EmmetPriceFeed",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetPriceFeed__factory>;
@@ -332,6 +340,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetBridgeAdmin>;
     getContractAt(
+      name: "EmmetBridgeStorage",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetBridgeStorage>;
+    getContractAt(
       name: "EmmetBridgeUtilities",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -506,6 +519,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetMultisig>;
+    getContractAt(
+      name: "EmmetToken",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetToken>;
     getContractAt(
       name: "EmmetPriceFeed",
       address: string | ethers.Addressable,
@@ -606,6 +624,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetBridgeAdmin>;
     deployContract(
+      name: "EmmetBridgeStorage",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridgeStorage>;
+    deployContract(
       name: "EmmetBridgeUtilities",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetBridgeUtilities>;
@@ -745,6 +767,10 @@ declare module "hardhat/types/runtime" {
       name: "EmmetMultisig",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetMultisig>;
+    deployContract(
+      name: "EmmetToken",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetToken>;
     deployContract(
       name: "EmmetPriceFeed",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -856,6 +882,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetBridgeAdmin>;
     deployContract(
+      name: "EmmetBridgeStorage",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridgeStorage>;
+    deployContract(
       name: "EmmetBridgeUtilities",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1030,6 +1061,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetMultisig>;
+    deployContract(
+      name: "EmmetToken",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetToken>;
     deployContract(
       name: "EmmetPriceFeed",
       args: any[],

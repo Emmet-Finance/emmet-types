@@ -41,6 +41,16 @@ export declare class IEmmetBridgeAdmin__factory {
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "symbol_";
+            readonly type: "string";
+        }];
+        readonly name: "withdrawTokenFee";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
     }];
     static createInterface(): IEmmetBridgeAdminInterface;
     static connect(address: string, runner?: ContractRunner | null): IEmmetBridgeAdmin;
