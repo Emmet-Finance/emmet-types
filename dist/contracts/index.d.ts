@@ -10,6 +10,8 @@ import type * as interfaces from "./interfaces";
 export type { interfaces };
 import type * as libs from "./libs";
 export type { libs };
+import type * as liquidity from "./liquidity";
+export type { liquidity };
 import type * as multisig from "./multisig";
 export type { multisig };
 import type * as oracles from "./oracles";

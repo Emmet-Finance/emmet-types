@@ -222,6 +222,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.UniswapV3Helper__factory>;
     getContractFactory(
+      name: "EmmetLiquidityPool",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetLiquidityPool__factory>;
+    getContractFactory(
+      name: "IEmmetLP",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IEmmetLP__factory>;
+    getContractFactory(
       name: "EmmetMultisig",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetMultisig__factory>;
@@ -515,6 +523,16 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.UniswapV3Helper>;
     getContractAt(
+      name: "EmmetLiquidityPool",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetLiquidityPool>;
+    getContractAt(
+      name: "IEmmetLP",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IEmmetLP>;
+    getContractAt(
       name: "EmmetMultisig",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -764,6 +782,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.UniswapV3Helper>;
     deployContract(
+      name: "EmmetLiquidityPool",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLiquidityPool>;
+    deployContract(
+      name: "IEmmetLP",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IEmmetLP>;
+    deployContract(
       name: "EmmetMultisig",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetMultisig>;
@@ -1056,6 +1082,16 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.UniswapV3Helper>;
+    deployContract(
+      name: "EmmetLiquidityPool",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLiquidityPool>;
+    deployContract(
+      name: "IEmmetLP",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IEmmetLP>;
     deployContract(
       name: "EmmetMultisig",
       args: any[],

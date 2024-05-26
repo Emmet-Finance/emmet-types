@@ -107,6 +107,10 @@ export type { EmmetTokenStrategy } from "./contracts/libs/TokenStrategy.sol/Emme
 export { EmmetTokenStrategy__factory } from "./factories/contracts/libs/TokenStrategy.sol/EmmetTokenStrategy__factory";
 export type { UniswapV3Helper } from "./contracts/libs/UniswapV3Helper";
 export { UniswapV3Helper__factory } from "./factories/contracts/libs/UniswapV3Helper__factory";
+export type { EmmetLiquidityPool } from "./contracts/liquidity/EmmetLP.sol/EmmetLiquidityPool";
+export { EmmetLiquidityPool__factory } from "./factories/contracts/liquidity/EmmetLP.sol/EmmetLiquidityPool__factory";
+export type { IEmmetLP } from "./contracts/liquidity/IEmmetLP";
+export { IEmmetLP__factory } from "./factories/contracts/liquidity/IEmmetLP__factory";
 export type { EmmetMultisig } from "./contracts/multisig/EmmetMultisig";
 export { EmmetMultisig__factory } from "./factories/contracts/multisig/EmmetMultisig__factory";
 export type { EmmetToken } from "./contracts/multisig/EmmetToken";
