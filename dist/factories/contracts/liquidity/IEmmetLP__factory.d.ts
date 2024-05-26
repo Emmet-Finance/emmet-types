@@ -10,6 +10,10 @@ export declare class IEmmetLP__factory {
         readonly name: "InsufficientBalance";
         readonly type: "error";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "NoCodeAccount";
+        readonly type: "error";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "string";
             readonly name: "message";

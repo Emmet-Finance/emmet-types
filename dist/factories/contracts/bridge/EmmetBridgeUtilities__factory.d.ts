@@ -395,6 +395,20 @@ export declare class EmmetBridgeUtilities__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "symbol_";
+            readonly type: "string";
+        }];
+        readonly name: "getLiquidityPool";
+        readonly outputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "pool";
+            readonly type: "address";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
             readonly internalType: "bytes32";
             readonly name: "role";
             readonly type: "bytes32";
@@ -545,6 +559,20 @@ export declare class EmmetBridgeUtilities__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "amount_";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "symbol_";
+            readonly type: "string";
+        }];
+        readonly name: "stake";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
             readonly internalType: "bytes4";
             readonly name: "interfaceId";
             readonly type: "bytes4";
@@ -556,6 +584,20 @@ export declare class EmmetBridgeUtilities__factory {
             readonly type: "bool";
         }];
         readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "amount_";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "symbol_";
+            readonly type: "string";
+        }];
+        readonly name: "withdraw";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
         readonly type: "function";
     }];
     static createInterface(): EmmetBridgeUtilitiesInterface;

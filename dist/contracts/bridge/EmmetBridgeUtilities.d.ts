@@ -1,7 +1,7 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetBridgeUtilitiesInterface extends Interface {
-    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getRoleAdmin" | "grantRole" | "hasRole" | "incommingTransactions" | "outgoingTransactions" | "renounceRole" | "revokeRole" | "supportsInterface"): FunctionFragment;
+    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getLiquidityPool" | "getRoleAdmin" | "grantRole" | "hasRole" | "incommingTransactions" | "outgoingTransactions" | "renounceRole" | "revokeRole" | "stake" | "supportsInterface" | "withdraw"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "ReceiveInstallment" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "SendInstallment" | "SignerManaged" | "TokenDeleted" | "TokenUpdate" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
@@ -10,6 +10,7 @@ export interface EmmetBridgeUtilitiesInterface extends Interface {
     encodeFunctionData(functionFragment: "emmetData", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetTokenVault", values?: undefined): string;
     encodeFunctionData(functionFragment: "gasFeesAdmin", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getLiquidityPool", values: [string]): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
@@ -17,7 +18,9 @@ export interface EmmetBridgeUtilitiesInterface extends Interface {
     encodeFunctionData(functionFragment: "outgoingTransactions", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "stake", values: [BigNumberish, string]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "withdraw", values: [BigNumberish, string]): string;
     decodeFunctionResult(functionFragment: "CFO_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "MANAGER_ROLE", data: BytesLike): Result;
@@ -25,6 +28,7 @@ export interface EmmetBridgeUtilitiesInterface extends Interface {
     decodeFunctionResult(functionFragment: "emmetData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "emmetTokenVault", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "gasFeesAdmin", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getLiquidityPool", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
@@ -32,7 +36,9 @@ export interface EmmetBridgeUtilitiesInterface extends Interface {
     decodeFunctionResult(functionFragment: "outgoingTransactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 }
 export declare namespace CCTPChainDeletedEvent {
     type InputTuple = [chainId: BigNumberish];
@@ -303,6 +309,7 @@ export interface EmmetBridgeUtilities extends BaseContract {
     emmetData: TypedContractMethod<[], [string], "view">;
     emmetTokenVault: TypedContractMethod<[], [string], "view">;
     gasFeesAdmin: TypedContractMethod<[], [string], "view">;
+    getLiquidityPool: TypedContractMethod<[symbol_: string], [string], "view">;
     getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
     grantRole: TypedContractMethod<[
         role: BytesLike,
@@ -370,11 +377,23 @@ export interface EmmetBridgeUtilities extends BaseContract {
     ], [
         void
     ], "nonpayable">;
+    stake: TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
+    ], [
+        void
+    ], "nonpayable">;
     supportsInterface: TypedContractMethod<[
         interfaceId: BytesLike
     ], [
         boolean
     ], "view">;
+    withdraw: TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
+    ], [
+        void
+    ], "nonpayable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "CFO_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
@@ -383,6 +402,7 @@ export interface EmmetBridgeUtilities extends BaseContract {
     getFunction(nameOrSignature: "emmetData"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "emmetTokenVault"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "gasFeesAdmin"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "getLiquidityPool"): TypedContractMethod<[symbol_: string], [string], "view">;
     getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
         role: BytesLike,
@@ -450,7 +470,19 @@ export interface EmmetBridgeUtilities extends BaseContract {
     ], [
         void
     ], "nonpayable">;
+    getFunction(nameOrSignature: "stake"): TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
+    ], [
+        void
+    ], "nonpayable">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+    getFunction(nameOrSignature: "withdraw"): TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
+    ], [
+        void
+    ], "nonpayable">;
     getEvent(key: "CCTPChainDeleted"): TypedContractEvent<CCTPChainDeletedEvent.InputTuple, CCTPChainDeletedEvent.OutputTuple, CCTPChainDeletedEvent.OutputObject>;
     getEvent(key: "CctpChainUpdated"): TypedContractEvent<CctpChainUpdatedEvent.InputTuple, CctpChainUpdatedEvent.OutputTuple, CctpChainUpdatedEvent.OutputObject>;
     getEvent(key: "ChainDeleted"): TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;

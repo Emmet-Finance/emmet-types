@@ -1,7 +1,7 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetBridgeInterface extends Interface {
-    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getRoleAdmin" | "grantRole" | "hasRole" | "incommingTransactions" | "manageSigner" | "outgoingTransactions" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "supportsInterface" | "updateEmmetData" | "updateGasLimitAddress" | "updateTxHash" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
+    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getLiquidityPool" | "getRoleAdmin" | "grantRole" | "hasRole" | "incommingTransactions" | "manageLPs" | "manageSigner" | "outgoingTransactions" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "stake" | "supportsInterface" | "updateEmmetData" | "updateGasLimitAddress" | "updateTxHash" | "withdraw" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "ReceiveInstallment" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "SendInstallment" | "SignerManaged" | "TokenDeleted" | "TokenUpdate" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
@@ -10,20 +10,24 @@ export interface EmmetBridgeInterface extends Interface {
     encodeFunctionData(functionFragment: "emmetData", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetTokenVault", values?: undefined): string;
     encodeFunctionData(functionFragment: "gasFeesAdmin", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getLiquidityPool", values: [string]): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "incommingTransactions", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "manageLPs", values: [string, AddressLike]): string;
     encodeFunctionData(functionFragment: "manageSigner", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "outgoingTransactions", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "receiveInstallment", values: [BytesLike, BigNumberish, AddressLike[], BytesLike[], BytesLike]): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "sendInstallment", values: [BigNumberish, BigNumberish, string, string, string]): string;
+    encodeFunctionData(functionFragment: "stake", values: [BigNumberish, string]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "updateEmmetData", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "updateGasLimitAddress", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "updateTxHash", values: [BytesLike, BytesLike]): string;
+    encodeFunctionData(functionFragment: "withdraw", values: [BigNumberish, string]): string;
     encodeFunctionData(functionFragment: "withdrawProtocolFee", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawTokenFee", values: [string]): string;
     decodeFunctionResult(functionFragment: "CFO_ROLE", data: BytesLike): Result;
@@ -33,20 +37,24 @@ export interface EmmetBridgeInterface extends Interface {
     decodeFunctionResult(functionFragment: "emmetData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "emmetTokenVault", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "gasFeesAdmin", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getLiquidityPool", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "incommingTransactions", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "manageLPs", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "manageSigner", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "outgoingTransactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "receiveInstallment", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "sendInstallment", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateEmmetData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateGasLimitAddress", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateTxHash", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawProtocolFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawTokenFee", data: BytesLike): Result;
 }
@@ -319,6 +327,7 @@ export interface EmmetBridge extends BaseContract {
     emmetData: TypedContractMethod<[], [string], "view">;
     emmetTokenVault: TypedContractMethod<[], [string], "view">;
     gasFeesAdmin: TypedContractMethod<[], [string], "view">;
+    getLiquidityPool: TypedContractMethod<[symbol_: string], [string], "view">;
     getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
     grantRole: TypedContractMethod<[
         role: BytesLike,
@@ -353,6 +362,12 @@ export interface EmmetBridge extends BaseContract {
             originHash: string;
         }
     ], "view">;
+    manageLPs: TypedContractMethod<[
+        symbol_: string,
+        lpAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
     manageSigner: TypedContractMethod<[
         signer_: AddressLike,
         operation: BigNumberish
@@ -410,6 +425,12 @@ export interface EmmetBridge extends BaseContract {
     ], [
         void
     ], "payable">;
+    stake: TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
+    ], [
+        void
+    ], "nonpayable">;
     supportsInterface: TypedContractMethod<[
         interfaceId: BytesLike
     ], [
@@ -431,6 +452,12 @@ export interface EmmetBridge extends BaseContract {
     ], [
         void
     ], "nonpayable">;
+    withdraw: TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
+    ], [
+        void
+    ], "nonpayable">;
     withdrawProtocolFee: TypedContractMethod<[], [void], "nonpayable">;
     withdrawTokenFee: TypedContractMethod<[
         symbol_: string
@@ -445,6 +472,7 @@ export interface EmmetBridge extends BaseContract {
     getFunction(nameOrSignature: "emmetData"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "emmetTokenVault"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "gasFeesAdmin"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "getLiquidityPool"): TypedContractMethod<[symbol_: string], [string], "view">;
     getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
         role: BytesLike,
@@ -479,6 +507,12 @@ export interface EmmetBridge extends BaseContract {
             originHash: string;
         }
     ], "view">;
+    getFunction(nameOrSignature: "manageLPs"): TypedContractMethod<[
+        symbol_: string,
+        lpAddress_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
     getFunction(nameOrSignature: "manageSigner"): TypedContractMethod<[
         signer_: AddressLike,
         operation: BigNumberish
@@ -536,12 +570,24 @@ export interface EmmetBridge extends BaseContract {
     ], [
         void
     ], "payable">;
+    getFunction(nameOrSignature: "stake"): TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
+    ], [
+        void
+    ], "nonpayable">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
     getFunction(nameOrSignature: "updateEmmetData"): TypedContractMethod<[emmetData_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateGasLimitAddress"): TypedContractMethod<[gasFeesAdmin_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateTxHash"): TypedContractMethod<[
         bridgeHash_: BytesLike,
         txHash_: BytesLike
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "withdraw"): TypedContractMethod<[
+        amount_: BigNumberish,
+        symbol_: string
     ], [
         void
     ], "nonpayable">;
