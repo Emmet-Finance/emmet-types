@@ -1,3 +1,5 @@
+import type * as addressbook from "./addressbook";
+export type { addressbook };
 import type * as admin from "./admin";
 export type { admin };
 import type * as bridge from "./bridge";

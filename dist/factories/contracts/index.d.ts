@@ -1,3 +1,4 @@
+export * as addressbook from "./addressbook";
 export * as admin from "./admin";
 export * as bridge from "./bridge";
 export * as conventional from "./conventional";

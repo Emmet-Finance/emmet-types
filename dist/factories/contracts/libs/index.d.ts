@@ -1,4 +1,5 @@
 export * as tokenStrategySol from "./TokenStrategy.sol";
+export { AddressStorageHelper__factory } from "./AddressStorageHelper__factory";
 export { BalancerHelper__factory } from "./BalancerHelper__factory";
 export { CCTPHelper__factory } from "./CCTPHelper__factory";
 export { HashHelper__factory } from "./HashHelper__factory";

@@ -1,7 +1,10 @@
-import type { BaseContract, FunctionFragment, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
-import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener } from "../../common";
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface BalancerHelperInterface extends Interface {
+    getFunction(nameOrSignature: "estimateTokenOut"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "BalancerPoolUpdate"): EventFragment;
+    encodeFunctionData(functionFragment: "estimateTokenOut", values: [BytesLike, AddressLike, AddressLike, BigNumberish]): string;
+    decodeFunctionResult(functionFragment: "estimateTokenOut", data: BytesLike): Result;
 }
 export declare namespace BalancerPoolUpdateEvent {
     type InputTuple = [
@@ -40,7 +43,23 @@ export interface BalancerHelper extends BaseContract {
     listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    estimateTokenOut: TypedContractMethod<[
+        poolId: BytesLike,
+        tokenIn: AddressLike,
+        tokenOut: AddressLike,
+        amountIn: BigNumberish
+    ], [
+        bigint
+    ], "view">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "estimateTokenOut"): TypedContractMethod<[
+        poolId: BytesLike,
+        tokenIn: AddressLike,
+        tokenOut: AddressLike,
+        amountIn: BigNumberish
+    ], [
+        bigint
+    ], "view">;
     getEvent(key: "BalancerPoolUpdate"): TypedContractEvent<BalancerPoolUpdateEvent.InputTuple, BalancerPoolUpdateEvent.OutputTuple, BalancerPoolUpdateEvent.OutputObject>;
     filters: {
         "BalancerPoolUpdate(address,address,address,string)": TypedContractEvent<BalancerPoolUpdateEvent.InputTuple, BalancerPoolUpdateEvent.OutputTuple, BalancerPoolUpdateEvent.OutputObject>;

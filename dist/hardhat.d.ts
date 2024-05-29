@@ -74,6 +74,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ReentrancyGuard__factory>;
     getContractFactory(
+      name: "EmmetAddressBook",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetAddressBook__factory>;
+    getContractFactory(
+      name: "IAddressBook",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IAddressBook__factory>;
+    getContractFactory(
       name: "EmmetAdmin",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetAdmin__factory>;
@@ -201,6 +209,10 @@ declare module "hardhat/types/runtime" {
       name: "IBridgeUtility",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IBridgeUtility__factory>;
+    getContractFactory(
+      name: "AddressStorageHelper",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AddressStorageHelper__factory>;
     getContractFactory(
       name: "BalancerHelper",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -358,6 +370,16 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.ReentrancyGuard>;
     getContractAt(
+      name: "EmmetAddressBook",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetAddressBook>;
+    getContractAt(
+      name: "IAddressBook",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IAddressBook>;
+    getContractAt(
       name: "EmmetAdmin",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -517,6 +539,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IBridgeUtility>;
+    getContractAt(
+      name: "AddressStorageHelper",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AddressStorageHelper>;
     getContractAt(
       name: "BalancerHelper",
       address: string | ethers.Addressable,
@@ -679,6 +706,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ReentrancyGuard>;
     deployContract(
+      name: "EmmetAddressBook",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetAddressBook>;
+    deployContract(
+      name: "IAddressBook",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAddressBook>;
+    deployContract(
       name: "EmmetAdmin",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetAdmin>;
@@ -806,6 +841,10 @@ declare module "hardhat/types/runtime" {
       name: "IBridgeUtility",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IBridgeUtility>;
+    deployContract(
+      name: "AddressStorageHelper",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AddressStorageHelper>;
     deployContract(
       name: "BalancerHelper",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -963,6 +1002,16 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ReentrancyGuard>;
     deployContract(
+      name: "EmmetAddressBook",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetAddressBook>;
+    deployContract(
+      name: "IAddressBook",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAddressBook>;
+    deployContract(
       name: "EmmetAdmin",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1122,6 +1171,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IBridgeUtility>;
+    deployContract(
+      name: "AddressStorageHelper",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AddressStorageHelper>;
     deployContract(
       name: "BalancerHelper",
       args: any[],

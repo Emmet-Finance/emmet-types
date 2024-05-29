@@ -33,6 +33,10 @@ export type { IERC165 } from "./@openzeppelin/contracts/utils/introspection/IERC
 export { IERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/IERC165__factory";
 export type { ReentrancyGuard } from "./@openzeppelin/contracts/utils/ReentrancyGuard";
 export { ReentrancyGuard__factory } from "./factories/@openzeppelin/contracts/utils/ReentrancyGuard__factory";
+export type { EmmetAddressBook } from "./contracts/addressbook/AddressBook.sol/EmmetAddressBook";
+export { EmmetAddressBook__factory } from "./factories/contracts/addressbook/AddressBook.sol/EmmetAddressBook__factory";
+export type { IAddressBook } from "./contracts/addressbook/IAddressBook";
+export { IAddressBook__factory } from "./factories/contracts/addressbook/IAddressBook__factory";
 export type { EmmetAdmin } from "./contracts/admin/EmmetAdmin";
 export { EmmetAdmin__factory } from "./factories/contracts/admin/EmmetAdmin__factory";
 export type { Initializable } from "./contracts/admin/Initializable";
@@ -97,6 +101,8 @@ export type { IUniswapV3Router } from "./contracts/interfaces/IUniswapV3.sol/IUn
 export { IUniswapV3Router__factory } from "./factories/contracts/interfaces/IUniswapV3.sol/IUniswapV3Router__factory";
 export type { IBridgeUtility } from "./contracts/interfaces/IUtility.sol/IBridgeUtility";
 export { IBridgeUtility__factory } from "./factories/contracts/interfaces/IUtility.sol/IBridgeUtility__factory";
+export type { AddressStorageHelper } from "./contracts/libs/AddressStorageHelper";
+export { AddressStorageHelper__factory } from "./factories/contracts/libs/AddressStorageHelper__factory";
 export type { BalancerHelper } from "./contracts/libs/BalancerHelper";
 export { BalancerHelper__factory } from "./factories/contracts/libs/BalancerHelper__factory";
 export type { CCTPHelper } from "./contracts/libs/CCTPHelper";
