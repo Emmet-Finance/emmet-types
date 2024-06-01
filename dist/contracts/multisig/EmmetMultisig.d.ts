@@ -15,13 +15,13 @@ export interface EmmetMultisigInterface extends Interface {
     encodeFunctionData(functionFragment: "minStake", values?: undefined): string;
     encodeFunctionData(functionFragment: "nonce", values?: undefined): string;
     encodeFunctionData(functionFragment: "previouslyProcessedTransactions", values: [BigNumberish, string]): string;
-    encodeFunctionData(functionFragment: "propose", values: [BytesLike, BytesLike]): string;
+    encodeFunctionData(functionFragment: "propose", values: [BytesLike, BytesLike, BytesLike]): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "rewardAmounts", values?: undefined): string;
     encodeFunctionData(functionFragment: "rewards", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "roleRequests", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "sign", values: [BytesLike, BigNumberish, BytesLike, BytesLike, string]): string;
+    encodeFunctionData(functionFragment: "sign", values: [BytesLike, BigNumberish, BytesLike, BytesLike, BytesLike, string]): string;
     encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "stakes", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
@@ -175,7 +175,7 @@ export declare namespace SignedEvent {
         target: string,
         data: BytesLike,
         id: BigNumberish,
-        signers: AddressLike[],
+        signers: BytesLike[],
         aggregatedSignature: BytesLike[]
     ];
     type OutputTuple = [
@@ -265,7 +265,8 @@ export interface EmmetMultisig extends BaseContract {
     ], "view">;
     propose: TypedContractMethod<[
         data_: BytesLike,
-        signature_: BytesLike
+        signature_: BytesLike,
+        signer_: BytesLike
     ], [
         void
     ], "nonpayable">;
@@ -300,6 +301,7 @@ export interface EmmetMultisig extends BaseContract {
     sign: TypedContractMethod<[
         txHash_: BytesLike,
         id_: BigNumberish,
+        signer_: BytesLike,
         signature_: BytesLike,
         data_: BytesLike,
         contract_: string
@@ -359,7 +361,8 @@ export interface EmmetMultisig extends BaseContract {
     ], "view">;
     getFunction(nameOrSignature: "propose"): TypedContractMethod<[
         data_: BytesLike,
-        signature_: BytesLike
+        signature_: BytesLike,
+        signer_: BytesLike
     ], [
         void
     ], "nonpayable">;
@@ -394,6 +397,7 @@ export interface EmmetMultisig extends BaseContract {
     getFunction(nameOrSignature: "sign"): TypedContractMethod<[
         txHash_: BytesLike,
         id_: BigNumberish,
+        signer_: BytesLike,
         signature_: BytesLike,
         data_: BytesLike,
         contract_: string
@@ -444,7 +448,7 @@ export interface EmmetMultisig extends BaseContract {
         RoleGranted: TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
         "RoleRevoked(bytes32,address,address)": TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
         RoleRevoked: TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
-        "Signed(bytes32,string,bytes,uint256,address[],bytes[])": TypedContractEvent<SignedEvent.InputTuple, SignedEvent.OutputTuple, SignedEvent.OutputObject>;
+        "Signed(bytes32,string,bytes,uint256,bytes[],bytes[])": TypedContractEvent<SignedEvent.InputTuple, SignedEvent.OutputTuple, SignedEvent.OutputObject>;
         Signed: TypedContractEvent<SignedEvent.InputTuple, SignedEvent.OutputTuple, SignedEvent.OutputObject>;
         "Staked(address,uint256)": TypedContractEvent<StakedEvent.InputTuple, StakedEvent.OutputTuple, StakedEvent.OutputObject>;
         Staked: TypedContractEvent<StakedEvent.InputTuple, StakedEvent.OutputTuple, StakedEvent.OutputObject>;
