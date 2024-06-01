@@ -55,6 +55,8 @@ export type { IEmmetBridgeAdmin } from "./contracts/bridge/IEmmetBridgeAdmin";
 export { IEmmetBridgeAdmin__factory } from "./factories/contracts/bridge/IEmmetBridgeAdmin__factory";
 export type { IEmmetBridgeTypes } from "./contracts/bridge/IEmmetBridgeTypes";
 export { IEmmetBridgeTypes__factory } from "./factories/contracts/bridge/IEmmetBridgeTypes__factory";
+export type { WEMMET } from "./contracts/conventional/em.EMMET.sol/WEMMET";
+export { WEMMET__factory } from "./factories/contracts/conventional/em.EMMET.sol/WEMMET__factory";
 export type { WTON } from "./contracts/conventional/em.TON.sol/WTON";
 export { WTON__factory } from "./factories/contracts/conventional/em.TON.sol/WTON__factory";
 export type { EmmetTokenVault } from "./contracts/conventional/EmmetTokenVault";

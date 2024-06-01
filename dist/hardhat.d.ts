@@ -118,6 +118,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IEmmetBridgeTypes__factory>;
     getContractFactory(
+      name: "WEMMET",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.WEMMET__factory>;
+    getContractFactory(
       name: "WTON",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WTON__factory>;
@@ -425,6 +429,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IEmmetBridgeTypes>;
     getContractAt(
+      name: "WEMMET",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.WEMMET>;
+    getContractAt(
       name: "WTON",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -750,6 +759,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetBridgeTypes>;
     deployContract(
+      name: "WEMMET",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WEMMET>;
+    deployContract(
       name: "WTON",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WTON>;
@@ -1056,6 +1069,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetBridgeTypes>;
+    deployContract(
+      name: "WEMMET",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WEMMET>;
     deployContract(
       name: "WTON",
       args: any[],

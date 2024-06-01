@@ -1,4 +1,5 @@
 export * as werc20Sol from "./WERC20.sol";
+export * as emEmmetSol from "./em.EMMET.sol";
 export * as emTonSol from "./em.TON.sol";
 export { EmmetTokenVault__factory } from "./EmmetTokenVault__factory";
 export { IEmmetTokenVault__factory } from "./IEmmetTokenVault__factory";
