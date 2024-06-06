@@ -14,14 +14,14 @@ export declare namespace EmmetTokenStrategy {
     };
 }
 export interface EmmetDataAdminInterface extends Interface {
-    getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "deleteChain" | "deleteCrossChainTokenStrategy" | "deleteIncomingTokenStrategy" | "deletePriceFeed" | "deleteToken" | "gasFees" | "getRoleAdmin" | "grantRole" | "hasRole" | "incrementIndex" | "nativeCoin" | "protocolFee" | "renounceRole" | "revokeRole" | "supportsInterface" | "txIndex" | "updateCctpChain" | "updateChain" | "updateCrossChainTokenStrategy" | "updateGasFeesAddress" | "updateIncomingTokenStrategy" | "updatePriceFeed" | "updateProtocolFee" | "updateToken"): FunctionFragment;
+    getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "deleteChain" | "deleteCrossChainTokenStrategy" | "deleteIncomingTokenStrategy" | "deletePriceFeed" | "deleteToken" | "gasFees" | "getRoleAdmin" | "grantRole" | "hasRole" | "incrementIndex" | "protocolFee" | "renounceRole" | "revokeRole" | "supportsInterface" | "txIndex" | "updateCctpChain" | "updateChain" | "updateCrossChainTokenStrategy" | "updateGasFeesAddress" | "updateIncomingTokenStrategy" | "updatePriceFeed" | "updateProtocolFee" | "updateToken"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "CrossChainPathUpdate" | "IncommingPathUpdate" | "PriceFeedUpdate" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "TokenDeleted" | "TokenUpdate" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "BRIDGE_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "deleteChain", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "deleteCrossChainTokenStrategy", values: [BigNumberish, string, string]): string;
-    encodeFunctionData(functionFragment: "deleteIncomingTokenStrategy", values: [string, string]): string;
+    encodeFunctionData(functionFragment: "deleteIncomingTokenStrategy", values: [BigNumberish, string, string]): string;
     encodeFunctionData(functionFragment: "deletePriceFeed", values: [string]): string;
     encodeFunctionData(functionFragment: "deleteToken", values: [string]): string;
     encodeFunctionData(functionFragment: "gasFees", values?: undefined): string;
@@ -29,7 +29,6 @@ export interface EmmetDataAdminInterface extends Interface {
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "incrementIndex", values?: undefined): string;
-    encodeFunctionData(functionFragment: "nativeCoin", values?: undefined): string;
     encodeFunctionData(functionFragment: "protocolFee", values?: undefined): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
@@ -42,10 +41,10 @@ export interface EmmetDataAdminInterface extends Interface {
         BigNumberish,
         BigNumberish
     ]): string;
-    encodeFunctionData(functionFragment: "updateChain", values: [BigNumberish, BigNumberish, string, string]): string;
+    encodeFunctionData(functionFragment: "updateChain", values: [BigNumberish, string, string]): string;
     encodeFunctionData(functionFragment: "updateCrossChainTokenStrategy", values: [BigNumberish, string, string, BigNumberish[], BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "updateGasFeesAddress", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateIncomingTokenStrategy", values: [string, string, BigNumberish[]]): string;
+    encodeFunctionData(functionFragment: "updateIncomingTokenStrategy", values: [BigNumberish, string, string, BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "updatePriceFeed", values: [string, AddressLike]): string;
     encodeFunctionData(functionFragment: "updateProtocolFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateToken", values: [
@@ -69,7 +68,6 @@ export interface EmmetDataAdminInterface extends Interface {
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "incrementIndex", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "nativeCoin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "protocolFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
@@ -134,21 +132,10 @@ export declare namespace ChainDeletedEvent {
     type LogDescription = TypedLogDescription<Event>;
 }
 export declare namespace ChainUpdateEvent {
-    type InputTuple = [
-        chainId: BigNumberish,
-        cctpDestId: BigNumberish,
-        name: string,
-        token: string
-    ];
-    type OutputTuple = [
-        chainId: bigint,
-        cctpDestId: bigint,
-        name: string,
-        token: string
-    ];
+    type InputTuple = [chainId: BigNumberish, name: string, token: string];
+    type OutputTuple = [chainId: bigint, name: string, token: string];
     interface OutputObject {
         chainId: bigint;
-        cctpDestId: bigint;
         name: string;
         token: string;
     }
@@ -374,6 +361,7 @@ export interface EmmetDataAdmin extends BaseContract {
         void
     ], "nonpayable">;
     deleteIncomingTokenStrategy: TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string
     ], [
@@ -396,7 +384,6 @@ export interface EmmetDataAdmin extends BaseContract {
         boolean
     ], "view">;
     incrementIndex: TypedContractMethod<[], [bigint], "nonpayable">;
-    nativeCoin: TypedContractMethod<[], [string], "view">;
     protocolFee: TypedContractMethod<[
     ], [
         [bigint, bigint] & {
@@ -433,7 +420,6 @@ export interface EmmetDataAdmin extends BaseContract {
     ], "nonpayable">;
     updateChain: TypedContractMethod<[
         chainId_: BigNumberish,
-        cctpDestId_: BigNumberish,
         name_: string,
         token_: string
     ], [
@@ -454,6 +440,7 @@ export interface EmmetDataAdmin extends BaseContract {
         void
     ], "nonpayable">;
     updateIncomingTokenStrategy: TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string,
         localSteps: BigNumberish[]
@@ -494,6 +481,7 @@ export interface EmmetDataAdmin extends BaseContract {
         void
     ], "nonpayable">;
     getFunction(nameOrSignature: "deleteIncomingTokenStrategy"): TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string
     ], [
@@ -516,7 +504,6 @@ export interface EmmetDataAdmin extends BaseContract {
         boolean
     ], "view">;
     getFunction(nameOrSignature: "incrementIndex"): TypedContractMethod<[], [bigint], "nonpayable">;
-    getFunction(nameOrSignature: "nativeCoin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "protocolFee"): TypedContractMethod<[
     ], [
         [bigint, bigint] & {
@@ -549,7 +536,6 @@ export interface EmmetDataAdmin extends BaseContract {
     ], "nonpayable">;
     getFunction(nameOrSignature: "updateChain"): TypedContractMethod<[
         chainId_: BigNumberish,
-        cctpDestId_: BigNumberish,
         name_: string,
         token_: string
     ], [
@@ -566,6 +552,7 @@ export interface EmmetDataAdmin extends BaseContract {
     ], "nonpayable">;
     getFunction(nameOrSignature: "updateGasFeesAddress"): TypedContractMethod<[newGasFees_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateIncomingTokenStrategy"): TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string,
         localSteps: BigNumberish[]
@@ -610,7 +597,7 @@ export interface EmmetDataAdmin extends BaseContract {
         CctpChainUpdated: TypedContractEvent<CctpChainUpdatedEvent.InputTuple, CctpChainUpdatedEvent.OutputTuple, CctpChainUpdatedEvent.OutputObject>;
         "ChainDeleted(uint128)": TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
         ChainDeleted: TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
-        "ChainUpdate(uint128,uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
+        "ChainUpdate(uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         ChainUpdate: TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         "CrossChainPathUpdate(uint256,string,string,tuple,tuple,string)": TypedContractEvent<CrossChainPathUpdateEvent.InputTuple, CrossChainPathUpdateEvent.OutputTuple, CrossChainPathUpdateEvent.OutputObject>;
         CrossChainPathUpdate: TypedContractEvent<CrossChainPathUpdateEvent.InputTuple, CrossChainPathUpdateEvent.OutputTuple, CrossChainPathUpdateEvent.OutputObject>;

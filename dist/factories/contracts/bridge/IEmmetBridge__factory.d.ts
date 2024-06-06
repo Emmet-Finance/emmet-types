@@ -6,6 +6,44 @@ export declare class IEmmetBridge__factory {
             readonly internalType: "bytes32";
             readonly name: "txHash_";
             readonly type: "bytes32";
+        }];
+        readonly name: "getTransaction";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "id";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "amount";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "toToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "uint64";
+            readonly name: "toChainId";
+            readonly type: "uint64";
+        }, {
+            readonly internalType: "bytes32";
+            readonly name: "originHash";
+            readonly type: "bytes32";
+        }, {
+            readonly internalType: "string";
+            readonly name: "receiver";
+            readonly type: "string";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "txHash_";
+            readonly type: "bytes32";
         }, {
             readonly internalType: "uint256";
             readonly name: "id_";

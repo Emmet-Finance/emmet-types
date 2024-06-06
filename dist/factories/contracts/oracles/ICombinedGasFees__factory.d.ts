@@ -66,6 +66,26 @@ export declare class ICombinedGasFees__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "iGasFeesAdminSelector";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes4";
+            readonly name: "selector";
+            readonly type: "bytes4";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "iGasFeesSelector";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes4";
+            readonly name: "selector";
+            readonly type: "bytes4";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "bytes4";
             readonly name: "interfaceId";

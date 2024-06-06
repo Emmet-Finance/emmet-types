@@ -39,18 +39,21 @@ export declare namespace IEmmetDataTypes {
     };
 }
 export interface IEmmetDataInterface extends Interface {
-    getFunction(nameOrSignature: "getCCTPChain" | "getChain" | "getCrossChainTokenStrategy" | "getForeignFeeCompensation" | "getIncomingStrategy" | "getPriceDecimals" | "getProtocolFee" | "getToken" | "getTokenPrice"): FunctionFragment;
+    getFunction(nameOrSignature: "getCCTPChain" | "getChain" | "getChainId" | "getCrossChainTokenStrategy" | "getForeignFeeCompensation" | "getIncomingStrategy" | "getPriceDecimals" | "getProtocolFee" | "getToken" | "getTokenPrice" | "nativeCoin"): FunctionFragment;
     encodeFunctionData(functionFragment: "getCCTPChain", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "getChain", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getChainId", values?: undefined): string;
     encodeFunctionData(functionFragment: "getCrossChainTokenStrategy", values: [BigNumberish, string, string]): string;
     encodeFunctionData(functionFragment: "getForeignFeeCompensation", values: [BigNumberish, string, string]): string;
-    encodeFunctionData(functionFragment: "getIncomingStrategy", values: [string, string]): string;
+    encodeFunctionData(functionFragment: "getIncomingStrategy", values: [BigNumberish, string, string]): string;
     encodeFunctionData(functionFragment: "getPriceDecimals", values: [string]): string;
     encodeFunctionData(functionFragment: "getProtocolFee", values?: undefined): string;
     encodeFunctionData(functionFragment: "getToken", values: [string]): string;
     encodeFunctionData(functionFragment: "getTokenPrice", values: [string]): string;
+    encodeFunctionData(functionFragment: "nativeCoin", values?: undefined): string;
     decodeFunctionResult(functionFragment: "getCCTPChain", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getChain", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getChainId", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getCrossChainTokenStrategy", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getForeignFeeCompensation", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getIncomingStrategy", data: BytesLike): Result;
@@ -58,6 +61,7 @@ export interface IEmmetDataInterface extends Interface {
     decodeFunctionResult(functionFragment: "getProtocolFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getToken", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getTokenPrice", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "nativeCoin", data: BytesLike): Result;
 }
 export interface IEmmetData extends BaseContract {
     connect(runner?: ContractRunner | null): IEmmetData;
@@ -95,6 +99,7 @@ export interface IEmmetData extends BaseContract {
             token: string;
         }
     ], "view">;
+    getChainId: TypedContractMethod<[], [bigint], "view">;
     getCrossChainTokenStrategy: TypedContractMethod<[
         toChainId: BigNumberish,
         fromToken: string,
@@ -110,6 +115,7 @@ export interface IEmmetData extends BaseContract {
         bigint
     ], "view">;
     getIncomingStrategy: TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string
     ], [
@@ -123,6 +129,7 @@ export interface IEmmetData extends BaseContract {
         IEmmetDataTypes.STokenStructOutput
     ], "view">;
     getTokenPrice: TypedContractMethod<[symbol_: string], [bigint], "view">;
+    nativeCoin: TypedContractMethod<[], [string], "view">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "getCCTPChain"): TypedContractMethod<[
         chainId_: BigNumberish
@@ -147,6 +154,7 @@ export interface IEmmetData extends BaseContract {
             token: string;
         }
     ], "view">;
+    getFunction(nameOrSignature: "getChainId"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "getCrossChainTokenStrategy"): TypedContractMethod<[
         toChainId: BigNumberish,
         fromToken: string,
@@ -162,6 +170,7 @@ export interface IEmmetData extends BaseContract {
         bigint
     ], "view">;
     getFunction(nameOrSignature: "getIncomingStrategy"): TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string
     ], [
@@ -175,5 +184,6 @@ export interface IEmmetData extends BaseContract {
         IEmmetDataTypes.STokenStructOutput
     ], "view">;
     getFunction(nameOrSignature: "getTokenPrice"): TypedContractMethod<[symbol_: string], [bigint], "view">;
+    getFunction(nameOrSignature: "nativeCoin"): TypedContractMethod<[], [string], "view">;
     filters: {};
 }

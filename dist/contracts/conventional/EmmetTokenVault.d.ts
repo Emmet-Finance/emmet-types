@@ -1,17 +1,19 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetTokenVaultInterface extends Interface {
-    getFunction(nameOrSignature: "admin" | "bridge" | "initialize" | "transfer" | "updateAdmin" | "updateBridge"): FunctionFragment;
+    getFunction(nameOrSignature: "admin" | "bridge" | "initialize" | "sendETH" | "transfer" | "updateAdmin" | "updateBridge"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Initialized" | "Update"): EventFragment;
     encodeFunctionData(functionFragment: "admin", values?: undefined): string;
     encodeFunctionData(functionFragment: "bridge", values?: undefined): string;
     encodeFunctionData(functionFragment: "initialize", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "sendETH", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "transfer", values: [AddressLike, AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateAdmin", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "updateBridge", values: [AddressLike]): string;
     decodeFunctionResult(functionFragment: "admin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "sendETH", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateBridge", data: BytesLike): Result;
@@ -55,6 +57,12 @@ export interface EmmetTokenVault extends BaseContract {
     admin: TypedContractMethod<[], [string], "view">;
     bridge: TypedContractMethod<[], [string], "view">;
     initialize: TypedContractMethod<[bridge_: AddressLike], [void], "nonpayable">;
+    sendETH: TypedContractMethod<[
+        to_: AddressLike,
+        amount_: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
     transfer: TypedContractMethod<[
         lockedToken_: AddressLike,
         to_: AddressLike,
@@ -76,6 +84,12 @@ export interface EmmetTokenVault extends BaseContract {
     getFunction(nameOrSignature: "admin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "bridge"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "initialize"): TypedContractMethod<[bridge_: AddressLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "sendETH"): TypedContractMethod<[
+        to_: AddressLike,
+        amount_: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
     getFunction(nameOrSignature: "transfer"): TypedContractMethod<[
         lockedToken_: AddressLike,
         to_: AddressLike,

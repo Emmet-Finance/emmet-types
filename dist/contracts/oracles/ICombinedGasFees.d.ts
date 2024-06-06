@@ -1,11 +1,13 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../common";
 export interface ICombinedGasFeesInterface extends Interface {
-    getFunction(nameOrSignature: "getForeignFee" | "getForeignFees" | "getLocalFee" | "getLocalFees" | "supportsInterface" | "updateForeignFee" | "updateLocalFee"): FunctionFragment;
+    getFunction(nameOrSignature: "getForeignFee" | "getForeignFees" | "getLocalFee" | "getLocalFees" | "iGasFeesAdminSelector" | "iGasFeesSelector" | "supportsInterface" | "updateForeignFee" | "updateLocalFee"): FunctionFragment;
     encodeFunctionData(functionFragment: "getForeignFee", values: [BigNumberish, BigNumberish]): string;
     encodeFunctionData(functionFragment: "getForeignFees", values: [BigNumberish, BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "getLocalFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "getLocalFees", values: [BigNumberish[]]): string;
+    encodeFunctionData(functionFragment: "iGasFeesAdminSelector", values?: undefined): string;
+    encodeFunctionData(functionFragment: "iGasFeesSelector", values?: undefined): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "updateForeignFee", values: [BigNumberish, BigNumberish, BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateLocalFee", values: [BigNumberish, BigNumberish]): string;
@@ -13,6 +15,8 @@ export interface ICombinedGasFeesInterface extends Interface {
     decodeFunctionResult(functionFragment: "getForeignFees", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getLocalFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getLocalFees", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "iGasFeesAdminSelector", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "iGasFeesSelector", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateForeignFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateLocalFee", data: BytesLike): Result;
@@ -52,6 +56,8 @@ export interface ICombinedGasFees extends BaseContract {
     ], [
         bigint
     ], "view">;
+    iGasFeesAdminSelector: TypedContractMethod<[], [string], "view">;
+    iGasFeesSelector: TypedContractMethod<[], [string], "view">;
     supportsInterface: TypedContractMethod<[
         interfaceId: BytesLike
     ], [
@@ -85,6 +91,8 @@ export interface ICombinedGasFees extends BaseContract {
     ], "view">;
     getFunction(nameOrSignature: "getLocalFee"): TypedContractMethod<[operation_: BigNumberish], [bigint], "view">;
     getFunction(nameOrSignature: "getLocalFees"): TypedContractMethod<[operations_: BigNumberish[]], [bigint], "view">;
+    getFunction(nameOrSignature: "iGasFeesAdminSelector"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "iGasFeesSelector"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
     getFunction(nameOrSignature: "updateForeignFee"): TypedContractMethod<[
         chainId_: BigNumberish,

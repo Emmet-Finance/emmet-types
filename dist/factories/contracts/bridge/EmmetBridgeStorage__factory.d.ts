@@ -96,11 +96,6 @@ export declare class EmmetBridgeStorage__factory {
             readonly type: "uint128";
         }, {
             readonly indexed: false;
-            readonly internalType: "uint128";
-            readonly name: "cctpDestId";
-            readonly type: "uint128";
-        }, {
-            readonly indexed: false;
             readonly internalType: "string";
             readonly name: "name";
             readonly type: "string";

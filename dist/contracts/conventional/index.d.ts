@@ -4,6 +4,8 @@ import type * as emEmmetSol from "./em.EMMET.sol";
 export type { emEmmetSol };
 import type * as emTonSol from "./em.TON.sol";
 export type { emTonSol };
+import type * as emUsdcSol from "./em.USDC.sol";
+export type { emUsdcSol };
 export type { EmmetTokenVault } from "./EmmetTokenVault";
 export type { IEmmetTokenVault } from "./IEmmetTokenVault";
 export type { IEmmetVaultAdmin } from "./IEmmetVaultAdmin";

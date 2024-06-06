@@ -5,7 +5,7 @@ export interface IEmmetDataAdminInterface extends Interface {
     getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "TokenDeleted" | "TokenUpdate" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "deleteChain", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "deleteCrossChainTokenStrategy", values: [BigNumberish, string, string]): string;
-    encodeFunctionData(functionFragment: "deleteIncomingTokenStrategy", values: [string, string]): string;
+    encodeFunctionData(functionFragment: "deleteIncomingTokenStrategy", values: [BigNumberish, string, string]): string;
     encodeFunctionData(functionFragment: "deletePriceFeed", values: [string]): string;
     encodeFunctionData(functionFragment: "deleteToken", values: [string]): string;
     encodeFunctionData(functionFragment: "incrementIndex", values?: undefined): string;
@@ -16,10 +16,10 @@ export interface IEmmetDataAdminInterface extends Interface {
         BigNumberish,
         BigNumberish
     ]): string;
-    encodeFunctionData(functionFragment: "updateChain", values: [BigNumberish, BigNumberish, string, string]): string;
+    encodeFunctionData(functionFragment: "updateChain", values: [BigNumberish, string, string]): string;
     encodeFunctionData(functionFragment: "updateCrossChainTokenStrategy", values: [BigNumberish, string, string, BigNumberish[], BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "updateGasFeesAddress", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateIncomingTokenStrategy", values: [string, string, BigNumberish[]]): string;
+    encodeFunctionData(functionFragment: "updateIncomingTokenStrategy", values: [BigNumberish, string, string, BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "updatePriceFeed", values: [string, AddressLike]): string;
     encodeFunctionData(functionFragment: "updateProtocolFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateToken", values: [
@@ -95,21 +95,10 @@ export declare namespace ChainDeletedEvent {
     type LogDescription = TypedLogDescription<Event>;
 }
 export declare namespace ChainUpdateEvent {
-    type InputTuple = [
-        chainId: BigNumberish,
-        cctpDestId: BigNumberish,
-        name: string,
-        token: string
-    ];
-    type OutputTuple = [
-        chainId: bigint,
-        cctpDestId: bigint,
-        name: string,
-        token: string
-    ];
+    type InputTuple = [chainId: BigNumberish, name: string, token: string];
+    type OutputTuple = [chainId: bigint, name: string, token: string];
     interface OutputObject {
         chainId: bigint;
-        cctpDestId: bigint;
         name: string;
         token: string;
     }
@@ -196,6 +185,7 @@ export interface IEmmetDataAdmin extends BaseContract {
         void
     ], "nonpayable">;
     deleteIncomingTokenStrategy: TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string
     ], [
@@ -215,7 +205,6 @@ export interface IEmmetDataAdmin extends BaseContract {
     ], "nonpayable">;
     updateChain: TypedContractMethod<[
         chainId_: BigNumberish,
-        cctpDestId_: BigNumberish,
         name_: string,
         token_: string
     ], [
@@ -236,6 +225,7 @@ export interface IEmmetDataAdmin extends BaseContract {
         void
     ], "nonpayable">;
     updateIncomingTokenStrategy: TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string,
         localSteps: BigNumberish[]
@@ -273,6 +263,7 @@ export interface IEmmetDataAdmin extends BaseContract {
         void
     ], "nonpayable">;
     getFunction(nameOrSignature: "deleteIncomingTokenStrategy"): TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string
     ], [
@@ -292,7 +283,6 @@ export interface IEmmetDataAdmin extends BaseContract {
     ], "nonpayable">;
     getFunction(nameOrSignature: "updateChain"): TypedContractMethod<[
         chainId_: BigNumberish,
-        cctpDestId_: BigNumberish,
         name_: string,
         token_: string
     ], [
@@ -309,6 +299,7 @@ export interface IEmmetDataAdmin extends BaseContract {
     ], "nonpayable">;
     getFunction(nameOrSignature: "updateGasFeesAddress"): TypedContractMethod<[newGasFees_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateIncomingTokenStrategy"): TypedContractMethod<[
+        fromChainId: BigNumberish,
         fromToken: string,
         toToken: string,
         localSteps: BigNumberish[]
@@ -347,7 +338,7 @@ export interface IEmmetDataAdmin extends BaseContract {
         CctpChainUpdated: TypedContractEvent<CctpChainUpdatedEvent.InputTuple, CctpChainUpdatedEvent.OutputTuple, CctpChainUpdatedEvent.OutputObject>;
         "ChainDeleted(uint128)": TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
         ChainDeleted: TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
-        "ChainUpdate(uint128,uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
+        "ChainUpdate(uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         ChainUpdate: TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         "TokenDeleted(string)": TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;
         TokenDeleted: TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;

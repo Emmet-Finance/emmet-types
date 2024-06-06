@@ -2,7 +2,7 @@ import type { BaseContract, BytesLike, FunctionFragment, Result, Interface, Even
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../common";
 export interface EmmetAddressBookInterface extends Interface {
     getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "get" | "getRoleAdmin" | "grantRole" | "hasRole" | "renounceRole" | "revokeRole" | "set" | "supportsInterface"): FunctionFragment;
-    getEvent(nameOrSignatureOrTopic: "RoleAdminChanged" | "RoleGranted" | "RoleRevoked"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "AddressUpdate" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "get", values: [string]): string;
@@ -23,6 +23,27 @@ export interface EmmetAddressBookInterface extends Interface {
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "set", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
+}
+export declare namespace AddressUpdateEvent {
+    type InputTuple = [
+        oldAddress: AddressLike,
+        newAddress: AddressLike,
+        name: string
+    ];
+    type OutputTuple = [
+        oldAddress: string,
+        newAddress: string,
+        name: string
+    ];
+    interface OutputObject {
+        oldAddress: string;
+        newAddress: string;
+        name: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
 export declare namespace RoleAdminChangedEvent {
     type InputTuple = [
@@ -167,10 +188,13 @@ export interface EmmetAddressBook extends BaseContract {
         void
     ], "nonpayable">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+    getEvent(key: "AddressUpdate"): TypedContractEvent<AddressUpdateEvent.InputTuple, AddressUpdateEvent.OutputTuple, AddressUpdateEvent.OutputObject>;
     getEvent(key: "RoleAdminChanged"): TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
     getEvent(key: "RoleGranted"): TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
     getEvent(key: "RoleRevoked"): TypedContractEvent<RoleRevokedEvent.InputTuple, RoleRevokedEvent.OutputTuple, RoleRevokedEvent.OutputObject>;
     filters: {
+        "AddressUpdate(address,address,string)": TypedContractEvent<AddressUpdateEvent.InputTuple, AddressUpdateEvent.OutputTuple, AddressUpdateEvent.OutputObject>;
+        AddressUpdate: TypedContractEvent<AddressUpdateEvent.InputTuple, AddressUpdateEvent.OutputTuple, AddressUpdateEvent.OutputObject>;
         "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
         RoleAdminChanged: TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
         "RoleGranted(bytes32,address,address)": TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;

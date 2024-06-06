@@ -88,11 +88,6 @@ export declare class EmmetDataUtilities__factory {
             readonly type: "uint128";
         }, {
             readonly indexed: false;
-            readonly internalType: "uint128";
-            readonly name: "cctpDestId";
-            readonly type: "uint128";
-        }, {
-            readonly indexed: false;
             readonly internalType: "string";
             readonly name: "name";
             readonly type: "string";
@@ -171,16 +166,6 @@ export declare class EmmetDataUtilities__factory {
             readonly internalType: "contract IGasFees";
             readonly name: "";
             readonly type: "address";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "nativeCoin";
-        readonly outputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "";
-            readonly type: "string";
         }];
         readonly stateMutability: "view";
         readonly type: "function";

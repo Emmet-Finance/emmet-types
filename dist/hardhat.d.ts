@@ -126,6 +126,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WTON__factory>;
     getContractFactory(
+      name: "WUSDC",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.WUSDC__factory>;
+    getContractFactory(
       name: "EmmetTokenVault",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetTokenVault__factory>;
@@ -222,6 +226,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BalancerHelper__factory>;
     getContractFactory(
+      name: "BytesHelper",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BytesHelper__factory>;
+    getContractFactory(
       name: "CCTPHelper",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.CCTPHelper__factory>;
@@ -266,13 +274,41 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IEmmetRestakingAdmin__factory>;
     getContractFactory(
+      name: "USDC",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.USDC__factory>;
+    getContractFactory(
+      name: "EmmetMultisigAdmin",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetMultisigAdmin__factory>;
+    getContractFactory(
       name: "EmmetMultisig",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetMultisig__factory>;
     getContractFactory(
-      name: "EmmetToken",
+      name: "EmmetMultisigUtilities",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetToken__factory>;
+    ): Promise<Contracts.EmmetMultisigUtilities__factory>;
+    getContractFactory(
+      name: "EmmetMultisigV1",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetMultisigV1__factory>;
+    getContractFactory(
+      name: "TestEmmetToken",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TestEmmetToken__factory>;
+    getContractFactory(
+      name: "MultisigStaker",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MultisigStaker__factory>;
+    getContractFactory(
+      name: "EmmetMultisigStorage",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetMultisigStorage__factory>;
+    getContractFactory(
+      name: "MultiSigTypes",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MultiSigTypes__factory>;
     getContractFactory(
       name: "EmmetPriceFeed",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -439,6 +475,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.WTON>;
     getContractAt(
+      name: "WUSDC",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.WUSDC>;
+    getContractAt(
       name: "EmmetTokenVault",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -559,6 +600,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.BalancerHelper>;
     getContractAt(
+      name: "BytesHelper",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BytesHelper>;
+    getContractAt(
       name: "CCTPHelper",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -614,15 +660,50 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IEmmetRestakingAdmin>;
     getContractAt(
+      name: "USDC",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.USDC>;
+    getContractAt(
+      name: "EmmetMultisigAdmin",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetMultisigAdmin>;
+    getContractAt(
       name: "EmmetMultisig",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetMultisig>;
     getContractAt(
-      name: "EmmetToken",
+      name: "EmmetMultisigUtilities",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmmetToken>;
+    ): Promise<Contracts.EmmetMultisigUtilities>;
+    getContractAt(
+      name: "EmmetMultisigV1",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetMultisigV1>;
+    getContractAt(
+      name: "TestEmmetToken",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TestEmmetToken>;
+    getContractAt(
+      name: "MultisigStaker",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MultisigStaker>;
+    getContractAt(
+      name: "EmmetMultisigStorage",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetMultisigStorage>;
+    getContractAt(
+      name: "MultiSigTypes",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MultiSigTypes>;
     getContractAt(
       name: "EmmetPriceFeed",
       address: string | ethers.Addressable,
@@ -767,6 +848,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WTON>;
     deployContract(
+      name: "WUSDC",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WUSDC>;
+    deployContract(
       name: "EmmetTokenVault",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetTokenVault>;
@@ -863,6 +948,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BalancerHelper>;
     deployContract(
+      name: "BytesHelper",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BytesHelper>;
+    deployContract(
       name: "CCTPHelper",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.CCTPHelper>;
@@ -907,13 +996,41 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetRestakingAdmin>;
     deployContract(
+      name: "USDC",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.USDC>;
+    deployContract(
+      name: "EmmetMultisigAdmin",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetMultisigAdmin>;
+    deployContract(
       name: "EmmetMultisig",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetMultisig>;
     deployContract(
-      name: "EmmetToken",
+      name: "EmmetMultisigUtilities",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetToken>;
+    ): Promise<Contracts.EmmetMultisigUtilities>;
+    deployContract(
+      name: "EmmetMultisigV1",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetMultisigV1>;
+    deployContract(
+      name: "TestEmmetToken",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.TestEmmetToken>;
+    deployContract(
+      name: "MultisigStaker",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.MultisigStaker>;
+    deployContract(
+      name: "EmmetMultisigStorage",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetMultisigStorage>;
+    deployContract(
+      name: "MultiSigTypes",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.MultiSigTypes>;
     deployContract(
       name: "EmmetPriceFeed",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1080,6 +1197,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WTON>;
     deployContract(
+      name: "WUSDC",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WUSDC>;
+    deployContract(
       name: "EmmetTokenVault",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1200,6 +1322,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BalancerHelper>;
     deployContract(
+      name: "BytesHelper",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BytesHelper>;
+    deployContract(
       name: "CCTPHelper",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1255,15 +1382,50 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetRestakingAdmin>;
     deployContract(
+      name: "USDC",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.USDC>;
+    deployContract(
+      name: "EmmetMultisigAdmin",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetMultisigAdmin>;
+    deployContract(
       name: "EmmetMultisig",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetMultisig>;
     deployContract(
-      name: "EmmetToken",
+      name: "EmmetMultisigUtilities",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetToken>;
+    ): Promise<Contracts.EmmetMultisigUtilities>;
+    deployContract(
+      name: "EmmetMultisigV1",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetMultisigV1>;
+    deployContract(
+      name: "TestEmmetToken",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.TestEmmetToken>;
+    deployContract(
+      name: "MultisigStaker",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.MultisigStaker>;
+    deployContract(
+      name: "EmmetMultisigStorage",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetMultisigStorage>;
+    deployContract(
+      name: "MultiSigTypes",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.MultiSigTypes>;
     deployContract(
       name: "EmmetPriceFeed",
       args: any[],

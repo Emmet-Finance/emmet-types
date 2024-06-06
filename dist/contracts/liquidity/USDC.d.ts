@@ -1,14 +1,13 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
-export interface EmmetTokenInterface extends Interface {
-    getFunction(nameOrSignature: "allowance" | "approve" | "balanceOf" | "decimals" | "name" | "supply" | "symbol" | "totalSupply" | "transfer" | "transferFrom"): FunctionFragment;
+export interface USDCInterface extends Interface {
+    getFunction(nameOrSignature: "allowance" | "approve" | "balanceOf" | "decimals" | "name" | "symbol" | "totalSupply" | "transfer" | "transferFrom"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Approval" | "Transfer"): EventFragment;
     encodeFunctionData(functionFragment: "allowance", values: [AddressLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "approve", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "balanceOf", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
     encodeFunctionData(functionFragment: "name", values?: undefined): string;
-    encodeFunctionData(functionFragment: "supply", values?: undefined): string;
     encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
     encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
     encodeFunctionData(functionFragment: "transfer", values: [AddressLike, BigNumberish]): string;
@@ -18,7 +17,6 @@ export interface EmmetTokenInterface extends Interface {
     decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "supply", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "totalSupply", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
@@ -58,10 +56,10 @@ export declare namespace TransferEvent {
     type Log = TypedEventLog<Event>;
     type LogDescription = TypedLogDescription<Event>;
 }
-export interface EmmetToken extends BaseContract {
-    connect(runner?: ContractRunner | null): EmmetToken;
+export interface USDC extends BaseContract {
+    connect(runner?: ContractRunner | null): USDC;
     waitForDeployment(): Promise<this>;
-    interface: EmmetTokenInterface;
+    interface: USDCInterface;
     queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
     queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
     on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
@@ -86,7 +84,6 @@ export interface EmmetToken extends BaseContract {
     balanceOf: TypedContractMethod<[account: AddressLike], [bigint], "view">;
     decimals: TypedContractMethod<[], [bigint], "view">;
     name: TypedContractMethod<[], [string], "view">;
-    supply: TypedContractMethod<[], [bigint], "view">;
     symbol: TypedContractMethod<[], [string], "view">;
     totalSupply: TypedContractMethod<[], [bigint], "view">;
     transfer: TypedContractMethod<[
@@ -118,7 +115,6 @@ export interface EmmetToken extends BaseContract {
     getFunction(nameOrSignature: "balanceOf"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "name"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "supply"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "symbol"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "totalSupply"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "transfer"): TypedContractMethod<[

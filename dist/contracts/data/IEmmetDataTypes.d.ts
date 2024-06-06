@@ -53,21 +53,10 @@ export declare namespace ChainDeletedEvent {
     type LogDescription = TypedLogDescription<Event>;
 }
 export declare namespace ChainUpdateEvent {
-    type InputTuple = [
-        chainId: BigNumberish,
-        cctpDestId: BigNumberish,
-        name: string,
-        token: string
-    ];
-    type OutputTuple = [
-        chainId: bigint,
-        cctpDestId: bigint,
-        name: string,
-        token: string
-    ];
+    type InputTuple = [chainId: BigNumberish, name: string, token: string];
+    type OutputTuple = [chainId: bigint, name: string, token: string];
     interface OutputObject {
         chainId: bigint;
-        cctpDestId: bigint;
         name: string;
         token: string;
     }
@@ -157,7 +146,7 @@ export interface IEmmetDataTypes extends BaseContract {
         CctpChainUpdated: TypedContractEvent<CctpChainUpdatedEvent.InputTuple, CctpChainUpdatedEvent.OutputTuple, CctpChainUpdatedEvent.OutputObject>;
         "ChainDeleted(uint128)": TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
         ChainDeleted: TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
-        "ChainUpdate(uint128,uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
+        "ChainUpdate(uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         ChainUpdate: TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         "TokenDeleted(string)": TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;
         TokenDeleted: TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;

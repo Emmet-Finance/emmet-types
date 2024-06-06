@@ -46,6 +46,16 @@ export declare class IEmmetData__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "getChainId";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "uint256";
             readonly name: "toChainId";
@@ -100,6 +110,10 @@ export declare class IEmmetData__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "fromChainId";
+            readonly type: "uint256";
+        }, {
             readonly internalType: "string";
             readonly name: "fromToken";
             readonly type: "string";
@@ -190,6 +204,16 @@ export declare class IEmmetData__factory {
             readonly internalType: "uint256";
             readonly name: "price";
             readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "nativeCoin";
+        readonly outputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "";
+            readonly type: "string";
         }];
         readonly stateMutability: "view";
         readonly type: "function";

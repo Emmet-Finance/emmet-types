@@ -1,9 +1,11 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../common";
 export interface IEmmetBridgeInterface extends Interface {
-    getFunction(nameOrSignature: "receiveInstallment" | "sendInstallment"): FunctionFragment;
+    getFunction(nameOrSignature: "getTransaction" | "receiveInstallment" | "sendInstallment"): FunctionFragment;
+    encodeFunctionData(functionFragment: "getTransaction", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "receiveInstallment", values: [BytesLike, BigNumberish, AddressLike[], BytesLike[], BytesLike]): string;
     encodeFunctionData(functionFragment: "sendInstallment", values: [BigNumberish, BigNumberish, string, string, string]): string;
+    decodeFunctionResult(functionFragment: "getTransaction", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "receiveInstallment", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "sendInstallment", data: BytesLike): Result;
 }
@@ -20,6 +22,27 @@ export interface IEmmetBridge extends BaseContract {
     listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    getTransaction: TypedContractMethod<[
+        txHash_: BytesLike
+    ], [
+        [
+            bigint,
+            bigint,
+            string,
+            string,
+            bigint,
+            string,
+            string
+        ] & {
+            id: bigint;
+            amount: bigint;
+            fromToken: string;
+            toToken: string;
+            toChainId: bigint;
+            originHash: string;
+            receiver: string;
+        }
+    ], "view">;
     receiveInstallment: TypedContractMethod<[
         txHash_: BytesLike,
         id_: BigNumberish,
@@ -39,6 +62,27 @@ export interface IEmmetBridge extends BaseContract {
         void
     ], "payable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "getTransaction"): TypedContractMethod<[
+        txHash_: BytesLike
+    ], [
+        [
+            bigint,
+            bigint,
+            string,
+            string,
+            bigint,
+            string,
+            string
+        ] & {
+            id: bigint;
+            amount: bigint;
+            fromToken: string;
+            toToken: string;
+            toChainId: bigint;
+            originHash: string;
+            receiver: string;
+        }
+    ], "view">;
     getFunction(nameOrSignature: "receiveInstallment"): TypedContractMethod<[
         txHash_: BytesLike,
         id_: BigNumberish,

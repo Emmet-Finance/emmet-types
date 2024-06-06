@@ -1,7 +1,7 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface GasFeesInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "getForeignFee" | "getForeignFees" | "getLocalFee" | "getLocalFees" | "getRoleAdmin" | "grantRole" | "hasRole" | "renounceRole" | "revokeRole" | "supportsInterface" | "updateForeignFee" | "updateLocalFee"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "getForeignFee" | "getForeignFees" | "getLocalFee" | "getLocalFees" | "getRoleAdmin" | "grantRole" | "hasRole" | "iGasFeesAdminSelector" | "iGasFeesSelector" | "renounceRole" | "revokeRole" | "supportsInterface" | "updateForeignFee" | "updateLocalFee"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "FeeUpdate" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -12,6 +12,8 @@ export interface GasFeesInterface extends Interface {
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "iGasFeesAdminSelector", values?: undefined): string;
+    encodeFunctionData(functionFragment: "iGasFeesSelector", values?: undefined): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
@@ -26,6 +28,8 @@ export interface GasFeesInterface extends Interface {
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "iGasFeesAdminSelector", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "iGasFeesSelector", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
@@ -161,6 +165,8 @@ export interface GasFees extends BaseContract {
     ], [
         boolean
     ], "view">;
+    iGasFeesAdminSelector: TypedContractMethod<[], [string], "view">;
+    iGasFeesSelector: TypedContractMethod<[], [string], "view">;
     renounceRole: TypedContractMethod<[
         role: BytesLike,
         callerConfirmation: AddressLike
@@ -221,6 +227,8 @@ export interface GasFees extends BaseContract {
     ], [
         boolean
     ], "view">;
+    getFunction(nameOrSignature: "iGasFeesAdminSelector"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "iGasFeesSelector"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "renounceRole"): TypedContractMethod<[
         role: BytesLike,
         callerConfirmation: AddressLike

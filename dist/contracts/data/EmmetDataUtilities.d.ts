@@ -1,14 +1,12 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetDataUtilitiesInterface extends Interface {
-    getFunction(nameOrSignature: "gasFees" | "nativeCoin" | "protocolFee" | "txIndex"): FunctionFragment;
+    getFunction(nameOrSignature: "gasFees" | "protocolFee" | "txIndex"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "TokenDeleted" | "TokenUpdate" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "gasFees", values?: undefined): string;
-    encodeFunctionData(functionFragment: "nativeCoin", values?: undefined): string;
     encodeFunctionData(functionFragment: "protocolFee", values?: undefined): string;
     encodeFunctionData(functionFragment: "txIndex", values?: undefined): string;
     decodeFunctionResult(functionFragment: "gasFees", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "nativeCoin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "protocolFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "txIndex", data: BytesLike): Result;
 }
@@ -62,21 +60,10 @@ export declare namespace ChainDeletedEvent {
     type LogDescription = TypedLogDescription<Event>;
 }
 export declare namespace ChainUpdateEvent {
-    type InputTuple = [
-        chainId: BigNumberish,
-        cctpDestId: BigNumberish,
-        name: string,
-        token: string
-    ];
-    type OutputTuple = [
-        chainId: bigint,
-        cctpDestId: bigint,
-        name: string,
-        token: string
-    ];
+    type InputTuple = [chainId: BigNumberish, name: string, token: string];
+    type OutputTuple = [chainId: bigint, name: string, token: string];
     interface OutputObject {
         chainId: bigint;
-        cctpDestId: bigint;
         name: string;
         token: string;
     }
@@ -151,7 +138,6 @@ export interface EmmetDataUtilities extends BaseContract {
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
     gasFees: TypedContractMethod<[], [string], "view">;
-    nativeCoin: TypedContractMethod<[], [string], "view">;
     protocolFee: TypedContractMethod<[
     ], [
         [bigint, bigint] & {
@@ -162,7 +148,6 @@ export interface EmmetDataUtilities extends BaseContract {
     txIndex: TypedContractMethod<[], [bigint], "view">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "gasFees"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "nativeCoin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "protocolFee"): TypedContractMethod<[
     ], [
         [bigint, bigint] & {
@@ -186,7 +171,7 @@ export interface EmmetDataUtilities extends BaseContract {
         CctpChainUpdated: TypedContractEvent<CctpChainUpdatedEvent.InputTuple, CctpChainUpdatedEvent.OutputTuple, CctpChainUpdatedEvent.OutputObject>;
         "ChainDeleted(uint128)": TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
         ChainDeleted: TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
-        "ChainUpdate(uint128,uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
+        "ChainUpdate(uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         ChainUpdate: TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         "TokenDeleted(string)": TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;
         TokenDeleted: TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;

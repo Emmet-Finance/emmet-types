@@ -104,11 +104,6 @@ export declare class EmmetDataAdmin__factory {
             readonly type: "uint128";
         }, {
             readonly indexed: false;
-            readonly internalType: "uint128";
-            readonly name: "cctpDestId";
-            readonly type: "uint128";
-        }, {
-            readonly indexed: false;
             readonly internalType: "string";
             readonly name: "name";
             readonly type: "string";
@@ -408,6 +403,10 @@ export declare class EmmetDataAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "fromChainId";
+            readonly type: "uint256";
+        }, {
             readonly internalType: "string";
             readonly name: "fromToken";
             readonly type: "string";
@@ -508,16 +507,6 @@ export declare class EmmetDataAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [];
-        readonly name: "nativeCoin";
-        readonly outputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "";
-            readonly type: "string";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
         readonly name: "protocolFee";
         readonly outputs: readonly [{
             readonly internalType: "uint128";
@@ -614,10 +603,6 @@ export declare class EmmetDataAdmin__factory {
             readonly name: "chainId_";
             readonly type: "uint128";
         }, {
-            readonly internalType: "uint128";
-            readonly name: "cctpDestId_";
-            readonly type: "uint128";
-        }, {
             readonly internalType: "string";
             readonly name: "name_";
             readonly type: "string";
@@ -668,6 +653,10 @@ export declare class EmmetDataAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "fromChainId";
+            readonly type: "uint256";
+        }, {
             readonly internalType: "string";
             readonly name: "fromToken";
             readonly type: "string";

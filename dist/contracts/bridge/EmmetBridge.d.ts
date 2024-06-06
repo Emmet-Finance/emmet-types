@@ -1,7 +1,7 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetBridgeInterface extends Interface {
-    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getLiquidityPool" | "getRoleAdmin" | "grantRole" | "hasRole" | "incommingTransactions" | "manageLPs" | "manageSigner" | "outgoingTransactions" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "stake" | "supportsInterface" | "updateEmmetData" | "updateGasLimitAddress" | "updateTxHash" | "withdraw" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
+    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getLiquidityPool" | "getRoleAdmin" | "getTransaction" | "grantRole" | "hasRole" | "incommingTransactions" | "manageLPs" | "manageSigner" | "outgoingTransactions" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "stake" | "supportsInterface" | "updateEmmetData" | "updateGasLimitAddress" | "updateTxHash" | "withdraw" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "ReceiveInstallment" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "SendInstallment" | "SignerManaged" | "TokenDeleted" | "TokenUpdate" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
@@ -12,6 +12,7 @@ export interface EmmetBridgeInterface extends Interface {
     encodeFunctionData(functionFragment: "gasFeesAdmin", values?: undefined): string;
     encodeFunctionData(functionFragment: "getLiquidityPool", values: [string]): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "getTransaction", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "incommingTransactions", values: [BytesLike]): string;
@@ -39,6 +40,7 @@ export interface EmmetBridgeInterface extends Interface {
     decodeFunctionResult(functionFragment: "gasFeesAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getLiquidityPool", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getTransaction", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "incommingTransactions", data: BytesLike): Result;
@@ -108,21 +110,10 @@ export declare namespace ChainDeletedEvent {
     type LogDescription = TypedLogDescription<Event>;
 }
 export declare namespace ChainUpdateEvent {
-    type InputTuple = [
-        chainId: BigNumberish,
-        cctpDestId: BigNumberish,
-        name: string,
-        token: string
-    ];
-    type OutputTuple = [
-        chainId: bigint,
-        cctpDestId: bigint,
-        name: string,
-        token: string
-    ];
+    type InputTuple = [chainId: BigNumberish, name: string, token: string];
+    type OutputTuple = [chainId: bigint, name: string, token: string];
     interface OutputObject {
         chainId: bigint;
-        cctpDestId: bigint;
         name: string;
         token: string;
     }
@@ -329,6 +320,27 @@ export interface EmmetBridge extends BaseContract {
     gasFeesAdmin: TypedContractMethod<[], [string], "view">;
     getLiquidityPool: TypedContractMethod<[symbol_: string], [string], "view">;
     getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
+    getTransaction: TypedContractMethod<[
+        txHash_: BytesLike
+    ], [
+        [
+            bigint,
+            bigint,
+            string,
+            string,
+            bigint,
+            string,
+            string
+        ] & {
+            id: bigint;
+            amount: bigint;
+            fromToken: string;
+            toToken: string;
+            toChainId: bigint;
+            originHash: string;
+            receiver: string;
+        }
+    ], "view">;
     grantRole: TypedContractMethod<[
         role: BytesLike,
         account: AddressLike
@@ -474,6 +486,27 @@ export interface EmmetBridge extends BaseContract {
     getFunction(nameOrSignature: "gasFeesAdmin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "getLiquidityPool"): TypedContractMethod<[symbol_: string], [string], "view">;
     getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
+    getFunction(nameOrSignature: "getTransaction"): TypedContractMethod<[
+        txHash_: BytesLike
+    ], [
+        [
+            bigint,
+            bigint,
+            string,
+            string,
+            bigint,
+            string,
+            string
+        ] & {
+            id: bigint;
+            amount: bigint;
+            fromToken: string;
+            toToken: string;
+            toChainId: bigint;
+            originHash: string;
+            receiver: string;
+        }
+    ], "view">;
     getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
         role: BytesLike,
         account: AddressLike
@@ -617,7 +650,7 @@ export interface EmmetBridge extends BaseContract {
         CctpChainUpdated: TypedContractEvent<CctpChainUpdatedEvent.InputTuple, CctpChainUpdatedEvent.OutputTuple, CctpChainUpdatedEvent.OutputObject>;
         "ChainDeleted(uint128)": TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
         ChainDeleted: TypedContractEvent<ChainDeletedEvent.InputTuple, ChainDeletedEvent.OutputTuple, ChainDeletedEvent.OutputObject>;
-        "ChainUpdate(uint128,uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
+        "ChainUpdate(uint128,string,string)": TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         ChainUpdate: TypedContractEvent<ChainUpdateEvent.InputTuple, ChainUpdateEvent.OutputTuple, ChainUpdateEvent.OutputObject>;
         "ReceiveInstallment(bytes32)": TypedContractEvent<ReceiveInstallmentEvent.InputTuple, ReceiveInstallmentEvent.OutputTuple, ReceiveInstallmentEvent.OutputObject>;
         ReceiveInstallment: TypedContractEvent<ReceiveInstallmentEvent.InputTuple, ReceiveInstallmentEvent.OutputTuple, ReceiveInstallmentEvent.OutputObject>;
