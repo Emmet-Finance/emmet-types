@@ -3,7 +3,14 @@ import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, Typed
 export interface IEmmetBridgeInterface extends Interface {
     getFunction(nameOrSignature: "getTransaction" | "receiveInstallment" | "sendInstallment"): FunctionFragment;
     encodeFunctionData(functionFragment: "getTransaction", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "receiveInstallment", values: [BytesLike, BigNumberish, AddressLike[], BytesLike[], BytesLike]): string;
+    encodeFunctionData(functionFragment: "receiveInstallment", values: [
+        BytesLike,
+        BigNumberish,
+        AddressLike[],
+        BytesLike[],
+        BytesLike,
+        BytesLike
+    ]): string;
     encodeFunctionData(functionFragment: "sendInstallment", values: [BigNumberish, BigNumberish, string, string, string]): string;
     decodeFunctionResult(functionFragment: "getTransaction", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "receiveInstallment", data: BytesLike): Result;
@@ -48,7 +55,8 @@ export interface IEmmetBridge extends BaseContract {
         id_: BigNumberish,
         signers_: AddressLike[],
         aggregatedSignature_: BytesLike[],
-        data_: BytesLike
+        data_: BytesLike,
+        cctpdata_: BytesLike
     ], [
         void
     ], "nonpayable">;
@@ -88,7 +96,8 @@ export interface IEmmetBridge extends BaseContract {
         id_: BigNumberish,
         signers_: AddressLike[],
         aggregatedSignature_: BytesLike[],
-        data_: BytesLike
+        data_: BytesLike,
+        cctpdata_: BytesLike
     ], [
         void
     ], "nonpayable">;

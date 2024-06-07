@@ -19,7 +19,14 @@ export interface EmmetBridgeInterface extends Interface {
     encodeFunctionData(functionFragment: "manageLPs", values: [string, AddressLike]): string;
     encodeFunctionData(functionFragment: "manageSigner", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "outgoingTransactions", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "receiveInstallment", values: [BytesLike, BigNumberish, AddressLike[], BytesLike[], BytesLike]): string;
+    encodeFunctionData(functionFragment: "receiveInstallment", values: [
+        BytesLike,
+        BigNumberish,
+        AddressLike[],
+        BytesLike[],
+        BytesLike,
+        BytesLike
+    ]): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "sendInstallment", values: [BigNumberish, BigNumberish, string, string, string]): string;
@@ -412,7 +419,8 @@ export interface EmmetBridge extends BaseContract {
         id_: BigNumberish,
         signers_: AddressLike[],
         aggregatedSignature_: BytesLike[],
-        data_: BytesLike
+        data_: BytesLike,
+        cctpdata_: BytesLike
     ], [
         void
     ], "nonpayable">;
@@ -578,7 +586,8 @@ export interface EmmetBridge extends BaseContract {
         id_: BigNumberish,
         signers_: AddressLike[],
         aggregatedSignature_: BytesLike[],
-        data_: BytesLike
+        data_: BytesLike,
+        cctpdata_: BytesLike
     ], [
         void
     ], "nonpayable">;

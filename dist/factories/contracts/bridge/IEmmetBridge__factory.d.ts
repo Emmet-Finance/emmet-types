@@ -60,6 +60,10 @@ export declare class IEmmetBridge__factory {
             readonly internalType: "bytes";
             readonly name: "data_";
             readonly type: "bytes";
+        }, {
+            readonly internalType: "bytes";
+            readonly name: "cctpdata_";
+            readonly type: "bytes";
         }];
         readonly name: "receiveInstallment";
         readonly outputs: readonly [];
