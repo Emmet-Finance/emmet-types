@@ -105,7 +105,7 @@ export interface EmmetMultisigInterface extends Interface {
     encodeFunctionData(functionFragment: "rewardAmounts", values?: undefined): string;
     encodeFunctionData(functionFragment: "rewards", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "roleRequests", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "sign", values: [BytesLike, BigNumberish, BytesLike, BytesLike, BytesLike]): string;
+    encodeFunctionData(functionFragment: "sign", values: [BytesLike, BigNumberish, BytesLike, BytesLike, BytesLike, string]): string;
     encodeFunctionData(functionFragment: "signatures", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "stakes", values: [AddressLike]): string;
@@ -398,7 +398,8 @@ export interface EmmetMultisig extends BaseContract {
         id_: BigNumberish,
         signer_: BytesLike,
         signature_: BytesLike,
-        data_: BytesLike
+        data_: BytesLike,
+        originalTX_: string
     ], [
         void
     ], "nonpayable">;
@@ -544,7 +545,8 @@ export interface EmmetMultisig extends BaseContract {
         id_: BigNumberish,
         signer_: BytesLike,
         signature_: BytesLike,
-        data_: BytesLike
+        data_: BytesLike,
+        originalTX_: string
     ], [
         void
     ], "nonpayable">;
