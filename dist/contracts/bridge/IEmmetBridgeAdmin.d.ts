@@ -1,15 +1,13 @@
 import type { BaseContract, BytesLike, FunctionFragment, Result, Interface, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../common";
 export interface IEmmetBridgeAdminInterface extends Interface {
-    getFunction(nameOrSignature: "updateEmmetData" | "updateGasLimitAddress" | "updateTxHash" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
+    getFunction(nameOrSignature: "updateEmmetData" | "updateGasLimitAddress" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
     encodeFunctionData(functionFragment: "updateEmmetData", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "updateGasLimitAddress", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateTxHash", values: [BytesLike, BytesLike]): string;
     encodeFunctionData(functionFragment: "withdrawProtocolFee", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawTokenFee", values: [string]): string;
     decodeFunctionResult(functionFragment: "updateEmmetData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateGasLimitAddress", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateTxHash", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawProtocolFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawTokenFee", data: BytesLike): Result;
 }
@@ -36,12 +34,6 @@ export interface IEmmetBridgeAdmin extends BaseContract {
     ], [
         void
     ], "nonpayable">;
-    updateTxHash: TypedContractMethod<[
-        bridgeHash_: BytesLike,
-        txHash_: BytesLike
-    ], [
-        void
-    ], "nonpayable">;
     withdrawProtocolFee: TypedContractMethod<[], [void], "nonpayable">;
     withdrawTokenFee: TypedContractMethod<[
         symbol_: string
@@ -51,12 +43,6 @@ export interface IEmmetBridgeAdmin extends BaseContract {
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "updateEmmetData"): TypedContractMethod<[emmetData_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateGasLimitAddress"): TypedContractMethod<[gasFeesAdmin_: AddressLike], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateTxHash"): TypedContractMethod<[
-        bridgeHash_: BytesLike,
-        txHash_: BytesLike
-    ], [
-        void
-    ], "nonpayable">;
     getFunction(nameOrSignature: "withdrawProtocolFee"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawTokenFee"): TypedContractMethod<[symbol_: string], [void], "nonpayable">;
     filters: {};

@@ -8,7 +8,6 @@ export declare namespace SignatureVerifier {
         fromToken: string;
         toToken: string;
         recipient: string;
-        fromChainHash: string;
     };
     type DecodedDataStructOutput = [
         fromChainId: bigint,
@@ -16,8 +15,7 @@ export declare namespace SignatureVerifier {
         amount: bigint,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ] & {
         fromChainId: bigint;
         toChainId: bigint;
@@ -25,7 +23,6 @@ export declare namespace SignatureVerifier {
         fromToken: string;
         toToken: string;
         recipient: string;
-        fromChainHash: string;
     };
 }
 export declare namespace MultiSigTypes {
@@ -73,7 +70,7 @@ export declare namespace BytesHelper {
     };
 }
 export interface EmmetMultisigInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "claimReward" | "claimRole" | "emmetToken" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "sign" | "signatures" | "stake" | "stakes" | "supportsInterface" | "transactions" | "unstake" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "claimReward" | "claimRole" | "emmetToken" | "encodeDataForHashCheck" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "sign" | "signatures" | "stake" | "stakes" | "supportsInterface" | "transactions" | "unstake" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -82,15 +79,16 @@ export interface EmmetMultisigInterface extends Interface {
     encodeFunctionData(functionFragment: "claimReward", values?: undefined): string;
     encodeFunctionData(functionFragment: "claimRole", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetToken", values?: undefined): string;
-    encodeFunctionData(functionFragment: "encodeParams", values: [
+    encodeFunctionData(functionFragment: "encodeDataForHashCheck", values: [
         BigNumberish,
         BigNumberish,
         BigNumberish,
-        string,
+        BigNumberish,
         string,
         string,
         string
     ]): string;
+    encodeFunctionData(functionFragment: "encodeParams", values: [BigNumberish, BigNumberish, BigNumberish, string, string, string]): string;
     encodeFunctionData(functionFragment: "generateHash", values: [SignatureVerifier.DecodedDataStruct, BigNumberish]): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "getTransaction", values: [BytesLike]): string;
@@ -122,6 +120,7 @@ export interface EmmetMultisigInterface extends Interface {
     decodeFunctionResult(functionFragment: "claimReward", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "claimRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "emmetToken", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "encodeDataForHashCheck", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "encodeParams", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "generateHash", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
@@ -328,14 +327,24 @@ export interface EmmetMultisig extends BaseContract {
     claimReward: TypedContractMethod<[], [void], "nonpayable">;
     claimRole: TypedContractMethod<[], [void], "nonpayable">;
     emmetToken: TypedContractMethod<[], [string], "view">;
+    encodeDataForHashCheck: TypedContractMethod<[
+        fromChainId: BigNumberish,
+        toChainid: BigNumberish,
+        amount: BigNumberish,
+        nonce: BigNumberish,
+        fromToken: string,
+        toToken: string,
+        recipient: string
+    ], [
+        string
+    ], "view">;
     encodeParams: TypedContractMethod<[
         fromChainId: BigNumberish,
         toChainId: BigNumberish,
         amount: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;
@@ -475,14 +484,24 @@ export interface EmmetMultisig extends BaseContract {
     getFunction(nameOrSignature: "claimReward"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "claimRole"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "emmetToken"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "encodeDataForHashCheck"): TypedContractMethod<[
+        fromChainId: BigNumberish,
+        toChainid: BigNumberish,
+        amount: BigNumberish,
+        nonce: BigNumberish,
+        fromToken: string,
+        toToken: string,
+        recipient: string
+    ], [
+        string
+    ], "view">;
     getFunction(nameOrSignature: "encodeParams"): TypedContractMethod<[
         fromChainId: BigNumberish,
         toChainId: BigNumberish,
         amount: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;

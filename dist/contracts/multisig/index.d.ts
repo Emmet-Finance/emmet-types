@@ -6,6 +6,5 @@ import type * as multisigStorageSol from "./MultisigStorage.sol";
 export type { multisigStorageSol };
 export type { EmmetMultisigAdmin } from "./EmmetMultisigAdmin";
 export type { EmmetMultisigUtilities } from "./EmmetMultisigUtilities";
-export type { EmmetMultisigV1 } from "./EmmetMultisigV1";
 export type { MultiSigTypes } from "./MultiSigTypes";
 export type { MultisigStaker } from "./MultisigStaker";

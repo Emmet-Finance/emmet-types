@@ -281,10 +281,6 @@ export declare class EmmetMultisigAdmin__factory {
             readonly internalType: "string";
             readonly name: "recipient";
             readonly type: "string";
-        }, {
-            readonly internalType: "string";
-            readonly name: "fromChainHash";
-            readonly type: "string";
         }];
         readonly name: "encodeParams";
         readonly outputs: readonly [{
@@ -319,10 +315,6 @@ export declare class EmmetMultisigAdmin__factory {
             }, {
                 readonly internalType: "string";
                 readonly name: "recipient";
-                readonly type: "string";
-            }, {
-                readonly internalType: "string";
-                readonly name: "fromChainHash";
                 readonly type: "string";
             }];
             readonly internalType: "struct SignatureVerifier.DecodedData";

@@ -290,10 +290,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetMultisigUtilities__factory>;
     getContractFactory(
-      name: "EmmetMultisigV1",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetMultisigV1__factory>;
-    getContractFactory(
       name: "TestEmmetToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.TestEmmetToken__factory>;
@@ -680,11 +676,6 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetMultisigUtilities>;
     getContractAt(
-      name: "EmmetMultisigV1",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetMultisigV1>;
-    getContractAt(
       name: "TestEmmetToken",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -1011,10 +1002,6 @@ declare module "hardhat/types/runtime" {
       name: "EmmetMultisigUtilities",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetMultisigUtilities>;
-    deployContract(
-      name: "EmmetMultisigV1",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigV1>;
     deployContract(
       name: "TestEmmetToken",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1401,11 +1388,6 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetMultisigUtilities>;
-    deployContract(
-      name: "EmmetMultisigV1",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigV1>;
     deployContract(
       name: "TestEmmetToken",
       args: any[],

@@ -29,10 +29,6 @@ export declare class IEmmetBridge__factory {
             readonly name: "toChainId";
             readonly type: "uint64";
         }, {
-            readonly internalType: "bytes32";
-            readonly name: "originHash";
-            readonly type: "bytes32";
-        }, {
             readonly internalType: "string";
             readonly name: "receiver";
             readonly type: "string";

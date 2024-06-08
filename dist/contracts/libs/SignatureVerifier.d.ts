@@ -8,7 +8,6 @@ export declare namespace SignatureVerifier {
         fromToken: string;
         toToken: string;
         recipient: string;
-        fromChainHash: string;
     };
     type DecodedDataStructOutput = [
         fromChainId: bigint,
@@ -16,8 +15,7 @@ export declare namespace SignatureVerifier {
         amount: bigint,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ] & {
         fromChainId: bigint;
         toChainId: bigint;
@@ -25,21 +23,12 @@ export declare namespace SignatureVerifier {
         fromToken: string;
         toToken: string;
         recipient: string;
-        fromChainHash: string;
     };
 }
 export interface SignatureVerifierInterface extends Interface {
     getFunction(nameOrSignature: "decodeCommonData" | "encodeCommonData" | "stringToAddress" | "verifyLocalSignature" | "verifySignature"): FunctionFragment;
     encodeFunctionData(functionFragment: "decodeCommonData", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "encodeCommonData", values: [
-        BigNumberish,
-        BigNumberish,
-        BigNumberish,
-        string,
-        string,
-        string,
-        string
-    ]): string;
+    encodeFunctionData(functionFragment: "encodeCommonData", values: [BigNumberish, BigNumberish, BigNumberish, string, string, string]): string;
     encodeFunctionData(functionFragment: "stringToAddress", values: [string]): string;
     encodeFunctionData(functionFragment: "verifyLocalSignature", values: [BytesLike, BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "verifySignature", values: [BytesLike, BytesLike, AddressLike]): string;
@@ -73,8 +62,7 @@ export interface SignatureVerifier extends BaseContract {
         amount: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;
@@ -105,8 +93,7 @@ export interface SignatureVerifier extends BaseContract {
         amount: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;

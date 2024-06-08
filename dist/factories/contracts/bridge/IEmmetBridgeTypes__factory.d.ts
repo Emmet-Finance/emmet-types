@@ -63,21 +63,6 @@ export declare class IEmmetBridgeTypes__factory {
         readonly anonymous: false;
         readonly inputs: readonly [{
             readonly indexed: false;
-            readonly internalType: "bytes32";
-            readonly name: "bridgeHash";
-            readonly type: "bytes32";
-        }, {
-            readonly indexed: false;
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }];
-        readonly name: "UpdateTxHash";
-        readonly type: "event";
-    }, {
-        readonly anonymous: false;
-        readonly inputs: readonly [{
-            readonly indexed: false;
             readonly internalType: "address";
             readonly name: "newContract";
             readonly type: "address";

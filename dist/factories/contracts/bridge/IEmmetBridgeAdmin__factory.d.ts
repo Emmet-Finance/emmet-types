@@ -22,20 +22,6 @@ export declare class IEmmetBridgeAdmin__factory {
         readonly stateMutability: "nonpayable";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "bridgeHash_";
-            readonly type: "bytes32";
-        }, {
-            readonly internalType: "bytes32";
-            readonly name: "txHash_";
-            readonly type: "bytes32";
-        }];
-        readonly name: "updateTxHash";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
         readonly inputs: readonly [];
         readonly name: "withdrawProtocolFee";
         readonly outputs: readonly [];

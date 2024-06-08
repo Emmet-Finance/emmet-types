@@ -9,7 +9,6 @@ export interface HashHelperInterface extends Interface {
         BigNumberish,
         string,
         string,
-        string,
         string
     ]): string;
     decodeFunctionResult(functionFragment: "generateTransactionHash", data: BytesLike): Result;
@@ -34,8 +33,7 @@ export interface HashHelper extends BaseContract {
         nonce: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;
@@ -47,8 +45,7 @@ export interface HashHelper extends BaseContract {
         nonce: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;

@@ -275,21 +275,6 @@ export declare class EmmetBridgeAdmin__factory {
         readonly anonymous: false;
         readonly inputs: readonly [{
             readonly indexed: false;
-            readonly internalType: "bytes32";
-            readonly name: "bridgeHash";
-            readonly type: "bytes32";
-        }, {
-            readonly indexed: false;
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }];
-        readonly name: "UpdateTxHash";
-        readonly type: "event";
-    }, {
-        readonly anonymous: false;
-        readonly inputs: readonly [{
-            readonly indexed: false;
             readonly internalType: "address";
             readonly name: "newContract";
             readonly type: "address";
@@ -487,10 +472,6 @@ export declare class EmmetBridgeAdmin__factory {
             readonly internalType: "address";
             readonly name: "receiver";
             readonly type: "address";
-        }, {
-            readonly internalType: "string";
-            readonly name: "originHash";
-            readonly type: "string";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -633,20 +614,6 @@ export declare class EmmetBridgeAdmin__factory {
             readonly type: "address";
         }];
         readonly name: "updateGasLimitAddress";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "bridgeHash_";
-            readonly type: "bytes32";
-        }, {
-            readonly internalType: "bytes32";
-            readonly name: "txHash_";
-            readonly type: "bytes32";
-        }];
-        readonly name: "updateTxHash";
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";

@@ -1,8 +1,8 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetBridgeInterface extends Interface {
-    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getLiquidityPool" | "getRoleAdmin" | "getTransaction" | "grantRole" | "hasRole" | "incommingTransactions" | "manageLPs" | "manageSigner" | "outgoingTransactions" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "stake" | "supportsInterface" | "updateEmmetData" | "updateGasLimitAddress" | "updateTxHash" | "withdraw" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
-    getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "ReceiveInstallment" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "SendInstallment" | "SignerManaged" | "TokenDeleted" | "TokenUpdate" | "UpdateGasFeeAddress" | "UpdateTxHash" | "UpdatedEmmetData" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
+    getFunction(nameOrSignature: "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "emmetData" | "emmetTokenVault" | "gasFeesAdmin" | "getLiquidityPool" | "getRoleAdmin" | "getTransaction" | "grantRole" | "hasRole" | "incommingTransactions" | "manageLPs" | "manageSigner" | "outgoingTransactions" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "stake" | "supportsInterface" | "updateEmmetData" | "updateGasLimitAddress" | "withdraw" | "withdrawProtocolFee" | "withdrawTokenFee"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "CCTPChainDeleted" | "CctpChainUpdated" | "ChainDeleted" | "ChainUpdate" | "ReceiveInstallment" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "SendInstallment" | "SignerManaged" | "TokenDeleted" | "TokenUpdate" | "UpdateGasFeeAddress" | "UpdatedEmmetData" | "UpdatedGasFeesAddress" | "UpdatedProtocolFee"): EventFragment;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -34,7 +34,6 @@ export interface EmmetBridgeInterface extends Interface {
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "updateEmmetData", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "updateGasLimitAddress", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateTxHash", values: [BytesLike, BytesLike]): string;
     encodeFunctionData(functionFragment: "withdraw", values: [BigNumberish, string]): string;
     encodeFunctionData(functionFragment: "withdrawProtocolFee", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawTokenFee", values: [string]): string;
@@ -62,7 +61,6 @@ export interface EmmetBridgeInterface extends Interface {
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateEmmetData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateGasLimitAddress", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateTxHash", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawProtocolFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawTokenFee", data: BytesLike): Result;
@@ -258,18 +256,6 @@ export declare namespace UpdateGasFeeAddressEvent {
     type Log = TypedEventLog<Event>;
     type LogDescription = TypedLogDescription<Event>;
 }
-export declare namespace UpdateTxHashEvent {
-    type InputTuple = [bridgeHash: BytesLike, txHash: BytesLike];
-    type OutputTuple = [bridgeHash: string, txHash: string];
-    interface OutputObject {
-        bridgeHash: string;
-        txHash: string;
-    }
-    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
-    type Filter = TypedDeferredTopicFilter<Event>;
-    type Log = TypedEventLog<Event>;
-    type LogDescription = TypedLogDescription<Event>;
-}
 export declare namespace UpdatedEmmetDataEvent {
     type InputTuple = [newContract: AddressLike];
     type OutputTuple = [newContract: string];
@@ -336,7 +322,6 @@ export interface EmmetBridge extends BaseContract {
             string,
             string,
             bigint,
-            string,
             string
         ] & {
             id: bigint;
@@ -344,7 +329,6 @@ export interface EmmetBridge extends BaseContract {
             fromToken: string;
             toToken: string;
             toChainId: bigint;
-            originHash: string;
             receiver: string;
         }
     ], "view">;
@@ -369,7 +353,6 @@ export interface EmmetBridge extends BaseContract {
             string,
             string,
             bigint,
-            string,
             string
         ] & {
             id: bigint;
@@ -378,7 +361,6 @@ export interface EmmetBridge extends BaseContract {
             toTokenSymbol: string;
             chainId: bigint;
             receiver: string;
-            originHash: string;
         }
     ], "view">;
     manageLPs: TypedContractMethod<[
@@ -466,12 +448,6 @@ export interface EmmetBridge extends BaseContract {
     ], [
         void
     ], "nonpayable">;
-    updateTxHash: TypedContractMethod<[
-        bridgeHash_: BytesLike,
-        txHash_: BytesLike
-    ], [
-        void
-    ], "nonpayable">;
     withdraw: TypedContractMethod<[
         amount_: BigNumberish,
         symbol_: string
@@ -503,7 +479,6 @@ export interface EmmetBridge extends BaseContract {
             string,
             string,
             bigint,
-            string,
             string
         ] & {
             id: bigint;
@@ -511,7 +486,6 @@ export interface EmmetBridge extends BaseContract {
             fromToken: string;
             toToken: string;
             toChainId: bigint;
-            originHash: string;
             receiver: string;
         }
     ], "view">;
@@ -536,7 +510,6 @@ export interface EmmetBridge extends BaseContract {
             string,
             string,
             bigint,
-            string,
             string
         ] & {
             id: bigint;
@@ -545,7 +518,6 @@ export interface EmmetBridge extends BaseContract {
             toTokenSymbol: string;
             chainId: bigint;
             receiver: string;
-            originHash: string;
         }
     ], "view">;
     getFunction(nameOrSignature: "manageLPs"): TypedContractMethod<[
@@ -621,12 +593,6 @@ export interface EmmetBridge extends BaseContract {
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
     getFunction(nameOrSignature: "updateEmmetData"): TypedContractMethod<[emmetData_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateGasLimitAddress"): TypedContractMethod<[gasFeesAdmin_: AddressLike], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateTxHash"): TypedContractMethod<[
-        bridgeHash_: BytesLike,
-        txHash_: BytesLike
-    ], [
-        void
-    ], "nonpayable">;
     getFunction(nameOrSignature: "withdraw"): TypedContractMethod<[
         amount_: BigNumberish,
         symbol_: string
@@ -648,7 +614,6 @@ export interface EmmetBridge extends BaseContract {
     getEvent(key: "TokenDeleted"): TypedContractEvent<TokenDeletedEvent.InputTuple, TokenDeletedEvent.OutputTuple, TokenDeletedEvent.OutputObject>;
     getEvent(key: "TokenUpdate"): TypedContractEvent<TokenUpdateEvent.InputTuple, TokenUpdateEvent.OutputTuple, TokenUpdateEvent.OutputObject>;
     getEvent(key: "UpdateGasFeeAddress"): TypedContractEvent<UpdateGasFeeAddressEvent.InputTuple, UpdateGasFeeAddressEvent.OutputTuple, UpdateGasFeeAddressEvent.OutputObject>;
-    getEvent(key: "UpdateTxHash"): TypedContractEvent<UpdateTxHashEvent.InputTuple, UpdateTxHashEvent.OutputTuple, UpdateTxHashEvent.OutputObject>;
     getEvent(key: "UpdatedEmmetData"): TypedContractEvent<UpdatedEmmetDataEvent.InputTuple, UpdatedEmmetDataEvent.OutputTuple, UpdatedEmmetDataEvent.OutputObject>;
     getEvent(key: "UpdatedGasFeesAddress"): TypedContractEvent<UpdatedGasFeesAddressEvent.InputTuple, UpdatedGasFeesAddressEvent.OutputTuple, UpdatedGasFeesAddressEvent.OutputObject>;
     getEvent(key: "UpdatedProtocolFee"): TypedContractEvent<UpdatedProtocolFeeEvent.InputTuple, UpdatedProtocolFeeEvent.OutputTuple, UpdatedProtocolFeeEvent.OutputObject>;
@@ -679,8 +644,6 @@ export interface EmmetBridge extends BaseContract {
         TokenUpdate: TypedContractEvent<TokenUpdateEvent.InputTuple, TokenUpdateEvent.OutputTuple, TokenUpdateEvent.OutputObject>;
         "UpdateGasFeeAddress(address,address)": TypedContractEvent<UpdateGasFeeAddressEvent.InputTuple, UpdateGasFeeAddressEvent.OutputTuple, UpdateGasFeeAddressEvent.OutputObject>;
         UpdateGasFeeAddress: TypedContractEvent<UpdateGasFeeAddressEvent.InputTuple, UpdateGasFeeAddressEvent.OutputTuple, UpdateGasFeeAddressEvent.OutputObject>;
-        "UpdateTxHash(bytes32,bytes32)": TypedContractEvent<UpdateTxHashEvent.InputTuple, UpdateTxHashEvent.OutputTuple, UpdateTxHashEvent.OutputObject>;
-        UpdateTxHash: TypedContractEvent<UpdateTxHashEvent.InputTuple, UpdateTxHashEvent.OutputTuple, UpdateTxHashEvent.OutputObject>;
         "UpdatedEmmetData(address)": TypedContractEvent<UpdatedEmmetDataEvent.InputTuple, UpdatedEmmetDataEvent.OutputTuple, UpdatedEmmetDataEvent.OutputObject>;
         UpdatedEmmetData: TypedContractEvent<UpdatedEmmetDataEvent.InputTuple, UpdatedEmmetDataEvent.OutputTuple, UpdatedEmmetDataEvent.OutputObject>;
         "UpdatedGasFeesAddress(address,address)": TypedContractEvent<UpdatedGasFeesAddressEvent.InputTuple, UpdatedGasFeesAddressEvent.OutputTuple, UpdatedGasFeesAddressEvent.OutputObject>;

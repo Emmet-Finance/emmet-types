@@ -8,7 +8,6 @@ export declare namespace SignatureVerifier {
         fromToken: string;
         toToken: string;
         recipient: string;
-        fromChainHash: string;
     };
     type DecodedDataStructOutput = [
         fromChainId: bigint,
@@ -16,8 +15,7 @@ export declare namespace SignatureVerifier {
         amount: bigint,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ] & {
         fromChainId: bigint;
         toChainId: bigint;
@@ -25,7 +23,6 @@ export declare namespace SignatureVerifier {
         fromToken: string;
         toToken: string;
         recipient: string;
-        fromChainHash: string;
     };
 }
 export declare namespace MultiSigTypes {
@@ -79,15 +76,7 @@ export interface EmmetMultisigUtilitiesInterface extends Interface {
     encodeFunctionData(functionFragment: "SIGNER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "bft", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetToken", values?: undefined): string;
-    encodeFunctionData(functionFragment: "encodeParams", values: [
-        BigNumberish,
-        BigNumberish,
-        BigNumberish,
-        string,
-        string,
-        string,
-        string
-    ]): string;
+    encodeFunctionData(functionFragment: "encodeParams", values: [BigNumberish, BigNumberish, BigNumberish, string, string, string]): string;
     encodeFunctionData(functionFragment: "generateHash", values: [SignatureVerifier.DecodedDataStruct, BigNumberish]): string;
     encodeFunctionData(functionFragment: "getTransaction", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "getTransactions", values: [BigNumberish, BigNumberish]): string;
@@ -246,8 +235,7 @@ export interface EmmetMultisigUtilities extends BaseContract {
         amount: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;
@@ -331,8 +319,7 @@ export interface EmmetMultisigUtilities extends BaseContract {
         amount: BigNumberish,
         fromToken: string,
         toToken: string,
-        recipient: string,
-        fromChainHash: string
+        recipient: string
     ], [
         string
     ], "view">;

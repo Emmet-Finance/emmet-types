@@ -141,8 +141,6 @@ export type { EmmetMultisig } from "./contracts/multisig/EmmetMultisignature.sol
 export { EmmetMultisig__factory } from "./factories/contracts/multisig/EmmetMultisignature.sol/EmmetMultisig__factory";
 export type { EmmetMultisigUtilities } from "./contracts/multisig/EmmetMultisigUtilities";
 export { EmmetMultisigUtilities__factory } from "./factories/contracts/multisig/EmmetMultisigUtilities__factory";
-export type { EmmetMultisigV1 } from "./contracts/multisig/EmmetMultisigV1";
-export { EmmetMultisigV1__factory } from "./factories/contracts/multisig/EmmetMultisigV1__factory";
 export type { TestEmmetToken } from "./contracts/multisig/EmmetToken.sol/TestEmmetToken";
 export { TestEmmetToken__factory } from "./factories/contracts/multisig/EmmetToken.sol/TestEmmetToken__factory";
 export type { MultisigStaker } from "./contracts/multisig/MultisigStaker";

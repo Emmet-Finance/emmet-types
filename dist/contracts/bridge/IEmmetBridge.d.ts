@@ -38,7 +38,6 @@ export interface IEmmetBridge extends BaseContract {
             string,
             string,
             bigint,
-            string,
             string
         ] & {
             id: bigint;
@@ -46,7 +45,6 @@ export interface IEmmetBridge extends BaseContract {
             fromToken: string;
             toToken: string;
             toChainId: bigint;
-            originHash: string;
             receiver: string;
         }
     ], "view">;
@@ -79,7 +77,6 @@ export interface IEmmetBridge extends BaseContract {
             string,
             string,
             bigint,
-            string,
             string
         ] & {
             id: bigint;
@@ -87,7 +84,6 @@ export interface IEmmetBridge extends BaseContract {
             fromToken: string;
             toToken: string;
             toChainId: bigint;
-            originHash: string;
             receiver: string;
         }
     ], "view">;
