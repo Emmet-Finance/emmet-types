@@ -73,7 +73,7 @@ export declare namespace BytesHelper {
     };
 }
 export interface EmmetMultisigAdminInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "emmetToken" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "supportsInterface" | "transactions" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "emmetToken" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "supportsInterface" | "transactions" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -107,7 +107,6 @@ export interface EmmetMultisigAdminInterface extends Interface {
     encodeFunctionData(functionFragment: "stakes", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "transactions", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "updateDestinationTransaction", values: [BytesLike, string]): string;
     encodeFunctionData(functionFragment: "updateMinimalStake", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateRewardRates", values: [BigNumberish, BigNumberish]): string;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
@@ -134,7 +133,6 @@ export interface EmmetMultisigAdminInterface extends Interface {
     decodeFunctionResult(functionFragment: "stakes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "transactions", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateDestinationTransaction", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateMinimalStake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateRewardRates", data: BytesLike): Result;
 }
@@ -420,12 +418,6 @@ export interface EmmetMultisigAdmin extends BaseContract {
             destinationHash: BytesHelper.DataStructOutput;
         }
     ], "view">;
-    updateDestinationTransaction: TypedContractMethod<[
-        txHash_: BytesLike,
-        destinationTx_: string
-    ], [
-        void
-    ], "nonpayable">;
     updateMinimalStake: TypedContractMethod<[
         newMinStake_: BigNumberish
     ], [
@@ -549,12 +541,6 @@ export interface EmmetMultisigAdmin extends BaseContract {
             destinationHash: BytesHelper.DataStructOutput;
         }
     ], "view">;
-    getFunction(nameOrSignature: "updateDestinationTransaction"): TypedContractMethod<[
-        txHash_: BytesLike,
-        destinationTx_: string
-    ], [
-        void
-    ], "nonpayable">;
     getFunction(nameOrSignature: "updateMinimalStake"): TypedContractMethod<[newMinStake_: BigNumberish], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateRewardRates"): TypedContractMethod<[
         finalizeReward_: BigNumberish,

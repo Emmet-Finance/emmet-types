@@ -718,20 +718,6 @@ export declare class EmmetMultisigAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "txHash_";
-            readonly type: "bytes32";
-        }, {
-            readonly internalType: "string";
-            readonly name: "destinationTx_";
-            readonly type: "string";
-        }];
-        readonly name: "updateDestinationTransaction";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
             readonly internalType: "uint256";
             readonly name: "newMinStake_";
             readonly type: "uint256";

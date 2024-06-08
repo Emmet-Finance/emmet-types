@@ -73,7 +73,7 @@ export declare namespace BytesHelper {
     };
 }
 export interface MultisigStakerInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "claimReward" | "claimRole" | "emmetToken" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stake" | "stakes" | "supportsInterface" | "transactions" | "unstake" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "claimReward" | "claimRole" | "emmetToken" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stake" | "stakes" | "supportsInterface" | "transactions" | "unstake" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -111,7 +111,6 @@ export interface MultisigStakerInterface extends Interface {
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "transactions", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "unstake", values?: undefined): string;
-    encodeFunctionData(functionFragment: "updateDestinationTransaction", values: [BytesLike, string]): string;
     encodeFunctionData(functionFragment: "updateMinimalStake", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateRewardRates", values: [BigNumberish, BigNumberish]): string;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
@@ -142,7 +141,6 @@ export interface MultisigStakerInterface extends Interface {
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "transactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "unstake", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateDestinationTransaction", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateMinimalStake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateRewardRates", data: BytesLike): Result;
 }
@@ -432,12 +430,6 @@ export interface MultisigStaker extends BaseContract {
         }
     ], "view">;
     unstake: TypedContractMethod<[], [void], "nonpayable">;
-    updateDestinationTransaction: TypedContractMethod<[
-        txHash_: BytesLike,
-        destinationTx_: string
-    ], [
-        void
-    ], "nonpayable">;
     updateMinimalStake: TypedContractMethod<[
         newMinStake_: BigNumberish
     ], [
@@ -565,12 +557,6 @@ export interface MultisigStaker extends BaseContract {
         }
     ], "view">;
     getFunction(nameOrSignature: "unstake"): TypedContractMethod<[], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateDestinationTransaction"): TypedContractMethod<[
-        txHash_: BytesLike,
-        destinationTx_: string
-    ], [
-        void
-    ], "nonpayable">;
     getFunction(nameOrSignature: "updateMinimalStake"): TypedContractMethod<[newMinStake_: BigNumberish], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateRewardRates"): TypedContractMethod<[
         finalizeReward_: BigNumberish,
