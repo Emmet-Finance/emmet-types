@@ -27,6 +27,7 @@ export declare namespace SignatureVerifier {
 }
 export declare namespace MultiSigTypes {
     type TransactionStruct = {
+        txHash: BytesLike;
         nonce: BigNumberish;
         amount: BigNumberish;
         fromChainId: BigNumberish;
@@ -36,8 +37,11 @@ export declare namespace MultiSigTypes {
         recipient: string;
         originalHash: string;
         destinationHash: string;
+        started: BigNumberish;
+        finished: BigNumberish;
     };
     type TransactionStructOutput = [
+        txHash: string,
         nonce: bigint,
         amount: bigint,
         fromChainId: bigint,
@@ -46,8 +50,11 @@ export declare namespace MultiSigTypes {
         toToken: string,
         recipient: string,
         originalHash: string,
-        destinationHash: string
+        destinationHash: string,
+        started: bigint,
+        finished: bigint
     ] & {
+        txHash: string;
         nonce: bigint;
         amount: bigint;
         fromChainId: bigint;
@@ -57,6 +64,8 @@ export declare namespace MultiSigTypes {
         recipient: string;
         originalHash: string;
         destinationHash: string;
+        started: bigint;
+        finished: bigint;
     };
 }
 export declare namespace BytesHelper {
@@ -70,7 +79,7 @@ export declare namespace BytesHelper {
     };
 }
 export interface EmmetMultisigUtilitiesInterface extends Interface {
-    getFunction(nameOrSignature: "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "emmetToken" | "encodeParams" | "generateHash" | "getTransaction" | "getTransactions" | "hashes" | "minStake" | "nonce" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "transactions"): FunctionFragment;
+    getFunction(nameOrSignature: "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "emmetToken" | "encodeParams" | "generateHash" | "getSignatures" | "getTransaction" | "getTransactions" | "hashes" | "minStake" | "nonce" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "transactions"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "SIGNER_ROLE", values?: undefined): string;
@@ -78,6 +87,7 @@ export interface EmmetMultisigUtilitiesInterface extends Interface {
     encodeFunctionData(functionFragment: "emmetToken", values?: undefined): string;
     encodeFunctionData(functionFragment: "encodeParams", values: [BigNumberish, BigNumberish, BigNumberish, string, string, string]): string;
     encodeFunctionData(functionFragment: "generateHash", values: [SignatureVerifier.DecodedDataStruct, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getSignatures", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "getTransaction", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "getTransactions", values: [BigNumberish, BigNumberish]): string;
     encodeFunctionData(functionFragment: "hashes", values: [BigNumberish]): string;
@@ -95,6 +105,7 @@ export interface EmmetMultisigUtilitiesInterface extends Interface {
     decodeFunctionResult(functionFragment: "emmetToken", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "encodeParams", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "generateHash", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getSignatures", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getTransaction", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getTransactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hashes", data: BytesLike): Result;
@@ -245,6 +256,21 @@ export interface EmmetMultisigUtilities extends BaseContract {
     ], [
         string
     ], "view">;
+    getSignatures: TypedContractMethod<[
+        txHash_: BytesLike
+    ], [
+        [
+            bigint,
+            boolean,
+            string[],
+            string[]
+        ] & {
+            signatureCount: bigint;
+            finalized: boolean;
+            aggregatedSignature: string[];
+            signers: string[];
+        }
+    ], "view">;
     getTransaction: TypedContractMethod<[
         txHash_: BytesLike
     ], [
@@ -289,7 +315,9 @@ export interface EmmetMultisigUtilities extends BaseContract {
             string,
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
-            BytesHelper.DataStructOutput
+            BytesHelper.DataStructOutput,
+            bigint,
+            bigint
         ] & {
             nonce: bigint;
             amount: bigint;
@@ -300,6 +328,8 @@ export interface EmmetMultisigUtilities extends BaseContract {
             recipient: BytesHelper.DataStructOutput;
             originalHash: BytesHelper.DataStructOutput;
             destinationHash: BytesHelper.DataStructOutput;
+            started: bigint;
+            finished: bigint;
         }
     ], "view">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
@@ -328,6 +358,21 @@ export interface EmmetMultisigUtilities extends BaseContract {
         nonce_: BigNumberish
     ], [
         string
+    ], "view">;
+    getFunction(nameOrSignature: "getSignatures"): TypedContractMethod<[
+        txHash_: BytesLike
+    ], [
+        [
+            bigint,
+            boolean,
+            string[],
+            string[]
+        ] & {
+            signatureCount: bigint;
+            finalized: boolean;
+            aggregatedSignature: string[];
+            signers: string[];
+        }
     ], "view">;
     getFunction(nameOrSignature: "getTransaction"): TypedContractMethod<[
         txHash_: BytesLike
@@ -373,7 +418,9 @@ export interface EmmetMultisigUtilities extends BaseContract {
             string,
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
-            BytesHelper.DataStructOutput
+            BytesHelper.DataStructOutput,
+            bigint,
+            bigint
         ] & {
             nonce: bigint;
             amount: bigint;
@@ -384,6 +431,8 @@ export interface EmmetMultisigUtilities extends BaseContract {
             recipient: BytesHelper.DataStructOutput;
             originalHash: BytesHelper.DataStructOutput;
             destinationHash: BytesHelper.DataStructOutput;
+            started: bigint;
+            finished: bigint;
         }
     ], "view">;
     getEvent(key: "MinimalStakeUpdated"): TypedContractEvent<MinimalStakeUpdatedEvent.InputTuple, MinimalStakeUpdatedEvent.OutputTuple, MinimalStakeUpdatedEvent.OutputObject>;

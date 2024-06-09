@@ -348,6 +348,14 @@ export declare class EmmetMultisigStorage__factory {
             readonly internalType: "struct BytesHelper.Data";
             readonly name: "destinationHash";
             readonly type: "tuple";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "started";
+            readonly type: "uint128";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "finished";
+            readonly type: "uint128";
         }];
         readonly stateMutability: "view";
         readonly type: "function";

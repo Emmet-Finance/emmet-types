@@ -195,7 +195,9 @@ export interface EmmetMultisigStorage extends BaseContract {
             string,
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
-            BytesHelper.DataStructOutput
+            BytesHelper.DataStructOutput,
+            bigint,
+            bigint
         ] & {
             nonce: bigint;
             amount: bigint;
@@ -206,6 +208,8 @@ export interface EmmetMultisigStorage extends BaseContract {
             recipient: BytesHelper.DataStructOutput;
             originalHash: BytesHelper.DataStructOutput;
             destinationHash: BytesHelper.DataStructOutput;
+            started: bigint;
+            finished: bigint;
         }
     ], "view">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
@@ -252,7 +256,9 @@ export interface EmmetMultisigStorage extends BaseContract {
             string,
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
-            BytesHelper.DataStructOutput
+            BytesHelper.DataStructOutput,
+            bigint,
+            bigint
         ] & {
             nonce: bigint;
             amount: bigint;
@@ -263,6 +269,8 @@ export interface EmmetMultisigStorage extends BaseContract {
             recipient: BytesHelper.DataStructOutput;
             originalHash: BytesHelper.DataStructOutput;
             destinationHash: BytesHelper.DataStructOutput;
+            started: bigint;
+            finished: bigint;
         }
     ], "view">;
     getEvent(key: "MinimalStakeUpdated"): TypedContractEvent<MinimalStakeUpdatedEvent.InputTuple, MinimalStakeUpdatedEvent.OutputTuple, MinimalStakeUpdatedEvent.OutputObject>;

@@ -353,9 +353,39 @@ export declare class EmmetMultisigAdmin__factory {
             readonly name: "txHash_";
             readonly type: "bytes32";
         }];
+        readonly name: "getSignatures";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "signatureCount";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "bool";
+            readonly name: "finalized";
+            readonly type: "bool";
+        }, {
+            readonly internalType: "bytes[]";
+            readonly name: "aggregatedSignature";
+            readonly type: "bytes[]";
+        }, {
+            readonly internalType: "bytes[]";
+            readonly name: "signers";
+            readonly type: "bytes[]";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "txHash_";
+            readonly type: "bytes32";
+        }];
         readonly name: "getTransaction";
         readonly outputs: readonly [{
             readonly components: readonly [{
+                readonly internalType: "bytes32";
+                readonly name: "txHash";
+                readonly type: "bytes32";
+            }, {
                 readonly internalType: "uint256";
                 readonly name: "nonce";
                 readonly type: "uint256";
@@ -391,6 +421,14 @@ export declare class EmmetMultisigAdmin__factory {
                 readonly internalType: "string";
                 readonly name: "destinationHash";
                 readonly type: "string";
+            }, {
+                readonly internalType: "uint128";
+                readonly name: "started";
+                readonly type: "uint128";
+            }, {
+                readonly internalType: "uint128";
+                readonly name: "finished";
+                readonly type: "uint128";
             }];
             readonly internalType: "struct MultiSigTypes.Transaction";
             readonly name: "transaction";
@@ -411,6 +449,10 @@ export declare class EmmetMultisigAdmin__factory {
         readonly name: "getTransactions";
         readonly outputs: readonly [{
             readonly components: readonly [{
+                readonly internalType: "bytes32";
+                readonly name: "txHash";
+                readonly type: "bytes32";
+            }, {
                 readonly internalType: "uint256";
                 readonly name: "nonce";
                 readonly type: "uint256";
@@ -446,6 +488,14 @@ export declare class EmmetMultisigAdmin__factory {
                 readonly internalType: "string";
                 readonly name: "destinationHash";
                 readonly type: "string";
+            }, {
+                readonly internalType: "uint128";
+                readonly name: "started";
+                readonly type: "uint128";
+            }, {
+                readonly internalType: "uint128";
+                readonly name: "finished";
+                readonly type: "uint128";
             }];
             readonly internalType: "struct MultiSigTypes.Transaction[]";
             readonly name: "transactionsArray";
@@ -705,6 +755,14 @@ export declare class EmmetMultisigAdmin__factory {
             readonly internalType: "struct BytesHelper.Data";
             readonly name: "destinationHash";
             readonly type: "tuple";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "started";
+            readonly type: "uint128";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "finished";
+            readonly type: "uint128";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
