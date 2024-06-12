@@ -118,9 +118,21 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IEmmetBridgeTypes__factory>;
     getContractFactory(
+      name: "WDAI",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.WDAI__factory>;
+    getContractFactory(
       name: "WEMMET",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WEMMET__factory>;
+    getContractFactory(
+      name: "WGrabCoin",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.WGrabCoin__factory>;
+    getContractFactory(
+      name: "WTestRED",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.WTestRED__factory>;
     getContractFactory(
       name: "WTON",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -461,10 +473,25 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IEmmetBridgeTypes>;
     getContractAt(
+      name: "WDAI",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.WDAI>;
+    getContractAt(
       name: "WEMMET",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.WEMMET>;
+    getContractAt(
+      name: "WGrabCoin",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.WGrabCoin>;
+    getContractAt(
+      name: "WTestRED",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.WTestRED>;
     getContractAt(
       name: "WTON",
       address: string | ethers.Addressable,
@@ -831,9 +858,21 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetBridgeTypes>;
     deployContract(
+      name: "WDAI",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WDAI>;
+    deployContract(
       name: "WEMMET",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WEMMET>;
+    deployContract(
+      name: "WGrabCoin",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WGrabCoin>;
+    deployContract(
+      name: "WTestRED",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WTestRED>;
     deployContract(
       name: "WTON",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1174,10 +1213,25 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetBridgeTypes>;
     deployContract(
+      name: "WDAI",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WDAI>;
+    deployContract(
       name: "WEMMET",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WEMMET>;
+    deployContract(
+      name: "WGrabCoin",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WGrabCoin>;
+    deployContract(
+      name: "WTestRED",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WTestRED>;
     deployContract(
       name: "WTON",
       args: any[],

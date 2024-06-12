@@ -147,6 +147,24 @@ export declare class EmmetMultisigStorage__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "account";
+            readonly type: "string";
+        }];
+        readonly name: "accountStats";
+        readonly outputs: readonly [{
+            readonly internalType: "uint128";
+            readonly name: "received";
+            readonly type: "uint128";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "sent";
+            readonly type: "uint128";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [];
         readonly name: "bft";
         readonly outputs: readonly [{
@@ -157,6 +175,16 @@ export declare class EmmetMultisigStorage__factory {
             readonly internalType: "uint128";
             readonly name: "threshold";
             readonly type: "uint128";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "emmetData";
+        readonly outputs: readonly [{
+            readonly internalType: "contract IEmmetData";
+            readonly name: "";
+            readonly type: "address";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -201,6 +229,20 @@ export declare class EmmetMultisigStorage__factory {
             readonly internalType: "uint256";
             readonly name: "";
             readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "symbol";
+            readonly type: "string";
+        }];
+        readonly name: "priceFeeds";
+        readonly outputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "priceFeed";
+            readonly type: "address";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -279,6 +321,26 @@ export declare class EmmetMultisigStorage__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "totalAmountUSD";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "";
+            readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "totalFeesUSD";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "";
+            readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "bytes32";
             readonly name: "txHash";
@@ -291,7 +353,7 @@ export declare class EmmetMultisigStorage__factory {
             readonly type: "uint256";
         }, {
             readonly internalType: "uint128";
-            readonly name: "amount";
+            readonly name: "sentAmount";
             readonly type: "uint128";
         }, {
             readonly internalType: "uint64";
@@ -309,6 +371,19 @@ export declare class EmmetMultisigStorage__factory {
             readonly internalType: "bytes16";
             readonly name: "toToken";
             readonly type: "bytes16";
+        }, {
+            readonly components: readonly [{
+                readonly internalType: "bytes32";
+                readonly name: "part1";
+                readonly type: "bytes32";
+            }, {
+                readonly internalType: "bytes32";
+                readonly name: "part2";
+                readonly type: "bytes32";
+            }];
+            readonly internalType: "struct BytesHelper.Data";
+            readonly name: "sender";
+            readonly type: "tuple";
         }, {
             readonly components: readonly [{
                 readonly internalType: "bytes32";
@@ -356,6 +431,24 @@ export declare class EmmetMultisigStorage__factory {
             readonly internalType: "uint128";
             readonly name: "finished";
             readonly type: "uint128";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "protocolFee";
+            readonly type: "uint128";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "tokenFee";
+            readonly type: "uint128";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "uniqueAddresses";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "";
+            readonly type: "uint256";
         }];
         readonly stateMutability: "view";
         readonly type: "function";

@@ -29,43 +29,55 @@ export declare namespace MultiSigTypes {
     type TransactionStruct = {
         txHash: BytesLike;
         nonce: BigNumberish;
-        amount: BigNumberish;
+        sentAmount: BigNumberish;
         fromChainId: BigNumberish;
         toChainId: BigNumberish;
         fromToken: string;
         toToken: string;
+        sender: string;
         recipient: string;
         originalHash: string;
         destinationHash: string;
         started: BigNumberish;
         finished: BigNumberish;
+        receivedAmount: BigNumberish;
+        protocolFee: BigNumberish;
+        tokenFee: BigNumberish;
     };
     type TransactionStructOutput = [
         txHash: string,
         nonce: bigint,
-        amount: bigint,
+        sentAmount: bigint,
         fromChainId: bigint,
         toChainId: bigint,
         fromToken: string,
         toToken: string,
+        sender: string,
         recipient: string,
         originalHash: string,
         destinationHash: string,
         started: bigint,
-        finished: bigint
+        finished: bigint,
+        receivedAmount: bigint,
+        protocolFee: bigint,
+        tokenFee: bigint
     ] & {
         txHash: string;
         nonce: bigint;
-        amount: bigint;
+        sentAmount: bigint;
         fromChainId: bigint;
         toChainId: bigint;
         fromToken: string;
         toToken: string;
+        sender: string;
         recipient: string;
         originalHash: string;
         destinationHash: string;
         started: bigint;
         finished: bigint;
+        receivedAmount: bigint;
+        protocolFee: bigint;
+        tokenFee: bigint;
     };
 }
 export declare namespace BytesHelper {
@@ -79,14 +91,16 @@ export declare namespace BytesHelper {
     };
 }
 export interface EmmetMultisigInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "bft" | "claimReward" | "claimRole" | "emmetToken" | "encodeDataForHashCheck" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getSignatures" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "sign" | "signatures" | "stake" | "stakes" | "supportsInterface" | "transactions" | "unstake" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "accountStats" | "bft" | "claimReward" | "claimRole" | "emmetData" | "emmetToken" | "encodeDataForHashCheck" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getSignatures" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "last24HoursTransactions" | "minStake" | "nonce" | "priceFeeds" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "sign" | "signatures" | "stake" | "stakes" | "supportsInterface" | "totalAmountUSD" | "totalFeesUSD" | "transactions" | "uniqueAddresses" | "unstake" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "SIGNER_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "accountStats", values: [string]): string;
     encodeFunctionData(functionFragment: "bft", values?: undefined): string;
     encodeFunctionData(functionFragment: "claimReward", values?: undefined): string;
     encodeFunctionData(functionFragment: "claimRole", values?: undefined): string;
+    encodeFunctionData(functionFragment: "emmetData", values?: undefined): string;
     encodeFunctionData(functionFragment: "emmetToken", values?: undefined): string;
     encodeFunctionData(functionFragment: "encodeDataForHashCheck", values: [
         BigNumberish,
@@ -106,8 +120,10 @@ export interface EmmetMultisigInterface extends Interface {
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hashes", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "last24HoursTransactions", values?: undefined): string;
     encodeFunctionData(functionFragment: "minStake", values?: undefined): string;
     encodeFunctionData(functionFragment: "nonce", values?: undefined): string;
+    encodeFunctionData(functionFragment: "priceFeeds", values: [string]): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "rewardAmounts", values?: undefined): string;
@@ -118,15 +134,20 @@ export interface EmmetMultisigInterface extends Interface {
         BigNumberish,
         BytesLike,
         BytesLike,
-        BytesLike,
         string,
+        string,
+        BigNumberish,
+        BigNumberish,
         BigNumberish
     ]): string;
     encodeFunctionData(functionFragment: "signatures", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "stakes", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "totalAmountUSD", values?: undefined): string;
+    encodeFunctionData(functionFragment: "totalFeesUSD", values?: undefined): string;
     encodeFunctionData(functionFragment: "transactions", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "uniqueAddresses", values?: undefined): string;
     encodeFunctionData(functionFragment: "unstake", values?: undefined): string;
     encodeFunctionData(functionFragment: "updateDestinationTransaction", values: [BytesLike, string, BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateMinimalStake", values: [BigNumberish]): string;
@@ -134,9 +155,11 @@ export interface EmmetMultisigInterface extends Interface {
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "MANAGER_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "SIGNER_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "accountStats", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "bft", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "claimReward", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "claimRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "emmetData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "emmetToken", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "encodeDataForHashCheck", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "encodeParams", data: BytesLike): Result;
@@ -148,8 +171,10 @@ export interface EmmetMultisigInterface extends Interface {
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hashes", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "last24HoursTransactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "minStake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "nonce", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "priceFeeds", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "rewardAmounts", data: BytesLike): Result;
@@ -160,7 +185,10 @@ export interface EmmetMultisigInterface extends Interface {
     decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "stakes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "totalAmountUSD", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "totalFeesUSD", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "transactions", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "uniqueAddresses", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "unstake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateDestinationTransaction", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateMinimalStake", data: BytesLike): Result;
@@ -336,6 +364,14 @@ export interface EmmetMultisig extends BaseContract {
     DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
     MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
     SIGNER_ROLE: TypedContractMethod<[], [string], "view">;
+    accountStats: TypedContractMethod<[
+        account: string
+    ], [
+        [bigint, bigint] & {
+            received: bigint;
+            sent: bigint;
+        }
+    ], "view">;
     bft: TypedContractMethod<[
     ], [
         [bigint, bigint] & {
@@ -345,6 +381,7 @@ export interface EmmetMultisig extends BaseContract {
     ], "view">;
     claimReward: TypedContractMethod<[], [void], "nonpayable">;
     claimRole: TypedContractMethod<[], [void], "nonpayable">;
+    emmetData: TypedContractMethod<[], [string], "view">;
     emmetToken: TypedContractMethod<[], [string], "view">;
     encodeDataForHashCheck: TypedContractMethod<[
         fromChainId: BigNumberish,
@@ -413,8 +450,10 @@ export interface EmmetMultisig extends BaseContract {
         boolean
     ], "view">;
     hashes: TypedContractMethod<[nonce: BigNumberish], [string], "view">;
+    last24HoursTransactions: TypedContractMethod<[], [bigint], "view">;
     minStake: TypedContractMethod<[], [bigint], "view">;
     nonce: TypedContractMethod<[], [bigint], "view">;
+    priceFeeds: TypedContractMethod<[symbol: string], [string], "view">;
     renounceRole: TypedContractMethod<[
         role: BytesLike,
         callerConfirmation: AddressLike
@@ -439,11 +478,13 @@ export interface EmmetMultisig extends BaseContract {
     sign: TypedContractMethod<[
         txHash_: BytesLike,
         id_: BigNumberish,
-        signer_: BytesLike,
-        signature_: BytesLike,
         data_: BytesLike,
+        signature_: BytesLike,
+        sender_: string,
         originalTX_: string,
-        started_: BigNumberish
+        started_: BigNumberish,
+        protocolFee_: BigNumberish,
+        tokenFee_: BigNumberish
     ], [
         void
     ], "nonpayable">;
@@ -462,6 +503,8 @@ export interface EmmetMultisig extends BaseContract {
     ], [
         boolean
     ], "view">;
+    totalAmountUSD: TypedContractMethod<[], [bigint], "view">;
+    totalFeesUSD: TypedContractMethod<[], [bigint], "view">;
     transactions: TypedContractMethod<[
         txHash: BytesLike
     ], [
@@ -475,22 +518,29 @@ export interface EmmetMultisig extends BaseContract {
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
+            BytesHelper.DataStructOutput,
+            bigint,
+            bigint,
             bigint,
             bigint
         ] & {
             nonce: bigint;
-            amount: bigint;
+            sentAmount: bigint;
             fromChainId: bigint;
             toChainId: bigint;
             fromToken: string;
             toToken: string;
+            sender: BytesHelper.DataStructOutput;
             recipient: BytesHelper.DataStructOutput;
             originalHash: BytesHelper.DataStructOutput;
             destinationHash: BytesHelper.DataStructOutput;
             started: bigint;
             finished: bigint;
+            protocolFee: bigint;
+            tokenFee: bigint;
         }
     ], "view">;
+    uniqueAddresses: TypedContractMethod<[], [bigint], "view">;
     unstake: TypedContractMethod<[], [void], "nonpayable">;
     updateDestinationTransaction: TypedContractMethod<[
         txHash_: BytesLike,
@@ -514,6 +564,14 @@ export interface EmmetMultisig extends BaseContract {
     getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "SIGNER_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "accountStats"): TypedContractMethod<[
+        account: string
+    ], [
+        [bigint, bigint] & {
+            received: bigint;
+            sent: bigint;
+        }
+    ], "view">;
     getFunction(nameOrSignature: "bft"): TypedContractMethod<[
     ], [
         [bigint, bigint] & {
@@ -523,6 +581,7 @@ export interface EmmetMultisig extends BaseContract {
     ], "view">;
     getFunction(nameOrSignature: "claimReward"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "claimRole"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "emmetData"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "emmetToken"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "encodeDataForHashCheck"): TypedContractMethod<[
         fromChainId: BigNumberish,
@@ -591,8 +650,10 @@ export interface EmmetMultisig extends BaseContract {
         boolean
     ], "view">;
     getFunction(nameOrSignature: "hashes"): TypedContractMethod<[nonce: BigNumberish], [string], "view">;
+    getFunction(nameOrSignature: "last24HoursTransactions"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "minStake"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "nonce"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "priceFeeds"): TypedContractMethod<[symbol: string], [string], "view">;
     getFunction(nameOrSignature: "renounceRole"): TypedContractMethod<[
         role: BytesLike,
         callerConfirmation: AddressLike
@@ -617,11 +678,13 @@ export interface EmmetMultisig extends BaseContract {
     getFunction(nameOrSignature: "sign"): TypedContractMethod<[
         txHash_: BytesLike,
         id_: BigNumberish,
-        signer_: BytesLike,
-        signature_: BytesLike,
         data_: BytesLike,
+        signature_: BytesLike,
+        sender_: string,
         originalTX_: string,
-        started_: BigNumberish
+        started_: BigNumberish,
+        protocolFee_: BigNumberish,
+        tokenFee_: BigNumberish
     ], [
         void
     ], "nonpayable">;
@@ -636,6 +699,8 @@ export interface EmmetMultisig extends BaseContract {
     getFunction(nameOrSignature: "stake"): TypedContractMethod<[amount: BigNumberish], [void], "nonpayable">;
     getFunction(nameOrSignature: "stakes"): TypedContractMethod<[staker: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+    getFunction(nameOrSignature: "totalAmountUSD"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "totalFeesUSD"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "transactions"): TypedContractMethod<[
         txHash: BytesLike
     ], [
@@ -649,22 +714,29 @@ export interface EmmetMultisig extends BaseContract {
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
             BytesHelper.DataStructOutput,
+            BytesHelper.DataStructOutput,
+            bigint,
+            bigint,
             bigint,
             bigint
         ] & {
             nonce: bigint;
-            amount: bigint;
+            sentAmount: bigint;
             fromChainId: bigint;
             toChainId: bigint;
             fromToken: string;
             toToken: string;
+            sender: BytesHelper.DataStructOutput;
             recipient: BytesHelper.DataStructOutput;
             originalHash: BytesHelper.DataStructOutput;
             destinationHash: BytesHelper.DataStructOutput;
             started: bigint;
             finished: bigint;
+            protocolFee: bigint;
+            tokenFee: bigint;
         }
     ], "view">;
+    getFunction(nameOrSignature: "uniqueAddresses"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "unstake"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateDestinationTransaction"): TypedContractMethod<[
         txHash_: BytesLike,
