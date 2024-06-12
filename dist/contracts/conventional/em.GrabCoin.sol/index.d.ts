@@ -1,1 +1,1 @@
-export type { WGrabCoin } from "./WGrabCoin";
+export type { WGrabClub } from "./WGrabClub";

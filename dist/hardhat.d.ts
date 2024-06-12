@@ -126,9 +126,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WEMMET__factory>;
     getContractFactory(
-      name: "WGrabCoin",
+      name: "WGrabClub",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.WGrabCoin__factory>;
+    ): Promise<Contracts.WGrabClub__factory>;
     getContractFactory(
       name: "WTestRED",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -483,10 +483,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.WEMMET>;
     getContractAt(
-      name: "WGrabCoin",
+      name: "WGrabClub",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.WGrabCoin>;
+    ): Promise<Contracts.WGrabClub>;
     getContractAt(
       name: "WTestRED",
       address: string | ethers.Addressable,
@@ -866,9 +866,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WEMMET>;
     deployContract(
-      name: "WGrabCoin",
+      name: "WGrabClub",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.WGrabCoin>;
+    ): Promise<Contracts.WGrabClub>;
     deployContract(
       name: "WTestRED",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1223,10 +1223,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WEMMET>;
     deployContract(
-      name: "WGrabCoin",
+      name: "WGrabClub",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.WGrabCoin>;
+    ): Promise<Contracts.WGrabClub>;
     deployContract(
       name: "WTestRED",
       args: any[],

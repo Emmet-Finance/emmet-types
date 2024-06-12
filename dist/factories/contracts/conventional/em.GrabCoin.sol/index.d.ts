@@ -1,1 +1,1 @@
-export { WGrabCoin__factory } from "./WGrabCoin__factory";
+export { WGrabClub__factory } from "./WGrabClub__factory";
