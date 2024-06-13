@@ -11,7 +11,7 @@ export declare namespace BytesHelper {
     };
 }
 export interface EmmetMultisigStorageInterface extends Interface {
-    getFunction(nameOrSignature: "MANAGER_ROLE" | "SIGNER_ROLE" | "accountStats" | "bft" | "emmetData" | "emmetToken" | "hashes" | "minStake" | "nonce" | "priceFeeds" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "totalAmountUSD" | "totalFeesUSD" | "transactions" | "uniqueAddresses"): FunctionFragment;
+    getFunction(nameOrSignature: "MANAGER_ROLE" | "SIGNER_ROLE" | "accountStats" | "bft" | "emmetData" | "emmetToken" | "hashes" | "minStake" | "nonEvmHashes" | "nonce" | "priceFeeds" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "totalAmountUSD" | "totalFeesUSD" | "transactions" | "uniqueAddresses"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "SIGNER_ROLE", values?: undefined): string;
@@ -21,6 +21,7 @@ export interface EmmetMultisigStorageInterface extends Interface {
     encodeFunctionData(functionFragment: "emmetToken", values?: undefined): string;
     encodeFunctionData(functionFragment: "hashes", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "minStake", values?: undefined): string;
+    encodeFunctionData(functionFragment: "nonEvmHashes", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "nonce", values?: undefined): string;
     encodeFunctionData(functionFragment: "priceFeeds", values: [string]): string;
     encodeFunctionData(functionFragment: "rewardAmounts", values?: undefined): string;
@@ -40,6 +41,7 @@ export interface EmmetMultisigStorageInterface extends Interface {
     decodeFunctionResult(functionFragment: "emmetToken", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hashes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "minStake", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "nonEvmHashes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "nonce", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "priceFeeds", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "rewardAmounts", data: BytesLike): Result;
@@ -185,6 +187,7 @@ export interface EmmetMultisigStorage extends BaseContract {
     emmetToken: TypedContractMethod<[], [string], "view">;
     hashes: TypedContractMethod<[nonce: BigNumberish], [string], "view">;
     minStake: TypedContractMethod<[], [bigint], "view">;
+    nonEvmHashes: TypedContractMethod<[txHash: BytesLike], [string], "view">;
     nonce: TypedContractMethod<[], [bigint], "view">;
     priceFeeds: TypedContractMethod<[symbol: string], [string], "view">;
     rewardAmounts: TypedContractMethod<[
@@ -265,6 +268,7 @@ export interface EmmetMultisigStorage extends BaseContract {
     getFunction(nameOrSignature: "emmetToken"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "hashes"): TypedContractMethod<[nonce: BigNumberish], [string], "view">;
     getFunction(nameOrSignature: "minStake"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "nonEvmHashes"): TypedContractMethod<[txHash: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "nonce"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "priceFeeds"): TypedContractMethod<[symbol: string], [string], "view">;
     getFunction(nameOrSignature: "rewardAmounts"): TypedContractMethod<[

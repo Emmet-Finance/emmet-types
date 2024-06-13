@@ -91,7 +91,7 @@ export declare namespace BytesHelper {
     };
 }
 export interface EmmetMultisigAdminInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "accountStats" | "bft" | "emmetData" | "emmetToken" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getSignatures" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonce" | "priceFeeds" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "supportsInterface" | "totalAmountUSD" | "totalFeesUSD" | "transactions" | "uniqueAddresses" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "accountStats" | "bft" | "emmetData" | "emmetToken" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getSignatures" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonEvmHashes" | "nonce" | "priceFeeds" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "signatures" | "stakes" | "supportsInterface" | "totalAmountUSD" | "totalFeesUSD" | "transactions" | "uniqueAddresses" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -110,6 +110,7 @@ export interface EmmetMultisigAdminInterface extends Interface {
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hashes", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "minStake", values?: undefined): string;
+    encodeFunctionData(functionFragment: "nonEvmHashes", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "nonce", values?: undefined): string;
     encodeFunctionData(functionFragment: "priceFeeds", values: [string]): string;
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
@@ -143,6 +144,7 @@ export interface EmmetMultisigAdminInterface extends Interface {
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hashes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "minStake", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "nonEvmHashes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "nonce", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "priceFeeds", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
@@ -404,6 +406,7 @@ export interface EmmetMultisigAdmin extends BaseContract {
     ], "view">;
     hashes: TypedContractMethod<[nonce: BigNumberish], [string], "view">;
     minStake: TypedContractMethod<[], [bigint], "view">;
+    nonEvmHashes: TypedContractMethod<[txHash: BytesLike], [string], "view">;
     nonce: TypedContractMethod<[], [bigint], "view">;
     priceFeeds: TypedContractMethod<[symbol: string], [string], "view">;
     renounceRole: TypedContractMethod<[
@@ -568,6 +571,7 @@ export interface EmmetMultisigAdmin extends BaseContract {
     ], "view">;
     getFunction(nameOrSignature: "hashes"): TypedContractMethod<[nonce: BigNumberish], [string], "view">;
     getFunction(nameOrSignature: "minStake"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "nonEvmHashes"): TypedContractMethod<[txHash: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "nonce"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "priceFeeds"): TypedContractMethod<[symbol: string], [string], "view">;
     getFunction(nameOrSignature: "renounceRole"): TypedContractMethod<[

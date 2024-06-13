@@ -488,6 +488,20 @@ export declare class EmmetMultisigUtilities__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "txHash";
+            readonly type: "bytes32";
+        }];
+        readonly name: "nonEvmHashes";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "nonEvmDataHash";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [];
         readonly name: "nonce";
         readonly outputs: readonly [{
