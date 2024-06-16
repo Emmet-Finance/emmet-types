@@ -90,6 +90,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Initializable__factory>;
     getContractFactory(
+      name: "UpdatableBridge",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.UpdatableBridge__factory>;
+    getContractFactory(
       name: "EmmetBridge",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetBridge__factory>;
@@ -250,6 +254,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.HashHelper__factory>;
     getContractFactory(
+      name: "EmmetParameterValidation",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetParameterValidation__factory>;
+    getContractFactory(
       name: "PriceFeedHelper",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.PriceFeedHelper__factory>;
@@ -285,6 +293,10 @@ declare module "hardhat/types/runtime" {
       name: "IEmmetRestakingAdmin",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IEmmetRestakingAdmin__factory>;
+    getContractFactory(
+      name: "EmmetLPFactory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetLPFactory__factory>;
     getContractFactory(
       name: "USDC",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -438,6 +450,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Initializable>;
     getContractAt(
+      name: "UpdatableBridge",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.UpdatableBridge>;
+    getContractAt(
       name: "EmmetBridge",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -638,6 +655,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.HashHelper>;
     getContractAt(
+      name: "EmmetParameterValidation",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetParameterValidation>;
+    getContractAt(
       name: "PriceFeedHelper",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -682,6 +704,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IEmmetRestakingAdmin>;
+    getContractAt(
+      name: "EmmetLPFactory",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetLPFactory>;
     getContractAt(
       name: "USDC",
       address: string | ethers.Addressable,
@@ -830,6 +857,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Initializable>;
     deployContract(
+      name: "UpdatableBridge",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.UpdatableBridge>;
+    deployContract(
       name: "EmmetBridge",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetBridge>;
@@ -990,6 +1021,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.HashHelper>;
     deployContract(
+      name: "EmmetParameterValidation",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetParameterValidation>;
+    deployContract(
       name: "PriceFeedHelper",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PriceFeedHelper>;
@@ -1025,6 +1060,10 @@ declare module "hardhat/types/runtime" {
       name: "IEmmetRestakingAdmin",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetRestakingAdmin>;
+    deployContract(
+      name: "EmmetLPFactory",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPFactory>;
     deployContract(
       name: "USDC",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1178,6 +1217,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Initializable>;
     deployContract(
+      name: "UpdatableBridge",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.UpdatableBridge>;
+    deployContract(
       name: "EmmetBridge",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1378,6 +1422,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.HashHelper>;
     deployContract(
+      name: "EmmetParameterValidation",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetParameterValidation>;
+    deployContract(
       name: "PriceFeedHelper",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1422,6 +1471,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetRestakingAdmin>;
+    deployContract(
+      name: "EmmetLPFactory",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPFactory>;
     deployContract(
       name: "USDC",
       args: any[],

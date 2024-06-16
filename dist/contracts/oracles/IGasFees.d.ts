@@ -1,14 +1,16 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../common";
 export interface IGasFeesInterface extends Interface {
-    getFunction(nameOrSignature: "getForeignFee" | "getForeignFees" | "getLocalFee" | "getLocalFees" | "supportsInterface"): FunctionFragment;
+    getFunction(nameOrSignature: "getForeignFee" | "getForeignFees" | "getGasInfo" | "getLocalFee" | "getLocalFees" | "supportsInterface"): FunctionFragment;
     encodeFunctionData(functionFragment: "getForeignFee", values: [BigNumberish, BigNumberish]): string;
     encodeFunctionData(functionFragment: "getForeignFees", values: [BigNumberish, BigNumberish[]]): string;
+    encodeFunctionData(functionFragment: "getGasInfo", values?: undefined): string;
     encodeFunctionData(functionFragment: "getLocalFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "getLocalFees", values: [BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     decodeFunctionResult(functionFragment: "getForeignFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getForeignFees", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getGasInfo", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getLocalFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getLocalFees", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
@@ -38,6 +40,13 @@ export interface IGasFees extends BaseContract {
     ], [
         bigint
     ], "view">;
+    getGasInfo: TypedContractMethod<[
+    ], [
+        [bigint, bigint] & {
+            baseFee: bigint;
+            gasPrice: bigint;
+        }
+    ], "view">;
     getLocalFee: TypedContractMethod<[
         operation_: BigNumberish
     ], [
@@ -65,6 +74,13 @@ export interface IGasFees extends BaseContract {
         operations_: BigNumberish[]
     ], [
         bigint
+    ], "view">;
+    getFunction(nameOrSignature: "getGasInfo"): TypedContractMethod<[
+    ], [
+        [bigint, bigint] & {
+            baseFee: bigint;
+            gasPrice: bigint;
+        }
     ], "view">;
     getFunction(nameOrSignature: "getLocalFee"): TypedContractMethod<[operation_: BigNumberish], [bigint], "view">;
     getFunction(nameOrSignature: "getLocalFees"): TypedContractMethod<[operations_: BigNumberish[]], [bigint], "view">;

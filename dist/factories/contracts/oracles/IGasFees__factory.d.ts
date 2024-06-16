@@ -38,6 +38,20 @@ export declare class IGasFees__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "getGasInfo";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "baseFee";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "gasPrice";
+            readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "enum EmmetTokenStrategy.Step";
             readonly name: "operation_";

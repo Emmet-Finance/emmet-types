@@ -38,6 +38,20 @@ export declare class IGasFeesAdmin__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "getGasInfo";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "baseFee";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "gasPrice";
+            readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "enum EmmetTokenStrategy.Step";
             readonly name: "operation_";
@@ -94,6 +108,32 @@ export declare class IGasFeesAdmin__factory {
             readonly type: "uint256";
         }];
         readonly name: "updateForeignFee";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint8";
+            readonly name: "baseFee";
+            readonly type: "uint8";
+        }, {
+            readonly internalType: "uint8";
+            readonly name: "safePrice";
+            readonly type: "uint8";
+        }, {
+            readonly internalType: "uint8";
+            readonly name: "proposePrise";
+            readonly type: "uint8";
+        }, {
+            readonly internalType: "uint8";
+            readonly name: "fastPrice";
+            readonly type: "uint8";
+        }];
+        readonly name: "updateGasInfo";
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";

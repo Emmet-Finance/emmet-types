@@ -1,13 +1,14 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../common";
 export interface EmmetLiquidityPoolInterface extends Interface {
-    getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "allowance" | "approve" | "balanceOf" | "decimals" | "getRoleAdmin" | "grantRole" | "hasRole" | "name" | "releaseTokens" | "renounceRole" | "revokeRole" | "stake" | "stakeTokens" | "stakedToken" | "supportsInterface" | "symbol" | "totalStaked" | "totalSupply" | "transfer" | "transferFrom" | "withdrawTokens"): FunctionFragment;
-    getEvent(nameOrSignatureOrTopic: "Approval" | "ReleasedToken" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Staked" | "Transfer" | "Withdrawn"): EventFragment;
+    getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "allowance" | "approve" | "balanceOf" | "bridge" | "decimals" | "getRoleAdmin" | "grantRole" | "hasRole" | "name" | "releaseTokens" | "renounceRole" | "revokeRole" | "stake" | "stakeTokens" | "stakedToken" | "supportsInterface" | "symbol" | "totalStaked" | "totalSupply" | "transfer" | "transferFrom" | "updateBridge" | "withdrawTokens"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "Approval" | "BridgeUpdated" | "ReleasedToken" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Staked" | "Transfer" | "Withdrawn"): EventFragment;
     encodeFunctionData(functionFragment: "BRIDGE_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "allowance", values: [AddressLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "approve", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "balanceOf", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "bridge", values?: undefined): string;
     encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
@@ -25,12 +26,14 @@ export interface EmmetLiquidityPoolInterface extends Interface {
     encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
     encodeFunctionData(functionFragment: "transfer", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "transferFrom", values: [AddressLike, AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "updateBridge", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "withdrawTokens", values: [BigNumberish]): string;
     decodeFunctionResult(functionFragment: "BRIDGE_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
@@ -48,6 +51,7 @@ export interface EmmetLiquidityPoolInterface extends Interface {
     decodeFunctionResult(functionFragment: "totalSupply", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "transferFrom", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "updateBridge", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawTokens", data: BytesLike): Result;
 }
 export declare namespace ApprovalEvent {
@@ -61,6 +65,18 @@ export declare namespace ApprovalEvent {
         owner: string;
         spender: string;
         value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace BridgeUpdatedEvent {
+    type InputTuple = [oldBridge: AddressLike, newBridge: AddressLike];
+    type OutputTuple = [oldBridge: string, newBridge: string];
+    interface OutputObject {
+        oldBridge: string;
+        newBridge: string;
     }
     type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
     type Filter = TypedDeferredTopicFilter<Event>;
@@ -202,6 +218,7 @@ export interface EmmetLiquidityPool extends BaseContract {
         boolean
     ], "nonpayable">;
     balanceOf: TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    bridge: TypedContractMethod<[], [string], "view">;
     decimals: TypedContractMethod<[], [bigint], "view">;
     getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
     grantRole: TypedContractMethod<[
@@ -263,6 +280,11 @@ export interface EmmetLiquidityPool extends BaseContract {
     ], [
         boolean
     ], "nonpayable">;
+    updateBridge: TypedContractMethod<[
+        bridge_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
     withdrawTokens: TypedContractMethod<[
         amount: BigNumberish
     ], [
@@ -284,6 +306,7 @@ export interface EmmetLiquidityPool extends BaseContract {
         boolean
     ], "nonpayable">;
     getFunction(nameOrSignature: "balanceOf"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "bridge"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
@@ -337,8 +360,10 @@ export interface EmmetLiquidityPool extends BaseContract {
     ], [
         boolean
     ], "nonpayable">;
+    getFunction(nameOrSignature: "updateBridge"): TypedContractMethod<[bridge_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawTokens"): TypedContractMethod<[amount: BigNumberish], [void], "nonpayable">;
     getEvent(key: "Approval"): TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
+    getEvent(key: "BridgeUpdated"): TypedContractEvent<BridgeUpdatedEvent.InputTuple, BridgeUpdatedEvent.OutputTuple, BridgeUpdatedEvent.OutputObject>;
     getEvent(key: "ReleasedToken"): TypedContractEvent<ReleasedTokenEvent.InputTuple, ReleasedTokenEvent.OutputTuple, ReleasedTokenEvent.OutputObject>;
     getEvent(key: "RoleAdminChanged"): TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
     getEvent(key: "RoleGranted"): TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
@@ -349,6 +374,8 @@ export interface EmmetLiquidityPool extends BaseContract {
     filters: {
         "Approval(address,address,uint256)": TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
         Approval: TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
+        "BridgeUpdated(address,address)": TypedContractEvent<BridgeUpdatedEvent.InputTuple, BridgeUpdatedEvent.OutputTuple, BridgeUpdatedEvent.OutputObject>;
+        BridgeUpdated: TypedContractEvent<BridgeUpdatedEvent.InputTuple, BridgeUpdatedEvent.OutputTuple, BridgeUpdatedEvent.OutputObject>;
         "ReleasedToken(uint256)": TypedContractEvent<ReleasedTokenEvent.InputTuple, ReleasedTokenEvent.OutputTuple, ReleasedTokenEvent.OutputObject>;
         ReleasedToken: TypedContractEvent<ReleasedTokenEvent.InputTuple, ReleasedTokenEvent.OutputTuple, ReleasedTokenEvent.OutputObject>;
         "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;

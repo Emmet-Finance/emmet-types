@@ -1,4 +1,5 @@
 export * as bytesSol from "./Bytes.sol";
+export * as parameterValidationSol from "./ParameterValidation.sol";
 export * as tokenStrategySol from "./TokenStrategy.sol";
 export { AddressStorageHelper__factory } from "./AddressStorageHelper__factory";
 export { BalancerHelper__factory } from "./BalancerHelper__factory";
