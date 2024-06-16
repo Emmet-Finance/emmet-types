@@ -1,11 +1,9 @@
 import type { BaseContract, BytesLike, FunctionFragment, Result, Interface, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedListener, TypedContractMethod } from "../../common";
 export interface IEmmetVaultAdminInterface extends Interface {
-    getFunction(nameOrSignature: "updateAdmin" | "updateBridge"): FunctionFragment;
+    getFunction(nameOrSignature: "updateAdmin"): FunctionFragment;
     encodeFunctionData(functionFragment: "updateAdmin", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateBridge", values: [AddressLike]): string;
     decodeFunctionResult(functionFragment: "updateAdmin", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateBridge", data: BytesLike): Result;
 }
 export interface IEmmetVaultAdmin extends BaseContract {
     connect(runner?: ContractRunner | null): IEmmetVaultAdmin;
@@ -25,13 +23,7 @@ export interface IEmmetVaultAdmin extends BaseContract {
     ], [
         void
     ], "nonpayable">;
-    updateBridge: TypedContractMethod<[
-        newAddress_: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "updateAdmin"): TypedContractMethod<[newAddress_: AddressLike], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateBridge"): TypedContractMethod<[newAddress_: AddressLike], [void], "nonpayable">;
     filters: {};
 }

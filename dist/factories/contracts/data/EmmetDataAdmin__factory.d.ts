@@ -26,6 +26,14 @@ export declare class EmmetDataAdmin__factory {
         readonly name: "GassFeesUpdateError";
         readonly type: "error";
     }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "message";
+            readonly type: "string";
+        }];
+        readonly name: "ParameterValidationError";
+        readonly type: "error";
+    }, {
         readonly inputs: readonly [];
         readonly name: "StringOver32Charachters";
         readonly type: "error";

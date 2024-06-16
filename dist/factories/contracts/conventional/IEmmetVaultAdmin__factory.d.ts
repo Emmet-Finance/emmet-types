@@ -11,16 +11,6 @@ export declare class IEmmetVaultAdmin__factory {
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "address";
-            readonly name: "newAddress_";
-            readonly type: "address";
-        }];
-        readonly name: "updateBridge";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
     }];
     static createInterface(): IEmmetVaultAdminInterface;
     static connect(address: string, runner?: ContractRunner | null): IEmmetVaultAdmin;
