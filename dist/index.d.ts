@@ -165,6 +165,8 @@ export type { EmmetPriceFeed } from "./contracts/oracles/EmmetPriceFeed";
 export { EmmetPriceFeed__factory } from "./factories/contracts/oracles/EmmetPriceFeed__factory";
 export type { GasFees } from "./contracts/oracles/GasFees";
 export { GasFees__factory } from "./factories/contracts/oracles/GasFees__factory";
+export type { GasFeesAdmin } from "./contracts/oracles/GasFeesAdmin";
+export { GasFeesAdmin__factory } from "./factories/contracts/oracles/GasFeesAdmin__factory";
 export type { ICombinedGasFees } from "./contracts/oracles/ICombinedGasFees";
 export { ICombinedGasFees__factory } from "./factories/contracts/oracles/ICombinedGasFees__factory";
 export type { IEmmetPriceFeedAdmin } from "./contracts/oracles/IEmmetPriceFeedAdmin";

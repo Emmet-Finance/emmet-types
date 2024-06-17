@@ -338,6 +338,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.GasFees__factory>;
     getContractFactory(
+      name: "GasFeesAdmin",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.GasFeesAdmin__factory>;
+    getContractFactory(
       name: "ICombinedGasFees",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ICombinedGasFees__factory>;
@@ -760,6 +764,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.GasFees>;
     getContractAt(
+      name: "GasFeesAdmin",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.GasFeesAdmin>;
+    getContractAt(
       name: "ICombinedGasFees",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -1105,6 +1114,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.GasFees>;
     deployContract(
+      name: "GasFeesAdmin",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.GasFeesAdmin>;
+    deployContract(
       name: "ICombinedGasFees",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ICombinedGasFees>;
@@ -1526,6 +1539,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.GasFees>;
+    deployContract(
+      name: "GasFeesAdmin",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.GasFeesAdmin>;
     deployContract(
       name: "ICombinedGasFees",
       args: any[],
