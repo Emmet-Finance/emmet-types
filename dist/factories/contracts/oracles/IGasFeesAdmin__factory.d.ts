@@ -27,6 +27,26 @@ export declare class IGasFeesAdmin__factory {
         readonly name: "FeeUpdate";
         readonly type: "event";
     }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint256";
+            readonly name: "oldTxFee_";
+            readonly type: "uint256";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint256";
+            readonly name: "newTxFee_";
+            readonly type: "uint256";
+        }];
+        readonly name: "ForeignGasInfoUpdate";
+        readonly type: "event";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "uint256";
             readonly name: "chainId_";
@@ -81,10 +101,6 @@ export declare class IGasFeesAdmin__factory {
             readonly internalType: "enum EmmetTokenStrategy.Step";
             readonly name: "operation_";
             readonly type: "uint8";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "priorityFee_";
-            readonly type: "uint256";
         }];
         readonly name: "getLocalFee";
         readonly outputs: readonly [{
@@ -96,10 +112,6 @@ export declare class IGasFeesAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "priorityFee_";
-            readonly type: "uint256";
-        }, {
             readonly internalType: "enum EmmetTokenStrategy.Step[]";
             readonly name: "operations_";
             readonly type: "uint8[]";
@@ -147,16 +159,12 @@ export declare class IGasFeesAdmin__factory {
     }, {
         readonly inputs: readonly [{
             readonly internalType: "uint256";
-            readonly name: "chainId";
+            readonly name: "chainId_";
             readonly type: "uint256";
         }, {
-            readonly internalType: "uint128";
-            readonly name: "baseFee";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "priorityFee";
-            readonly type: "uint128";
+            readonly internalType: "uint256";
+            readonly name: "txFee_";
+            readonly type: "uint256";
         }];
         readonly name: "updateGasInfo";
         readonly outputs: readonly [];

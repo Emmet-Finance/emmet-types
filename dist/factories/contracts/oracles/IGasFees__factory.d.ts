@@ -56,10 +56,6 @@ export declare class IGasFees__factory {
             readonly internalType: "enum EmmetTokenStrategy.Step";
             readonly name: "operation_";
             readonly type: "uint8";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "priorityFee_";
-            readonly type: "uint256";
         }];
         readonly name: "getLocalFee";
         readonly outputs: readonly [{
@@ -71,10 +67,6 @@ export declare class IGasFees__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "priorityFee_";
-            readonly type: "uint256";
-        }, {
             readonly internalType: "enum EmmetTokenStrategy.Step[]";
             readonly name: "operations_";
             readonly type: "uint8[]";

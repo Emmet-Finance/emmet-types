@@ -2,17 +2,17 @@ import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, I
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface ICombinedGasFeesInterface extends Interface {
     getFunction(nameOrSignature: "getForeignFee" | "getForeignFees" | "getGasInfo" | "getLocalFee" | "getLocalFees" | "iGasFeesAdminSelector" | "iGasFeesSelector" | "supportsInterface" | "updateForeignFee" | "updateGasInfo" | "updateLocalFee"): FunctionFragment;
-    getEvent(nameOrSignatureOrTopic: "FeeUpdate"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "FeeUpdate" | "ForeignGasInfoUpdate"): EventFragment;
     encodeFunctionData(functionFragment: "getForeignFee", values: [BigNumberish, BigNumberish]): string;
     encodeFunctionData(functionFragment: "getForeignFees", values: [BigNumberish, BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "getGasInfo", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getLocalFee", values: [BigNumberish, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "getLocalFees", values: [BigNumberish, BigNumberish[]]): string;
+    encodeFunctionData(functionFragment: "getLocalFee", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getLocalFees", values: [BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "iGasFeesAdminSelector", values?: undefined): string;
     encodeFunctionData(functionFragment: "iGasFeesSelector", values?: undefined): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "updateForeignFee", values: [BigNumberish, BigNumberish, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "updateGasInfo", values: [BigNumberish, BigNumberish, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "updateGasInfo", values: [BigNumberish, BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateLocalFee", values: [BigNumberish, BigNumberish]): string;
     decodeFunctionResult(functionFragment: "getForeignFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getForeignFees", data: BytesLike): Result;
@@ -44,6 +44,27 @@ export declare namespace FeeUpdateEvent {
         operation: bigint;
         oldFee: bigint;
         newFee: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace ForeignGasInfoUpdateEvent {
+    type InputTuple = [
+        chainId: BigNumberish,
+        oldTxFee_: BigNumberish,
+        newTxFee_: BigNumberish
+    ];
+    type OutputTuple = [
+        chainId: bigint,
+        oldTxFee_: bigint,
+        newTxFee_: bigint
+    ];
+    interface OutputObject {
+        chainId: bigint;
+        oldTxFee_: bigint;
+        newTxFee_: bigint;
     }
     type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
     type Filter = TypedDeferredTopicFilter<Event>;
@@ -83,13 +104,11 @@ export interface ICombinedGasFees extends BaseContract {
         }
     ], "view">;
     getLocalFee: TypedContractMethod<[
-        operation_: BigNumberish,
-        priorityFee_: BigNumberish
+        operation_: BigNumberish
     ], [
         bigint
     ], "view">;
     getLocalFees: TypedContractMethod<[
-        priorityFee_: BigNumberish,
         operations_: BigNumberish[]
     ], [
         bigint
@@ -109,9 +128,8 @@ export interface ICombinedGasFees extends BaseContract {
         void
     ], "nonpayable">;
     updateGasInfo: TypedContractMethod<[
-        chainId: BigNumberish,
-        baseFee: BigNumberish,
-        priorityFee: BigNumberish
+        chainId_: BigNumberish,
+        txFee_: BigNumberish
     ], [
         void
     ], "nonpayable">;
@@ -141,18 +159,8 @@ export interface ICombinedGasFees extends BaseContract {
             gasPrice: bigint;
         }
     ], "view">;
-    getFunction(nameOrSignature: "getLocalFee"): TypedContractMethod<[
-        operation_: BigNumberish,
-        priorityFee_: BigNumberish
-    ], [
-        bigint
-    ], "view">;
-    getFunction(nameOrSignature: "getLocalFees"): TypedContractMethod<[
-        priorityFee_: BigNumberish,
-        operations_: BigNumberish[]
-    ], [
-        bigint
-    ], "view">;
+    getFunction(nameOrSignature: "getLocalFee"): TypedContractMethod<[operation_: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "getLocalFees"): TypedContractMethod<[operations_: BigNumberish[]], [bigint], "view">;
     getFunction(nameOrSignature: "iGasFeesAdminSelector"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "iGasFeesSelector"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
@@ -164,9 +172,8 @@ export interface ICombinedGasFees extends BaseContract {
         void
     ], "nonpayable">;
     getFunction(nameOrSignature: "updateGasInfo"): TypedContractMethod<[
-        chainId: BigNumberish,
-        baseFee: BigNumberish,
-        priorityFee: BigNumberish
+        chainId_: BigNumberish,
+        txFee_: BigNumberish
     ], [
         void
     ], "nonpayable">;
@@ -177,8 +184,11 @@ export interface ICombinedGasFees extends BaseContract {
         void
     ], "nonpayable">;
     getEvent(key: "FeeUpdate"): TypedContractEvent<FeeUpdateEvent.InputTuple, FeeUpdateEvent.OutputTuple, FeeUpdateEvent.OutputObject>;
+    getEvent(key: "ForeignGasInfoUpdate"): TypedContractEvent<ForeignGasInfoUpdateEvent.InputTuple, ForeignGasInfoUpdateEvent.OutputTuple, ForeignGasInfoUpdateEvent.OutputObject>;
     filters: {
         "FeeUpdate(uint256,uint8,uint256,uint256)": TypedContractEvent<FeeUpdateEvent.InputTuple, FeeUpdateEvent.OutputTuple, FeeUpdateEvent.OutputObject>;
         FeeUpdate: TypedContractEvent<FeeUpdateEvent.InputTuple, FeeUpdateEvent.OutputTuple, FeeUpdateEvent.OutputObject>;
+        "ForeignGasInfoUpdate(uint256,uint256,uint256)": TypedContractEvent<ForeignGasInfoUpdateEvent.InputTuple, ForeignGasInfoUpdateEvent.OutputTuple, ForeignGasInfoUpdateEvent.OutputObject>;
+        ForeignGasInfoUpdate: TypedContractEvent<ForeignGasInfoUpdateEvent.InputTuple, ForeignGasInfoUpdateEvent.OutputTuple, ForeignGasInfoUpdateEvent.OutputObject>;
     };
 }

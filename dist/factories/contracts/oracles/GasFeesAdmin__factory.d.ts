@@ -45,6 +45,26 @@ export declare class GasFeesAdmin__factory {
     }, {
         readonly anonymous: false;
         readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint256";
+            readonly name: "oldTxFee_";
+            readonly type: "uint256";
+        }, {
+            readonly indexed: false;
+            readonly internalType: "uint256";
+            readonly name: "newTxFee_";
+            readonly type: "uint256";
+        }];
+        readonly name: "ForeignGasInfoUpdate";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
             readonly indexed: true;
             readonly internalType: "bytes32";
             readonly name: "role";
@@ -128,15 +148,11 @@ export declare class GasFeesAdmin__factory {
             readonly name: "chainId";
             readonly type: "uint256";
         }];
-        readonly name: "gasInfo";
+        readonly name: "gasCost";
         readonly outputs: readonly [{
-            readonly internalType: "uint128";
-            readonly name: "baseFee";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "priorityFee";
-            readonly type: "uint128";
+            readonly internalType: "uint256";
+            readonly name: "txFee";
+            readonly type: "uint256";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -195,10 +211,6 @@ export declare class GasFeesAdmin__factory {
             readonly internalType: "enum EmmetTokenStrategy.Step";
             readonly name: "operation_";
             readonly type: "uint8";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "priorityFee_";
-            readonly type: "uint256";
         }];
         readonly name: "getLocalFee";
         readonly outputs: readonly [{
@@ -210,10 +222,6 @@ export declare class GasFeesAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "priorityFee_";
-            readonly type: "uint256";
-        }, {
             readonly internalType: "enum EmmetTokenStrategy.Step[]";
             readonly name: "operations_";
             readonly type: "uint8[]";
@@ -335,16 +343,12 @@ export declare class GasFeesAdmin__factory {
     }, {
         readonly inputs: readonly [{
             readonly internalType: "uint256";
-            readonly name: "chainId";
+            readonly name: "chainId_";
             readonly type: "uint256";
         }, {
-            readonly internalType: "uint128";
-            readonly name: "baseFee";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "priorityFee";
-            readonly type: "uint128";
+            readonly internalType: "uint256";
+            readonly name: "txFee_";
+            readonly type: "uint256";
         }];
         readonly name: "updateGasInfo";
         readonly outputs: readonly [];

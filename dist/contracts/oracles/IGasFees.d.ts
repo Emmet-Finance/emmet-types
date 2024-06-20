@@ -5,8 +5,8 @@ export interface IGasFeesInterface extends Interface {
     encodeFunctionData(functionFragment: "getForeignFee", values: [BigNumberish, BigNumberish]): string;
     encodeFunctionData(functionFragment: "getForeignFees", values: [BigNumberish, BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "getGasInfo", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getLocalFee", values: [BigNumberish, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "getLocalFees", values: [BigNumberish, BigNumberish[]]): string;
+    encodeFunctionData(functionFragment: "getLocalFee", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getLocalFees", values: [BigNumberish[]]): string;
     decodeFunctionResult(functionFragment: "getForeignFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getForeignFees", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getGasInfo", data: BytesLike): Result;
@@ -46,13 +46,11 @@ export interface IGasFees extends BaseContract {
         }
     ], "view">;
     getLocalFee: TypedContractMethod<[
-        operation_: BigNumberish,
-        priorityFee_: BigNumberish
+        operation_: BigNumberish
     ], [
         bigint
     ], "view">;
     getLocalFees: TypedContractMethod<[
-        priorityFee_: BigNumberish,
         operations_: BigNumberish[]
     ], [
         bigint
@@ -77,17 +75,7 @@ export interface IGasFees extends BaseContract {
             gasPrice: bigint;
         }
     ], "view">;
-    getFunction(nameOrSignature: "getLocalFee"): TypedContractMethod<[
-        operation_: BigNumberish,
-        priorityFee_: BigNumberish
-    ], [
-        bigint
-    ], "view">;
-    getFunction(nameOrSignature: "getLocalFees"): TypedContractMethod<[
-        priorityFee_: BigNumberish,
-        operations_: BigNumberish[]
-    ], [
-        bigint
-    ], "view">;
+    getFunction(nameOrSignature: "getLocalFee"): TypedContractMethod<[operation_: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "getLocalFees"): TypedContractMethod<[operations_: BigNumberish[]], [bigint], "view">;
     filters: {};
 }
