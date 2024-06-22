@@ -26,14 +26,16 @@ export declare namespace SignatureVerifier {
     };
 }
 export interface SignatureVerifierInterface extends Interface {
-    getFunction(nameOrSignature: "decodeCommonData" | "encodeCommonData" | "stringToAddress" | "verifyLocalSignature" | "verifySignature"): FunctionFragment;
+    getFunction(nameOrSignature: "decodeCommonData" | "encodeCommonData" | "isHexString" | "stringToAddress" | "verifyLocalSignature" | "verifySignature"): FunctionFragment;
     encodeFunctionData(functionFragment: "decodeCommonData", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "encodeCommonData", values: [BigNumberish, BigNumberish, BigNumberish, string, string, string]): string;
+    encodeFunctionData(functionFragment: "isHexString", values: [string]): string;
     encodeFunctionData(functionFragment: "stringToAddress", values: [string]): string;
     encodeFunctionData(functionFragment: "verifyLocalSignature", values: [BytesLike, BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "verifySignature", values: [BytesLike, BytesLike, AddressLike]): string;
     decodeFunctionResult(functionFragment: "decodeCommonData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "encodeCommonData", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "isHexString", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "stringToAddress", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "verifyLocalSignature", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "verifySignature", data: BytesLike): Result;
@@ -66,6 +68,7 @@ export interface SignatureVerifier extends BaseContract {
     ], [
         string
     ], "view">;
+    isHexString: TypedContractMethod<[str: string], [boolean], "view">;
     stringToAddress: TypedContractMethod<[addr_: string], [string], "view">;
     verifyLocalSignature: TypedContractMethod<[
         signature: BytesLike,
@@ -97,6 +100,7 @@ export interface SignatureVerifier extends BaseContract {
     ], [
         string
     ], "view">;
+    getFunction(nameOrSignature: "isHexString"): TypedContractMethod<[str: string], [boolean], "view">;
     getFunction(nameOrSignature: "stringToAddress"): TypedContractMethod<[addr_: string], [string], "view">;
     getFunction(nameOrSignature: "verifyLocalSignature"): TypedContractMethod<[
         signature: BytesLike,

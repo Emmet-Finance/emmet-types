@@ -19,26 +19,6 @@ export declare class MultisigStaker__factory {
         readonly type: "error";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "reason";
-            readonly type: "string";
-        }, {
-            readonly internalType: "address";
-            readonly name: "caller";
-            readonly type: "address";
-        }];
-        readonly name: "CallFailed";
-        readonly type: "error";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "message";
-            readonly type: "string";
-        }];
-        readonly name: "Insufficient";
-        readonly type: "error";
-    }, {
-        readonly inputs: readonly [{
             readonly internalType: "address";
             readonly name: "token";
             readonly type: "address";

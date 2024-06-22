@@ -2,14 +2,6 @@ import { type ContractRunner } from "ethers";
 import type { IEmmetBridgeTypes, IEmmetBridgeTypesInterface } from "../../../contracts/bridge/IEmmetBridgeTypes";
 export declare class IEmmetBridgeTypes__factory {
     static readonly abi: readonly [{
-        readonly inputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "message";
-            readonly type: "string";
-        }];
-        readonly name: "EmmetBridgeError";
-        readonly type: "error";
-    }, {
         readonly anonymous: false;
         readonly inputs: readonly [{
             readonly indexed: false;

@@ -1,6 +1,6 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../common";
-export interface WEMMETInterface extends Interface {
+export interface GrabClubInterface extends Interface {
     getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "allowance" | "approve" | "balanceOf" | "burnFrom" | "decimals" | "getRoleAdmin" | "grantRole" | "hasRole" | "mint" | "name" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "totalSupply" | "transfer" | "transferFrom"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Approval" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Transfer"): EventFragment;
     encodeFunctionData(functionFragment: "BRIDGE_ROLE", values?: undefined): string;
@@ -131,10 +131,10 @@ export declare namespace TransferEvent {
     type Log = TypedEventLog<Event>;
     type LogDescription = TypedLogDescription<Event>;
 }
-export interface WEMMET extends BaseContract {
-    connect(runner?: ContractRunner | null): WEMMET;
+export interface GrabClub extends BaseContract {
+    connect(runner?: ContractRunner | null): GrabClub;
     waitForDeployment(): Promise<this>;
-    interface: WEMMETInterface;
+    interface: GrabClubInterface;
     queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
     queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
     on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;

@@ -1,1 +1,1 @@
-export type { WGrabClub } from "./WGrabClub";
+export type { GrabClub } from "./GrabClub";

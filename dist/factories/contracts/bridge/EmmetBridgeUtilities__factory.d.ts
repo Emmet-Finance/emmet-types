@@ -23,14 +23,6 @@ export declare class EmmetBridgeUtilities__factory {
             readonly name: "message";
             readonly type: "string";
         }];
-        readonly name: "EmmetBridgeError";
-        readonly type: "error";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "message";
-            readonly type: "string";
-        }];
         readonly name: "GassFeesUpdateError";
         readonly type: "error";
     }, {
