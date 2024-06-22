@@ -129,7 +129,7 @@ export declare namespace BytesHelper {
     };
 }
 export interface EmmetMultisigInterface extends Interface {
-    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "accountStats" | "bft" | "claimReward" | "claimRole" | "emmetData" | "emmetToken" | "encodeDataForHashCheck" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getSignatures" | "getStats" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "last24HoursTransactions" | "minStake" | "nonEvmHashes" | "nonce" | "priceFeeds" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "sign" | "signatures" | "stake" | "stakes" | "supportsInterface" | "totalAmountUSD" | "totalFeesUSD" | "transactions" | "uniqueAddresses" | "unstake" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
+    getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "accountStats" | "bft" | "claimReward" | "claimRole" | "emmetData" | "emmetToken" | "encodeDataForHashCheck" | "encodeParams" | "generateHash" | "getRoleAdmin" | "getSignatures" | "getStats" | "getTransaction" | "getTransactions" | "grantRole" | "hasRole" | "hashes" | "minStake" | "nonEvmHashes" | "nonce" | "priceFeeds" | "renounceRole" | "revokeRole" | "rewardAmounts" | "rewards" | "roleRequests" | "sign" | "signatures" | "stake" | "stakes" | "supportsInterface" | "totalAmountUSD" | "totalFeesUSD" | "transactions" | "uniqueAddresses" | "unstake" | "updateDestinationTransaction" | "updateMinimalStake" | "updateRewardRates"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "MinimalStakeUpdated" | "NewSigner" | "PartialSignature" | "RewardRatesUpdated" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Signed" | "Staked" | "Unstaked"): EventFragment;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -159,7 +159,6 @@ export interface EmmetMultisigInterface extends Interface {
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hashes", values: [BigNumberish]): string;
-    encodeFunctionData(functionFragment: "last24HoursTransactions", values?: undefined): string;
     encodeFunctionData(functionFragment: "minStake", values?: undefined): string;
     encodeFunctionData(functionFragment: "nonEvmHashes", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "nonce", values?: undefined): string;
@@ -202,7 +201,6 @@ export interface EmmetMultisigInterface extends Interface {
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hashes", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "last24HoursTransactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "minStake", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "nonEvmHashes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "nonce", data: BytesLike): Result;
@@ -464,11 +462,9 @@ export interface EmmetMultisig extends BaseContract {
             bigint,
             bigint,
             bigint,
-            bigint,
             bigint
         ] & {
             totalTransactions: bigint;
-            total24HourTransactions: bigint;
             totalFees: bigint;
             totalVolume: bigint;
             uniqueUsers: bigint;
@@ -498,7 +494,6 @@ export interface EmmetMultisig extends BaseContract {
         boolean
     ], "view">;
     hashes: TypedContractMethod<[nonce: BigNumberish], [string], "view">;
-    last24HoursTransactions: TypedContractMethod<[], [bigint], "view">;
     minStake: TypedContractMethod<[], [bigint], "view">;
     nonEvmHashes: TypedContractMethod<[txHash: BytesLike], [string], "view">;
     nonce: TypedContractMethod<[], [bigint], "view">;
@@ -673,11 +668,9 @@ export interface EmmetMultisig extends BaseContract {
             bigint,
             bigint,
             bigint,
-            bigint,
             bigint
         ] & {
             totalTransactions: bigint;
-            total24HourTransactions: bigint;
             totalFees: bigint;
             totalVolume: bigint;
             uniqueUsers: bigint;
@@ -707,7 +700,6 @@ export interface EmmetMultisig extends BaseContract {
         boolean
     ], "view">;
     getFunction(nameOrSignature: "hashes"): TypedContractMethod<[nonce: BigNumberish], [string], "view">;
-    getFunction(nameOrSignature: "last24HoursTransactions"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "minStake"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "nonEvmHashes"): TypedContractMethod<[txHash: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "nonce"): TypedContractMethod<[], [bigint], "view">;
