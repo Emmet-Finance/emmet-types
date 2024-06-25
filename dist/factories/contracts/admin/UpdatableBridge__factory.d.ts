@@ -18,14 +18,6 @@ export declare class UpdatableBridge__factory {
         readonly name: "AccessControlUnauthorizedAccount";
         readonly type: "error";
     }, {
-        readonly inputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "message";
-            readonly type: "string";
-        }];
-        readonly name: "ParameterValidationError";
-        readonly type: "error";
-    }, {
         readonly anonymous: false;
         readonly inputs: readonly [{
             readonly indexed: true;

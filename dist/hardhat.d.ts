@@ -122,18 +122,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IEmmetBridgeTypes__factory>;
     getContractFactory(
-      name: "GrabClub",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.GrabClub__factory>;
-    getContractFactory(
-      name: "WTestRED",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.WTestRED__factory>;
-    getContractFactory(
-      name: "WTON",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.WTON__factory>;
-    getContractFactory(
       name: "EmmetTokenVault",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetTokenVault__factory>;
@@ -242,10 +230,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.HashHelper__factory>;
     getContractFactory(
-      name: "EmmetParameterValidation",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetParameterValidation__factory>;
-    getContractFactory(
       name: "PriceFeedHelper",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.PriceFeedHelper__factory>;
@@ -261,6 +245,10 @@ declare module "hardhat/types/runtime" {
       name: "UniswapV3Helper",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.UniswapV3Helper__factory>;
+    getContractFactory(
+      name: "EmmetLiquidityPoolV1",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetLiquidityPoolV1__factory>;
     getContractFactory(
       name: "EmmetLiquidityPool",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -482,21 +470,6 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IEmmetBridgeTypes>;
     getContractAt(
-      name: "GrabClub",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.GrabClub>;
-    getContractAt(
-      name: "WTestRED",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.WTestRED>;
-    getContractAt(
-      name: "WTON",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.WTON>;
-    getContractAt(
       name: "EmmetTokenVault",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -632,11 +605,6 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.HashHelper>;
     getContractAt(
-      name: "EmmetParameterValidation",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetParameterValidation>;
-    getContractAt(
       name: "PriceFeedHelper",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -656,6 +624,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.UniswapV3Helper>;
+    getContractAt(
+      name: "EmmetLiquidityPoolV1",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetLiquidityPoolV1>;
     getContractAt(
       name: "EmmetLiquidityPool",
       address: string | ethers.Addressable,
@@ -871,18 +844,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetBridgeTypes>;
     deployContract(
-      name: "GrabClub",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GrabClub>;
-    deployContract(
-      name: "WTestRED",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.WTestRED>;
-    deployContract(
-      name: "WTON",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.WTON>;
-    deployContract(
       name: "EmmetTokenVault",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetTokenVault>;
@@ -991,10 +952,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.HashHelper>;
     deployContract(
-      name: "EmmetParameterValidation",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetParameterValidation>;
-    deployContract(
       name: "PriceFeedHelper",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PriceFeedHelper>;
@@ -1010,6 +967,10 @@ declare module "hardhat/types/runtime" {
       name: "UniswapV3Helper",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.UniswapV3Helper>;
+    deployContract(
+      name: "EmmetLiquidityPoolV1",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLiquidityPoolV1>;
     deployContract(
       name: "EmmetLiquidityPool",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1231,21 +1192,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetBridgeTypes>;
     deployContract(
-      name: "GrabClub",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GrabClub>;
-    deployContract(
-      name: "WTestRED",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.WTestRED>;
-    deployContract(
-      name: "WTON",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.WTON>;
-    deployContract(
       name: "EmmetTokenVault",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1381,11 +1327,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.HashHelper>;
     deployContract(
-      name: "EmmetParameterValidation",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetParameterValidation>;
-    deployContract(
       name: "PriceFeedHelper",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1405,6 +1346,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.UniswapV3Helper>;
+    deployContract(
+      name: "EmmetLiquidityPoolV1",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLiquidityPoolV1>;
     deployContract(
       name: "EmmetLiquidityPool",
       args: any[],

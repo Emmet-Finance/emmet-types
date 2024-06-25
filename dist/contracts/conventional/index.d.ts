@@ -1,11 +1,5 @@
 import type * as werc20Sol from "./WERC20.sol";
 export type { werc20Sol };
-import type * as emGrabCoinSol from "./em.GrabCoin.sol";
-export type { emGrabCoinSol };
-import type * as emTonSol from "./em.TON.sol";
-export type { emTonSol };
-import type * as emTestRedSol from "./em.TestRED.sol";
-export type { emTestRedSol };
 export type { EmmetTokenVault } from "./EmmetTokenVault";
 export type { IEmmetTokenVault } from "./IEmmetTokenVault";
 export type { IEmmetVaultAdmin } from "./IEmmetVaultAdmin";
