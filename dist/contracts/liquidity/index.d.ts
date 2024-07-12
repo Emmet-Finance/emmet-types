@@ -1,5 +1,9 @@
 import type * as emmetLpSol from "./EmmetLP.sol";
 export type { emmetLpSol };
+import type * as lpv2Sol from "./LPV2.sol";
+export type { lpv2Sol };
+import type * as lpv2AdminSol from "./LPV2Admin.sol";
+export type { lpv2AdminSol };
 import type * as liquidityPoolFactorySol from "./LiquidityPoolFactory.sol";
 export type { liquidityPoolFactorySol };
 export type { EmmetLiquidityPoolV1 } from "./EmmetLiquidityPoolV1";

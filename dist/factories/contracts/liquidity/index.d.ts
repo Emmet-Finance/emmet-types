@@ -1,4 +1,6 @@
 export * as emmetLpSol from "./EmmetLP.sol";
+export * as lpv2Sol from "./LPV2.sol";
+export * as lpv2AdminSol from "./LPV2Admin.sol";
 export * as liquidityPoolFactorySol from "./LiquidityPoolFactory.sol";
 export { EmmetLiquidityPoolV1__factory } from "./EmmetLiquidityPoolV1__factory";
 export { EmmetRestaking__factory } from "./EmmetRestaking__factory";

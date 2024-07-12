@@ -234,6 +234,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.PriceFeedHelper__factory>;
     getContractFactory(
+      name: "Rewards",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Rewards__factory>;
+    getContractFactory(
       name: "SignatureVerifier",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.SignatureVerifier__factory>;
@@ -273,6 +277,14 @@ declare module "hardhat/types/runtime" {
       name: "EmmetLPFactory",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetLPFactory__factory>;
+    getContractFactory(
+      name: "EmmetLPV2",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetLPV2__factory>;
+    getContractFactory(
+      name: "EmmetLPV2Admin",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetLPV2Admin__factory>;
     getContractFactory(
       name: "USDC",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -610,6 +622,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.PriceFeedHelper>;
     getContractAt(
+      name: "Rewards",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Rewards>;
+    getContractAt(
       name: "SignatureVerifier",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -659,6 +676,16 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetLPFactory>;
+    getContractAt(
+      name: "EmmetLPV2",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetLPV2>;
+    getContractAt(
+      name: "EmmetLPV2Admin",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetLPV2Admin>;
     getContractAt(
       name: "USDC",
       address: string | ethers.Addressable,
@@ -956,6 +983,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PriceFeedHelper>;
     deployContract(
+      name: "Rewards",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Rewards>;
+    deployContract(
       name: "SignatureVerifier",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.SignatureVerifier>;
@@ -995,6 +1026,14 @@ declare module "hardhat/types/runtime" {
       name: "EmmetLPFactory",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetLPFactory>;
+    deployContract(
+      name: "EmmetLPV2",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPV2>;
+    deployContract(
+      name: "EmmetLPV2Admin",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPV2Admin>;
     deployContract(
       name: "USDC",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1332,6 +1371,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.PriceFeedHelper>;
     deployContract(
+      name: "Rewards",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Rewards>;
+    deployContract(
       name: "SignatureVerifier",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1381,6 +1425,16 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetLPFactory>;
+    deployContract(
+      name: "EmmetLPV2",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPV2>;
+    deployContract(
+      name: "EmmetLPV2Admin",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPV2Admin>;
     deployContract(
       name: "USDC",
       args: any[],
