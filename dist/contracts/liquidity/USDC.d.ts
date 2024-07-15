@@ -1,12 +1,13 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface USDCInterface extends Interface {
-    getFunction(nameOrSignature: "allowance" | "approve" | "balanceOf" | "decimals" | "name" | "symbol" | "totalSupply" | "transfer" | "transferFrom"): FunctionFragment;
+    getFunction(nameOrSignature: "allowance" | "approve" | "balanceOf" | "decimals" | "decimls" | "name" | "symbol" | "totalSupply" | "transfer" | "transferFrom"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Approval" | "Transfer"): EventFragment;
     encodeFunctionData(functionFragment: "allowance", values: [AddressLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "approve", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "balanceOf", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
+    encodeFunctionData(functionFragment: "decimls", values?: undefined): string;
     encodeFunctionData(functionFragment: "name", values?: undefined): string;
     encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
     encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
@@ -16,6 +17,7 @@ export interface USDCInterface extends Interface {
     decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "decimls", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "totalSupply", data: BytesLike): Result;
@@ -83,6 +85,7 @@ export interface USDC extends BaseContract {
     ], "nonpayable">;
     balanceOf: TypedContractMethod<[account: AddressLike], [bigint], "view">;
     decimals: TypedContractMethod<[], [bigint], "view">;
+    decimls: TypedContractMethod<[], [bigint], "view">;
     name: TypedContractMethod<[], [string], "view">;
     symbol: TypedContractMethod<[], [string], "view">;
     totalSupply: TypedContractMethod<[], [bigint], "view">;
@@ -114,6 +117,7 @@ export interface USDC extends BaseContract {
     ], "nonpayable">;
     getFunction(nameOrSignature: "balanceOf"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "decimls"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "name"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "symbol"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "totalSupply"): TypedContractMethod<[], [bigint], "view">;
