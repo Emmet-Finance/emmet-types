@@ -135,6 +135,8 @@ export type { IEmmetRestakingAdmin } from "./contracts/liquidity/IEmmetRestaking
 export { IEmmetRestakingAdmin__factory } from "./factories/contracts/liquidity/IEmmetRestakingAdmin__factory";
 export type { EmmetLPFactory } from "./contracts/liquidity/LiquidityPoolFactory.sol/EmmetLPFactory";
 export { EmmetLPFactory__factory } from "./factories/contracts/liquidity/LiquidityPoolFactory.sol/EmmetLPFactory__factory";
+export type { LPDB } from "./contracts/liquidity/LPDB";
+export { LPDB__factory } from "./factories/contracts/liquidity/LPDB__factory";
 export type { EmmetLPV2 } from "./contracts/liquidity/LPV2.sol/EmmetLPV2";
 export { EmmetLPV2__factory } from "./factories/contracts/liquidity/LPV2.sol/EmmetLPV2__factory";
 export type { EmmetLPV2Admin } from "./contracts/liquidity/LPV2Admin.sol/EmmetLPV2Admin";

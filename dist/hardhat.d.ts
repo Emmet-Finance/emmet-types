@@ -278,6 +278,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetLPFactory__factory>;
     getContractFactory(
+      name: "LPDB",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.LPDB__factory>;
+    getContractFactory(
       name: "EmmetLPV2",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetLPV2__factory>;
@@ -677,6 +681,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetLPFactory>;
     getContractAt(
+      name: "LPDB",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.LPDB>;
+    getContractAt(
       name: "EmmetLPV2",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -1027,6 +1036,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetLPFactory>;
     deployContract(
+      name: "LPDB",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.LPDB>;
+    deployContract(
       name: "EmmetLPV2",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetLPV2>;
@@ -1425,6 +1438,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetLPFactory>;
+    deployContract(
+      name: "LPDB",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.LPDB>;
     deployContract(
       name: "EmmetLPV2",
       args: any[],

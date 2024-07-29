@@ -11,4 +11,5 @@ export type { EmmetRestaking } from "./EmmetRestaking";
 export type { IEmmetLP } from "./IEmmetLP";
 export type { IEmmetRestaking } from "./IEmmetRestaking";
 export type { IEmmetRestakingAdmin } from "./IEmmetRestakingAdmin";
+export type { LPDB } from "./LPDB";
 export type { USDC } from "./USDC";
