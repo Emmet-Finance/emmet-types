@@ -1,9 +1,10 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../common";
 export interface EmmetLPV2Interface extends Interface {
-    getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getProviderRewards" | "getRoleAdmin" | "grantRole" | "hasRole" | "manageBridge" | "name" | "protocolFee" | "protocolFeeAmount" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "updateProtocolFee" | "updateTokenFee" | "withdrawFees" | "withdrawTokens"): FunctionFragment;
-    getEvent(nameOrSignatureOrTopic: "Approval" | "BridgeUpdated" | "Deposited" | "LpTransfer" | "ProtocolFeeUpdated" | "RewardPaid" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "TokenFeeUpdated" | "Transfer" | "Withdrawn"): EventFragment;
+    getFunction(nameOrSignature: "BRIDGE_ROLE" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getProviderRewards" | "getRoleAdmin" | "grantRole" | "hasRole" | "manageBridge" | "name" | "protocolFee" | "protocolFeeAmount" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "updateProtocolFee" | "updateTokenFee" | "withdrawFees" | "withdrawProtocolFees" | "withdrawTokens"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "Approval" | "BridgeUpdated" | "Deposited" | "LpTransfer" | "ProtocolFeeUpdated" | "ProtocolFeesWithdrawn" | "RewardPaid" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "TokenFeeUpdated" | "Transfer" | "Withdrawn"): EventFragment;
     encodeFunctionData(functionFragment: "BRIDGE_ROLE", values?: undefined): string;
+    encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "SECONDS_IN_A_YEAR", values?: undefined): string;
@@ -39,8 +40,10 @@ export interface EmmetLPV2Interface extends Interface {
     encodeFunctionData(functionFragment: "updateProtocolFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "updateTokenFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "withdrawFees", values?: undefined): string;
+    encodeFunctionData(functionFragment: "withdrawProtocolFees", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawTokens", values: [BigNumberish]): string;
     decodeFunctionResult(functionFragment: "BRIDGE_ROLE", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "CFO_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "MANAGER_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "SECONDS_IN_A_YEAR", data: BytesLike): Result;
@@ -76,6 +79,7 @@ export interface EmmetLPV2Interface extends Interface {
     decodeFunctionResult(functionFragment: "updateProtocolFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateTokenFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawFees", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "withdrawProtocolFees", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawTokens", data: BytesLike): Result;
 }
 export declare namespace ApprovalEvent {
@@ -146,6 +150,17 @@ export declare namespace ProtocolFeeUpdatedEvent {
     interface OutputObject {
         oldFee: bigint;
         newFee: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
+}
+export declare namespace ProtocolFeesWithdrawnEvent {
+    type InputTuple = [fees: BigNumberish];
+    type OutputTuple = [fees: bigint];
+    interface OutputObject {
+        fees: bigint;
     }
     type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
     type Filter = TypedDeferredTopicFilter<Event>;
@@ -274,6 +289,7 @@ export interface EmmetLPV2 extends BaseContract {
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
     BRIDGE_ROLE: TypedContractMethod<[], [string], "view">;
+    CFO_ROLE: TypedContractMethod<[], [string], "view">;
     DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
     MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
     SECONDS_IN_A_YEAR: TypedContractMethod<[], [bigint], "view">;
@@ -382,6 +398,7 @@ export interface EmmetLPV2 extends BaseContract {
         void
     ], "nonpayable">;
     withdrawFees: TypedContractMethod<[], [void], "nonpayable">;
+    withdrawProtocolFees: TypedContractMethod<[], [void], "nonpayable">;
     withdrawTokens: TypedContractMethod<[
         amount_: BigNumberish
     ], [
@@ -389,6 +406,7 @@ export interface EmmetLPV2 extends BaseContract {
     ], "nonpayable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "BRIDGE_ROLE"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "CFO_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "SECONDS_IN_A_YEAR"): TypedContractMethod<[], [bigint], "view">;
@@ -477,12 +495,14 @@ export interface EmmetLPV2 extends BaseContract {
     getFunction(nameOrSignature: "updateProtocolFee"): TypedContractMethod<[protocolFee_: BigNumberish], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateTokenFee"): TypedContractMethod<[tokenFee_: BigNumberish], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawFees"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "withdrawProtocolFees"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawTokens"): TypedContractMethod<[amount_: BigNumberish], [void], "nonpayable">;
     getEvent(key: "Approval"): TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
     getEvent(key: "BridgeUpdated"): TypedContractEvent<BridgeUpdatedEvent.InputTuple, BridgeUpdatedEvent.OutputTuple, BridgeUpdatedEvent.OutputObject>;
     getEvent(key: "Deposited"): TypedContractEvent<DepositedEvent.InputTuple, DepositedEvent.OutputTuple, DepositedEvent.OutputObject>;
     getEvent(key: "LpTransfer"): TypedContractEvent<LpTransferEvent.InputTuple, LpTransferEvent.OutputTuple, LpTransferEvent.OutputObject>;
     getEvent(key: "ProtocolFeeUpdated"): TypedContractEvent<ProtocolFeeUpdatedEvent.InputTuple, ProtocolFeeUpdatedEvent.OutputTuple, ProtocolFeeUpdatedEvent.OutputObject>;
+    getEvent(key: "ProtocolFeesWithdrawn"): TypedContractEvent<ProtocolFeesWithdrawnEvent.InputTuple, ProtocolFeesWithdrawnEvent.OutputTuple, ProtocolFeesWithdrawnEvent.OutputObject>;
     getEvent(key: "RewardPaid"): TypedContractEvent<RewardPaidEvent.InputTuple, RewardPaidEvent.OutputTuple, RewardPaidEvent.OutputObject>;
     getEvent(key: "RoleAdminChanged"): TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;
     getEvent(key: "RoleGranted"): TypedContractEvent<RoleGrantedEvent.InputTuple, RoleGrantedEvent.OutputTuple, RoleGrantedEvent.OutputObject>;
@@ -501,6 +521,8 @@ export interface EmmetLPV2 extends BaseContract {
         LpTransfer: TypedContractEvent<LpTransferEvent.InputTuple, LpTransferEvent.OutputTuple, LpTransferEvent.OutputObject>;
         "ProtocolFeeUpdated(uint256,uint256)": TypedContractEvent<ProtocolFeeUpdatedEvent.InputTuple, ProtocolFeeUpdatedEvent.OutputTuple, ProtocolFeeUpdatedEvent.OutputObject>;
         ProtocolFeeUpdated: TypedContractEvent<ProtocolFeeUpdatedEvent.InputTuple, ProtocolFeeUpdatedEvent.OutputTuple, ProtocolFeeUpdatedEvent.OutputObject>;
+        "ProtocolFeesWithdrawn(uint256)": TypedContractEvent<ProtocolFeesWithdrawnEvent.InputTuple, ProtocolFeesWithdrawnEvent.OutputTuple, ProtocolFeesWithdrawnEvent.OutputObject>;
+        ProtocolFeesWithdrawn: TypedContractEvent<ProtocolFeesWithdrawnEvent.InputTuple, ProtocolFeesWithdrawnEvent.OutputTuple, ProtocolFeesWithdrawnEvent.OutputObject>;
         "RewardPaid(address,uint256)": TypedContractEvent<RewardPaidEvent.InputTuple, RewardPaidEvent.OutputTuple, RewardPaidEvent.OutputObject>;
         RewardPaid: TypedContractEvent<RewardPaidEvent.InputTuple, RewardPaidEvent.OutputTuple, RewardPaidEvent.OutputObject>;
         "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<RoleAdminChangedEvent.InputTuple, RoleAdminChangedEvent.OutputTuple, RoleAdminChangedEvent.OutputObject>;

@@ -18,6 +18,34 @@ export declare class EmmetLPV2Admin__factory {
         readonly name: "AccessControlUnauthorizedAccount";
         readonly type: "error";
     }, {
+        readonly inputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "target";
+            readonly type: "address";
+        }];
+        readonly name: "AddressEmptyCode";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "account";
+            readonly type: "address";
+        }];
+        readonly name: "AddressInsufficientBalance";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "FailedInnerCall";
+        readonly type: "error";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "token";
+            readonly type: "address";
+        }];
+        readonly name: "SafeERC20FailedOperation";
+        readonly type: "error";
+    }, {
         readonly anonymous: false;
         readonly inputs: readonly [{
             readonly indexed: false;
@@ -51,6 +79,16 @@ export declare class EmmetLPV2Admin__factory {
             readonly type: "uint256";
         }];
         readonly name: "ProtocolFeeUpdated";
+        readonly type: "event";
+    }, {
+        readonly anonymous: false;
+        readonly inputs: readonly [{
+            readonly indexed: false;
+            readonly internalType: "uint256";
+            readonly name: "fees";
+            readonly type: "uint256";
+        }];
+        readonly name: "ProtocolFeesWithdrawn";
         readonly type: "event";
     }, {
         readonly anonymous: false;
@@ -130,6 +168,16 @@ export declare class EmmetLPV2Admin__factory {
     }, {
         readonly inputs: readonly [];
         readonly name: "BRIDGE_ROLE";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "CFO_ROLE";
         readonly outputs: readonly [{
             readonly internalType: "bytes32";
             readonly name: "";
@@ -244,6 +292,16 @@ export declare class EmmetLPV2Admin__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "protocolFeeAmount";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "";
+            readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "bytes32";
             readonly name: "role";
@@ -287,6 +345,16 @@ export declare class EmmetLPV2Admin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [];
+        readonly name: "token";
+        readonly outputs: readonly [{
+            readonly internalType: "contract IERC20";
+            readonly name: "";
+            readonly type: "address";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
         readonly name: "tokenFee";
         readonly outputs: readonly [{
             readonly internalType: "uint256";
@@ -312,6 +380,12 @@ export declare class EmmetLPV2Admin__factory {
             readonly type: "uint256";
         }];
         readonly name: "updateTokenFee";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [];
+        readonly name: "withdrawProtocolFees";
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";
