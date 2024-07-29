@@ -1,7 +1,7 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../common";
 export interface EmmetLPV2Interface extends Interface {
-    getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getRoleAdmin" | "grantRole" | "hasRole" | "manageBridge" | "name" | "protocolFee" | "protocolFeeAmount" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "updateProtocolFee" | "updateTokenFee" | "withdrawFees" | "withdrawTokens"): FunctionFragment;
+    getFunction(nameOrSignature: "BRIDGE_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getProviderRewards" | "getRoleAdmin" | "grantRole" | "hasRole" | "manageBridge" | "name" | "protocolFee" | "protocolFeeAmount" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "updateProtocolFee" | "updateTokenFee" | "withdrawFees" | "withdrawTokens"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Approval" | "BridgeUpdated" | "Deposited" | "LpTransfer" | "ProtocolFeeUpdated" | "RewardPaid" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "TokenFeeUpdated" | "Transfer" | "Withdrawn"): EventFragment;
     encodeFunctionData(functionFragment: "BRIDGE_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
@@ -18,6 +18,7 @@ export interface EmmetLPV2Interface extends Interface {
     encodeFunctionData(functionFragment: "deposits", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "feeDecimals", values?: undefined): string;
     encodeFunctionData(functionFragment: "feeGrowthGlobal", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getProviderRewards", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
@@ -54,6 +55,7 @@ export interface EmmetLPV2Interface extends Interface {
     decodeFunctionResult(functionFragment: "deposits", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "feeDecimals", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "feeGrowthGlobal", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getProviderRewards", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
@@ -303,6 +305,11 @@ export interface EmmetLPV2 extends BaseContract {
     ], "view">;
     feeDecimals: TypedContractMethod<[], [bigint], "view">;
     feeGrowthGlobal: TypedContractMethod<[], [bigint], "view">;
+    getProviderRewards: TypedContractMethod<[
+        provider: AddressLike
+    ], [
+        bigint
+    ], "view">;
     getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
     grantRole: TypedContractMethod<[
         role: BytesLike,
@@ -413,6 +420,7 @@ export interface EmmetLPV2 extends BaseContract {
     ], "view">;
     getFunction(nameOrSignature: "feeDecimals"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "feeGrowthGlobal"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "getProviderRewards"): TypedContractMethod<[provider: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "grantRole"): TypedContractMethod<[
         role: BytesLike,
