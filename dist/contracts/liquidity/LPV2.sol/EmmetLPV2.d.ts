@@ -1,7 +1,7 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../common";
 export interface EmmetLPV2Interface extends Interface {
-    getFunction(nameOrSignature: "BRIDGE_ROLE" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getProviderRewards" | "getRoleAdmin" | "grantRole" | "hasRole" | "manageBridge" | "name" | "protocolFee" | "protocolFeeAmount" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "updateProtocolFee" | "updateTokenFee" | "withdrawFees" | "withdrawProtocolFees" | "withdrawTokens"): FunctionFragment;
+    getFunction(nameOrSignature: "BRIDGE_ROLE" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getProviderRewards" | "getRoleAdmin" | "grantRole" | "hasRole" | "manageBridge" | "name" | "protocolFee" | "protocolFeeAmount" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "updateProtocolFee" | "updateTokenFee" | "withdrawFees" | "withdrawProtocolFees" | "withdrawTokens" | "withdrawnRewards"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Approval" | "BridgeUpdated" | "Deposited" | "LpTransfer" | "ProtocolFeeUpdated" | "ProtocolFeesWithdrawn" | "RewardPaid" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "TokenFeeUpdated" | "Transfer" | "Withdrawn"): EventFragment;
     encodeFunctionData(functionFragment: "BRIDGE_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
@@ -42,6 +42,7 @@ export interface EmmetLPV2Interface extends Interface {
     encodeFunctionData(functionFragment: "withdrawFees", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawProtocolFees", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawTokens", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "withdrawnRewards", values?: undefined): string;
     decodeFunctionResult(functionFragment: "BRIDGE_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "CFO_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
@@ -81,6 +82,7 @@ export interface EmmetLPV2Interface extends Interface {
     decodeFunctionResult(functionFragment: "withdrawFees", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawProtocolFees", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawTokens", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "withdrawnRewards", data: BytesLike): Result;
 }
 export declare namespace ApprovalEvent {
     type InputTuple = [
@@ -404,6 +406,7 @@ export interface EmmetLPV2 extends BaseContract {
     ], [
         void
     ], "nonpayable">;
+    withdrawnRewards: TypedContractMethod<[], [bigint], "view">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "BRIDGE_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "CFO_ROLE"): TypedContractMethod<[], [string], "view">;
@@ -497,6 +500,7 @@ export interface EmmetLPV2 extends BaseContract {
     getFunction(nameOrSignature: "withdrawFees"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawProtocolFees"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawTokens"): TypedContractMethod<[amount_: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "withdrawnRewards"): TypedContractMethod<[], [bigint], "view">;
     getEvent(key: "Approval"): TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
     getEvent(key: "BridgeUpdated"): TypedContractEvent<BridgeUpdatedEvent.InputTuple, BridgeUpdatedEvent.OutputTuple, BridgeUpdatedEvent.OutputObject>;
     getEvent(key: "Deposited"): TypedContractEvent<DepositedEvent.InputTuple, DepositedEvent.OutputTuple, DepositedEvent.OutputObject>;
