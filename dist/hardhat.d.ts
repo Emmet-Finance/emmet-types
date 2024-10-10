@@ -14,6 +14,38 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
+      name: "AccessControlUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AccessControlUpgradeable__factory>;
+    getContractFactory(
+      name: "Initializable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Initializable__factory>;
+    getContractFactory(
+      name: "UUPSUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.UUPSUpgradeable__factory>;
+    getContractFactory(
+      name: "ERC20Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20Upgradeable__factory>;
+    getContractFactory(
+      name: "ContextUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ContextUpgradeable__factory>;
+    getContractFactory(
+      name: "ERC165Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC165Upgradeable__factory>;
+    getContractFactory(
+      name: "PausableUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.PausableUpgradeable__factory>;
+    getContractFactory(
+      name: "ReentrancyGuardUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ReentrancyGuardUpgradeable__factory>;
+    getContractFactory(
       name: "AccessControl",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.AccessControl__factory>;
@@ -22,9 +54,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IAccessControl__factory>;
     getContractFactory(
-      name: "Ownable",
+      name: "IERC1822Proxiable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Ownable__factory>;
+    ): Promise<Contracts.IERC1822Proxiable__factory>;
     getContractFactory(
       name: "IERC1155Errors",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -37,6 +69,14 @@ declare module "hardhat/types/runtime" {
       name: "IERC721Errors",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC721Errors__factory>;
+    getContractFactory(
+      name: "IBeacon",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IBeacon__factory>;
+    getContractFactory(
+      name: "ERC1967Utils",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC1967Utils__factory>;
     getContractFactory(
       name: "ERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -70,6 +110,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC165__factory>;
     getContractFactory(
+      name: "Pausable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Pausable__factory>;
+    getContractFactory(
       name: "ReentrancyGuard",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ReentrancyGuard__factory>;
@@ -77,6 +121,10 @@ declare module "hardhat/types/runtime" {
       name: "EmmetAddressBook",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetAddressBook__factory>;
+    getContractFactory(
+      name: "AddressStorageHelper",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AddressStorageHelper__factory>;
     getContractFactory(
       name: "IAddressBook",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -86,61 +134,93 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetAdmin__factory>;
     getContractFactory(
-      name: "Initializable",
+      name: "BridgeModule",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Initializable__factory>;
+    ): Promise<Contracts.BridgeModule__factory>;
     getContractFactory(
-      name: "UpdatableBridge",
+      name: "BridgeTypes",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.UpdatableBridge__factory>;
+    ): Promise<Contracts.BridgeTypes__factory>;
     getContractFactory(
-      name: "EmmetBridge",
+      name: "CCTPModule",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetBridge__factory>;
-    getContractFactory(
-      name: "EmmetBridgeAdmin",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetBridgeAdmin__factory>;
-    getContractFactory(
-      name: "EmmetBridgeStorage",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetBridgeStorage__factory>;
-    getContractFactory(
-      name: "EmmetBridgeUtilities",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetBridgeUtilities__factory>;
-    getContractFactory(
-      name: "IEmmetBridge",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetBridge__factory>;
-    getContractFactory(
-      name: "IEmmetBridgeAdmin",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetBridgeAdmin__factory>;
-    getContractFactory(
-      name: "IEmmetBridgeTypes",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetBridgeTypes__factory>;
-    getContractFactory(
-      name: "EmmetTokenVault",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetTokenVault__factory>;
-    getContractFactory(
-      name: "IEmmetTokenVault",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetTokenVault__factory>;
-    getContractFactory(
-      name: "IEmmetVaultAdmin",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetVaultAdmin__factory>;
+    ): Promise<Contracts.CCTPModule__factory>;
     getContractFactory(
       name: "IWERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IWERC20__factory>;
     getContractFactory(
+      name: "LockAndMint",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.LockAndMint__factory>;
+    getContractFactory(
       name: "WrappedERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WrappedERC20__factory>;
+    getContractFactory(
+      name: "WrappedERC20Upgradable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.WrappedERC20Upgradable__factory>;
+    getContractFactory(
+      name: "IBridgeModule",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IBridgeModule__factory>;
+    getContractFactory(
+      name: "EmmetLP",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetLP__factory>;
+    getContractFactory(
+      name: "IEmmetLP",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IEmmetLP__factory>;
+    getContractFactory(
+      name: "EmmetLPAdmin",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetLPAdmin__factory>;
+    getContractFactory(
+      name: "LPModule",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.LPModule__factory>;
+    getContractFactory(
+      name: "EmmetBridge",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetBridge__factory>;
+    getContractFactory(
+      name: "EmmetBridgeHelper",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetBridgeHelper__factory>;
+    getContractFactory(
+      name: "EmmetBridgeManager",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EmmetBridgeManager__factory>;
+    getContractFactory(
+      name: "IEmmetBridge",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IEmmetBridge__factory>;
+    getContractFactory(
+      name: "Consensus",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Consensus__factory>;
+    getContractFactory(
+      name: "RelayerStakesAndRoles",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RelayerStakesAndRoles__factory>;
+    getContractFactory(
+      name: "Signatures",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Signatures__factory>;
+    getContractFactory(
+      name: "TestEmmetToken",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TestEmmetToken__factory>;
+    getContractFactory(
+      name: "BridgeStats",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BridgeStats__factory>;
+    getContractFactory(
+      name: "DataStorage",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DataStorage__factory>;
     getContractFactory(
       name: "EmmetData",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -150,9 +230,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetDataAdmin__factory>;
     getContractFactory(
-      name: "EmmetDataUtilities",
+      name: "EmmetDataEvents",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetDataUtilities__factory>;
+    ): Promise<Contracts.EmmetDataEvents__factory>;
+    getContractFactory(
+      name: "IBridgeStats",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IBridgeStats__factory>;
     getContractFactory(
       name: "IEmmetData",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -162,194 +246,130 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IEmmetDataAdmin__factory>;
     getContractFactory(
-      name: "IEmmetDataTypes",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetDataTypes__factory>;
-    getContractFactory(
-      name: "IPool",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IPool__factory>;
-    getContractFactory(
-      name: "IVault",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IVault__factory>;
-    getContractFactory(
       name: "IMessageTransmitter",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IMessageTransmitter__factory>;
-    getContractFactory(
-      name: "IPriceFeedInterface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IPriceFeedInterface__factory>;
     getContractFactory(
       name: "ITokenMessenger",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ITokenMessenger__factory>;
     getContractFactory(
-      name: "IUniswapV2Pair",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IUniswapV2Pair__factory>;
-    getContractFactory(
-      name: "IUniswapV2Router",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IUniswapV2Router__factory>;
-    getContractFactory(
-      name: "IUniswapV3Factory",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IUniswapV3Factory__factory>;
-    getContractFactory(
-      name: "IUniswapV3Pool",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IUniswapV3Pool__factory>;
-    getContractFactory(
-      name: "IUniswapV3Router",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IUniswapV3Router__factory>;
-    getContractFactory(
-      name: "IBridgeUtility",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IBridgeUtility__factory>;
-    getContractFactory(
-      name: "AddressStorageHelper",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.AddressStorageHelper__factory>;
-    getContractFactory(
-      name: "BalancerHelper",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BalancerHelper__factory>;
-    getContractFactory(
-      name: "BytesHelper",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BytesHelper__factory>;
-    getContractFactory(
-      name: "CCTPHelper",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.CCTPHelper__factory>;
-    getContractFactory(
       name: "HashHelper",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.HashHelper__factory>;
     getContractFactory(
-      name: "PriceFeedHelper",
+      name: "RelayerRewards",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.PriceFeedHelper__factory>;
+    ): Promise<Contracts.RelayerRewards__factory>;
     getContractFactory(
-      name: "Rewards",
+      name: "CCMStorage",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Rewards__factory>;
+    ): Promise<Contracts.CCMStorage__factory>;
     getContractFactory(
-      name: "SignatureVerifier",
+      name: "CCMUtils",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.SignatureVerifier__factory>;
+    ): Promise<Contracts.CCMUtils__factory>;
     getContractFactory(
-      name: "EmmetTokenStrategy",
+      name: "CrossChainMessenger",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetTokenStrategy__factory>;
+    ): Promise<Contracts.CrossChainMessenger__factory>;
     getContractFactory(
-      name: "UniswapV3Helper",
+      name: "CrossChainMessengerAdmin",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.UniswapV3Helper__factory>;
+    ): Promise<Contracts.CrossChainMessengerAdmin__factory>;
     getContractFactory(
-      name: "EmmetLiquidityPoolV1",
+      name: "ICrossChainMessenger",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetLiquidityPoolV1__factory>;
+    ): Promise<Contracts.ICrossChainMessenger__factory>;
     getContractFactory(
-      name: "EmmetLiquidityPool",
+      name: "Mock",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetLiquidityPool__factory>;
+    ): Promise<Contracts.Mock__factory>;
     getContractFactory(
-      name: "EmmetRestaking",
+      name: "MockCCMUser",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetRestaking__factory>;
+    ): Promise<Contracts.MockCCMUser__factory>;
     getContractFactory(
-      name: "IEmmetLP",
+      name: "MockERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetLP__factory>;
+    ): Promise<Contracts.MockERC20__factory>;
     getContractFactory(
-      name: "IEmmetRestaking",
+      name: "MockRelayerRewards",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetRestaking__factory>;
+    ): Promise<Contracts.MockRelayerRewards__factory>;
     getContractFactory(
-      name: "IEmmetRestakingAdmin",
+      name: "SigTester",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IEmmetRestakingAdmin__factory>;
-    getContractFactory(
-      name: "EmmetLPFactory",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetLPFactory__factory>;
-    getContractFactory(
-      name: "LPDB",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LPDB__factory>;
-    getContractFactory(
-      name: "EmmetLPV2",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetLPV2__factory>;
-    getContractFactory(
-      name: "EmmetLPV2Admin",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetLPV2Admin__factory>;
-    getContractFactory(
-      name: "USDC",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.USDC__factory>;
-    getContractFactory(
-      name: "EmmetMultisigAdmin",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetMultisigAdmin__factory>;
-    getContractFactory(
-      name: "EmmetMultisig",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetMultisig__factory>;
-    getContractFactory(
-      name: "EmmetMultisigUtilities",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetMultisigUtilities__factory>;
-    getContractFactory(
-      name: "TestEmmetToken",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TestEmmetToken__factory>;
-    getContractFactory(
-      name: "MultisigStaker",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MultisigStaker__factory>;
-    getContractFactory(
-      name: "EmmetMultisigStorage",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmmetMultisigStorage__factory>;
-    getContractFactory(
-      name: "MultiSigTypes",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MultiSigTypes__factory>;
+    ): Promise<Contracts.SigTester__factory>;
     getContractFactory(
       name: "EmmetPriceFeed",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EmmetPriceFeed__factory>;
     getContractFactory(
-      name: "GasFees",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.GasFees__factory>;
-    getContractFactory(
-      name: "GasFeesAdmin",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.GasFeesAdmin__factory>;
-    getContractFactory(
-      name: "ICombinedGasFees",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ICombinedGasFees__factory>;
-    getContractFactory(
       name: "IEmmetPriceFeedAdmin",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IEmmetPriceFeedAdmin__factory>;
     getContractFactory(
-      name: "IGasFees",
+      name: "IPriceFeedInterface",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IGasFees__factory>;
+    ): Promise<Contracts.IPriceFeedInterface__factory>;
     getContractFactory(
-      name: "IGasFeesAdmin",
+      name: "EFD",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IGasFeesAdmin__factory>;
+    ): Promise<Contracts.EFD__factory>;
+    getContractFactory(
+      name: "EMMET",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.EMMET__factory>;
+    getContractFactory(
+      name: "Emmet",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Emmet__factory>;
+    getContractFactory(
+      name: "MATIC",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MATIC__factory>;
 
+    getContractAt(
+      name: "AccessControlUpgradeable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AccessControlUpgradeable>;
+    getContractAt(
+      name: "Initializable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Initializable>;
+    getContractAt(
+      name: "UUPSUpgradeable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.UUPSUpgradeable>;
+    getContractAt(
+      name: "ERC20Upgradeable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20Upgradeable>;
+    getContractAt(
+      name: "ContextUpgradeable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ContextUpgradeable>;
+    getContractAt(
+      name: "ERC165Upgradeable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC165Upgradeable>;
+    getContractAt(
+      name: "PausableUpgradeable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.PausableUpgradeable>;
+    getContractAt(
+      name: "ReentrancyGuardUpgradeable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ReentrancyGuardUpgradeable>;
     getContractAt(
       name: "AccessControl",
       address: string | ethers.Addressable,
@@ -361,10 +381,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IAccessControl>;
     getContractAt(
-      name: "Ownable",
+      name: "IERC1822Proxiable",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Ownable>;
+    ): Promise<Contracts.IERC1822Proxiable>;
     getContractAt(
       name: "IERC1155Errors",
       address: string | ethers.Addressable,
@@ -380,6 +400,16 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC721Errors>;
+    getContractAt(
+      name: "IBeacon",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IBeacon>;
+    getContractAt(
+      name: "ERC1967Utils",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC1967Utils>;
     getContractAt(
       name: "ERC20",
       address: string | ethers.Addressable,
@@ -421,6 +451,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC165>;
     getContractAt(
+      name: "Pausable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Pausable>;
+    getContractAt(
       name: "ReentrancyGuard",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -430,6 +465,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetAddressBook>;
+    getContractAt(
+      name: "AddressStorageHelper",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AddressStorageHelper>;
     getContractAt(
       name: "IAddressBook",
       address: string | ethers.Addressable,
@@ -441,75 +481,115 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetAdmin>;
     getContractAt(
-      name: "Initializable",
+      name: "BridgeModule",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Initializable>;
+    ): Promise<Contracts.BridgeModule>;
     getContractAt(
-      name: "UpdatableBridge",
+      name: "BridgeTypes",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.UpdatableBridge>;
+    ): Promise<Contracts.BridgeTypes>;
     getContractAt(
-      name: "EmmetBridge",
+      name: "CCTPModule",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmmetBridge>;
-    getContractAt(
-      name: "EmmetBridgeAdmin",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetBridgeAdmin>;
-    getContractAt(
-      name: "EmmetBridgeStorage",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetBridgeStorage>;
-    getContractAt(
-      name: "EmmetBridgeUtilities",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetBridgeUtilities>;
-    getContractAt(
-      name: "IEmmetBridge",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetBridge>;
-    getContractAt(
-      name: "IEmmetBridgeAdmin",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetBridgeAdmin>;
-    getContractAt(
-      name: "IEmmetBridgeTypes",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetBridgeTypes>;
-    getContractAt(
-      name: "EmmetTokenVault",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetTokenVault>;
-    getContractAt(
-      name: "IEmmetTokenVault",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetTokenVault>;
-    getContractAt(
-      name: "IEmmetVaultAdmin",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetVaultAdmin>;
+    ): Promise<Contracts.CCTPModule>;
     getContractAt(
       name: "IWERC20",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IWERC20>;
     getContractAt(
+      name: "LockAndMint",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.LockAndMint>;
+    getContractAt(
       name: "WrappedERC20",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.WrappedERC20>;
+    getContractAt(
+      name: "WrappedERC20Upgradable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.WrappedERC20Upgradable>;
+    getContractAt(
+      name: "IBridgeModule",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IBridgeModule>;
+    getContractAt(
+      name: "EmmetLP",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetLP>;
+    getContractAt(
+      name: "IEmmetLP",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IEmmetLP>;
+    getContractAt(
+      name: "EmmetLPAdmin",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetLPAdmin>;
+    getContractAt(
+      name: "LPModule",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.LPModule>;
+    getContractAt(
+      name: "EmmetBridge",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetBridge>;
+    getContractAt(
+      name: "EmmetBridgeHelper",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetBridgeHelper>;
+    getContractAt(
+      name: "EmmetBridgeManager",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EmmetBridgeManager>;
+    getContractAt(
+      name: "IEmmetBridge",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IEmmetBridge>;
+    getContractAt(
+      name: "Consensus",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Consensus>;
+    getContractAt(
+      name: "RelayerStakesAndRoles",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RelayerStakesAndRoles>;
+    getContractAt(
+      name: "Signatures",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Signatures>;
+    getContractAt(
+      name: "TestEmmetToken",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TestEmmetToken>;
+    getContractAt(
+      name: "BridgeStats",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BridgeStats>;
+    getContractAt(
+      name: "DataStorage",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DataStorage>;
     getContractAt(
       name: "EmmetData",
       address: string | ethers.Addressable,
@@ -521,10 +601,15 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetDataAdmin>;
     getContractAt(
-      name: "EmmetDataUtilities",
+      name: "EmmetDataEvents",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmmetDataUtilities>;
+    ): Promise<Contracts.EmmetDataEvents>;
+    getContractAt(
+      name: "IBridgeStats",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IBridgeStats>;
     getContractAt(
       name: "IEmmetData",
       address: string | ethers.Addressable,
@@ -536,241 +621,143 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IEmmetDataAdmin>;
     getContractAt(
-      name: "IEmmetDataTypes",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetDataTypes>;
-    getContractAt(
-      name: "IPool",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IPool>;
-    getContractAt(
-      name: "IVault",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IVault>;
-    getContractAt(
       name: "IMessageTransmitter",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IMessageTransmitter>;
-    getContractAt(
-      name: "IPriceFeedInterface",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IPriceFeedInterface>;
     getContractAt(
       name: "ITokenMessenger",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.ITokenMessenger>;
     getContractAt(
-      name: "IUniswapV2Pair",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IUniswapV2Pair>;
-    getContractAt(
-      name: "IUniswapV2Router",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IUniswapV2Router>;
-    getContractAt(
-      name: "IUniswapV3Factory",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IUniswapV3Factory>;
-    getContractAt(
-      name: "IUniswapV3Pool",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IUniswapV3Pool>;
-    getContractAt(
-      name: "IUniswapV3Router",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IUniswapV3Router>;
-    getContractAt(
-      name: "IBridgeUtility",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IBridgeUtility>;
-    getContractAt(
-      name: "AddressStorageHelper",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.AddressStorageHelper>;
-    getContractAt(
-      name: "BalancerHelper",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.BalancerHelper>;
-    getContractAt(
-      name: "BytesHelper",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.BytesHelper>;
-    getContractAt(
-      name: "CCTPHelper",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.CCTPHelper>;
-    getContractAt(
       name: "HashHelper",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.HashHelper>;
     getContractAt(
-      name: "PriceFeedHelper",
+      name: "RelayerRewards",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.PriceFeedHelper>;
+    ): Promise<Contracts.RelayerRewards>;
     getContractAt(
-      name: "Rewards",
+      name: "CCMStorage",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Rewards>;
+    ): Promise<Contracts.CCMStorage>;
     getContractAt(
-      name: "SignatureVerifier",
+      name: "CCMUtils",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.SignatureVerifier>;
+    ): Promise<Contracts.CCMUtils>;
     getContractAt(
-      name: "EmmetTokenStrategy",
+      name: "CrossChainMessenger",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmmetTokenStrategy>;
+    ): Promise<Contracts.CrossChainMessenger>;
     getContractAt(
-      name: "UniswapV3Helper",
+      name: "CrossChainMessengerAdmin",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.UniswapV3Helper>;
+    ): Promise<Contracts.CrossChainMessengerAdmin>;
     getContractAt(
-      name: "EmmetLiquidityPoolV1",
+      name: "ICrossChainMessenger",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmmetLiquidityPoolV1>;
+    ): Promise<Contracts.ICrossChainMessenger>;
     getContractAt(
-      name: "EmmetLiquidityPool",
+      name: "Mock",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmmetLiquidityPool>;
+    ): Promise<Contracts.Mock>;
     getContractAt(
-      name: "EmmetRestaking",
+      name: "MockCCMUser",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmmetRestaking>;
+    ): Promise<Contracts.MockCCMUser>;
     getContractAt(
-      name: "IEmmetLP",
+      name: "MockERC20",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetLP>;
+    ): Promise<Contracts.MockERC20>;
     getContractAt(
-      name: "IEmmetRestaking",
+      name: "MockRelayerRewards",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetRestaking>;
+    ): Promise<Contracts.MockRelayerRewards>;
     getContractAt(
-      name: "IEmmetRestakingAdmin",
+      name: "SigTester",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.IEmmetRestakingAdmin>;
-    getContractAt(
-      name: "EmmetLPFactory",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetLPFactory>;
-    getContractAt(
-      name: "LPDB",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LPDB>;
-    getContractAt(
-      name: "EmmetLPV2",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetLPV2>;
-    getContractAt(
-      name: "EmmetLPV2Admin",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetLPV2Admin>;
-    getContractAt(
-      name: "USDC",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.USDC>;
-    getContractAt(
-      name: "EmmetMultisigAdmin",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetMultisigAdmin>;
-    getContractAt(
-      name: "EmmetMultisig",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetMultisig>;
-    getContractAt(
-      name: "EmmetMultisigUtilities",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetMultisigUtilities>;
-    getContractAt(
-      name: "TestEmmetToken",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.TestEmmetToken>;
-    getContractAt(
-      name: "MultisigStaker",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.MultisigStaker>;
-    getContractAt(
-      name: "EmmetMultisigStorage",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmmetMultisigStorage>;
-    getContractAt(
-      name: "MultiSigTypes",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.MultiSigTypes>;
+    ): Promise<Contracts.SigTester>;
     getContractAt(
       name: "EmmetPriceFeed",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.EmmetPriceFeed>;
     getContractAt(
-      name: "GasFees",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.GasFees>;
-    getContractAt(
-      name: "GasFeesAdmin",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.GasFeesAdmin>;
-    getContractAt(
-      name: "ICombinedGasFees",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ICombinedGasFees>;
-    getContractAt(
       name: "IEmmetPriceFeedAdmin",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IEmmetPriceFeedAdmin>;
     getContractAt(
-      name: "IGasFees",
+      name: "IPriceFeedInterface",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.IGasFees>;
+    ): Promise<Contracts.IPriceFeedInterface>;
     getContractAt(
-      name: "IGasFeesAdmin",
+      name: "EFD",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.IGasFeesAdmin>;
+    ): Promise<Contracts.EFD>;
+    getContractAt(
+      name: "EMMET",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.EMMET>;
+    getContractAt(
+      name: "Emmet",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Emmet>;
+    getContractAt(
+      name: "MATIC",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MATIC>;
 
+    deployContract(
+      name: "AccessControlUpgradeable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AccessControlUpgradeable>;
+    deployContract(
+      name: "Initializable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Initializable>;
+    deployContract(
+      name: "UUPSUpgradeable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.UUPSUpgradeable>;
+    deployContract(
+      name: "ERC20Upgradeable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ERC20Upgradeable>;
+    deployContract(
+      name: "ContextUpgradeable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ContextUpgradeable>;
+    deployContract(
+      name: "ERC165Upgradeable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ERC165Upgradeable>;
+    deployContract(
+      name: "PausableUpgradeable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.PausableUpgradeable>;
+    deployContract(
+      name: "ReentrancyGuardUpgradeable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ReentrancyGuardUpgradeable>;
     deployContract(
       name: "AccessControl",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -780,9 +767,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IAccessControl>;
     deployContract(
-      name: "Ownable",
+      name: "IERC1822Proxiable",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Ownable>;
+    ): Promise<Contracts.IERC1822Proxiable>;
     deployContract(
       name: "IERC1155Errors",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -795,6 +782,14 @@ declare module "hardhat/types/runtime" {
       name: "IERC721Errors",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC721Errors>;
+    deployContract(
+      name: "IBeacon",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IBeacon>;
+    deployContract(
+      name: "ERC1967Utils",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ERC1967Utils>;
     deployContract(
       name: "ERC20",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -828,6 +823,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC165>;
     deployContract(
+      name: "Pausable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Pausable>;
+    deployContract(
       name: "ReentrancyGuard",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ReentrancyGuard>;
@@ -835,6 +834,10 @@ declare module "hardhat/types/runtime" {
       name: "EmmetAddressBook",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetAddressBook>;
+    deployContract(
+      name: "AddressStorageHelper",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AddressStorageHelper>;
     deployContract(
       name: "IAddressBook",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -844,61 +847,93 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetAdmin>;
     deployContract(
-      name: "Initializable",
+      name: "BridgeModule",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Initializable>;
+    ): Promise<Contracts.BridgeModule>;
     deployContract(
-      name: "UpdatableBridge",
+      name: "BridgeTypes",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.UpdatableBridge>;
+    ): Promise<Contracts.BridgeTypes>;
     deployContract(
-      name: "EmmetBridge",
+      name: "CCTPModule",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridge>;
-    deployContract(
-      name: "EmmetBridgeAdmin",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridgeAdmin>;
-    deployContract(
-      name: "EmmetBridgeStorage",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridgeStorage>;
-    deployContract(
-      name: "EmmetBridgeUtilities",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridgeUtilities>;
-    deployContract(
-      name: "IEmmetBridge",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetBridge>;
-    deployContract(
-      name: "IEmmetBridgeAdmin",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetBridgeAdmin>;
-    deployContract(
-      name: "IEmmetBridgeTypes",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetBridgeTypes>;
-    deployContract(
-      name: "EmmetTokenVault",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetTokenVault>;
-    deployContract(
-      name: "IEmmetTokenVault",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetTokenVault>;
-    deployContract(
-      name: "IEmmetVaultAdmin",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetVaultAdmin>;
+    ): Promise<Contracts.CCTPModule>;
     deployContract(
       name: "IWERC20",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IWERC20>;
     deployContract(
+      name: "LockAndMint",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.LockAndMint>;
+    deployContract(
       name: "WrappedERC20",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WrappedERC20>;
+    deployContract(
+      name: "WrappedERC20Upgradable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WrappedERC20Upgradable>;
+    deployContract(
+      name: "IBridgeModule",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IBridgeModule>;
+    deployContract(
+      name: "EmmetLP",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLP>;
+    deployContract(
+      name: "IEmmetLP",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IEmmetLP>;
+    deployContract(
+      name: "EmmetLPAdmin",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPAdmin>;
+    deployContract(
+      name: "LPModule",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.LPModule>;
+    deployContract(
+      name: "EmmetBridge",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridge>;
+    deployContract(
+      name: "EmmetBridgeHelper",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridgeHelper>;
+    deployContract(
+      name: "EmmetBridgeManager",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridgeManager>;
+    deployContract(
+      name: "IEmmetBridge",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IEmmetBridge>;
+    deployContract(
+      name: "Consensus",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Consensus>;
+    deployContract(
+      name: "RelayerStakesAndRoles",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.RelayerStakesAndRoles>;
+    deployContract(
+      name: "Signatures",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Signatures>;
+    deployContract(
+      name: "TestEmmetToken",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.TestEmmetToken>;
+    deployContract(
+      name: "BridgeStats",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BridgeStats>;
+    deployContract(
+      name: "DataStorage",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.DataStorage>;
     deployContract(
       name: "EmmetData",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -908,9 +943,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetDataAdmin>;
     deployContract(
-      name: "EmmetDataUtilities",
+      name: "EmmetDataEvents",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetDataUtilities>;
+    ): Promise<Contracts.EmmetDataEvents>;
+    deployContract(
+      name: "IBridgeStats",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IBridgeStats>;
     deployContract(
       name: "IEmmetData",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -920,194 +959,130 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetDataAdmin>;
     deployContract(
-      name: "IEmmetDataTypes",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetDataTypes>;
-    deployContract(
-      name: "IPool",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IPool>;
-    deployContract(
-      name: "IVault",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IVault>;
-    deployContract(
       name: "IMessageTransmitter",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IMessageTransmitter>;
-    deployContract(
-      name: "IPriceFeedInterface",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IPriceFeedInterface>;
     deployContract(
       name: "ITokenMessenger",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ITokenMessenger>;
     deployContract(
-      name: "IUniswapV2Pair",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV2Pair>;
-    deployContract(
-      name: "IUniswapV2Router",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV2Router>;
-    deployContract(
-      name: "IUniswapV3Factory",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV3Factory>;
-    deployContract(
-      name: "IUniswapV3Pool",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV3Pool>;
-    deployContract(
-      name: "IUniswapV3Router",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV3Router>;
-    deployContract(
-      name: "IBridgeUtility",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IBridgeUtility>;
-    deployContract(
-      name: "AddressStorageHelper",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.AddressStorageHelper>;
-    deployContract(
-      name: "BalancerHelper",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BalancerHelper>;
-    deployContract(
-      name: "BytesHelper",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BytesHelper>;
-    deployContract(
-      name: "CCTPHelper",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.CCTPHelper>;
-    deployContract(
       name: "HashHelper",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.HashHelper>;
     deployContract(
-      name: "PriceFeedHelper",
+      name: "RelayerRewards",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.PriceFeedHelper>;
+    ): Promise<Contracts.RelayerRewards>;
     deployContract(
-      name: "Rewards",
+      name: "CCMStorage",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Rewards>;
+    ): Promise<Contracts.CCMStorage>;
     deployContract(
-      name: "SignatureVerifier",
+      name: "CCMUtils",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.SignatureVerifier>;
+    ): Promise<Contracts.CCMUtils>;
     deployContract(
-      name: "EmmetTokenStrategy",
+      name: "CrossChainMessenger",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetTokenStrategy>;
+    ): Promise<Contracts.CrossChainMessenger>;
     deployContract(
-      name: "UniswapV3Helper",
+      name: "CrossChainMessengerAdmin",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.UniswapV3Helper>;
+    ): Promise<Contracts.CrossChainMessengerAdmin>;
     deployContract(
-      name: "EmmetLiquidityPoolV1",
+      name: "ICrossChainMessenger",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLiquidityPoolV1>;
+    ): Promise<Contracts.ICrossChainMessenger>;
     deployContract(
-      name: "EmmetLiquidityPool",
+      name: "Mock",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLiquidityPool>;
+    ): Promise<Contracts.Mock>;
     deployContract(
-      name: "EmmetRestaking",
+      name: "MockCCMUser",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetRestaking>;
+    ): Promise<Contracts.MockCCMUser>;
     deployContract(
-      name: "IEmmetLP",
+      name: "MockERC20",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetLP>;
+    ): Promise<Contracts.MockERC20>;
     deployContract(
-      name: "IEmmetRestaking",
+      name: "MockRelayerRewards",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetRestaking>;
+    ): Promise<Contracts.MockRelayerRewards>;
     deployContract(
-      name: "IEmmetRestakingAdmin",
+      name: "SigTester",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetRestakingAdmin>;
-    deployContract(
-      name: "EmmetLPFactory",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLPFactory>;
-    deployContract(
-      name: "LPDB",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.LPDB>;
-    deployContract(
-      name: "EmmetLPV2",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLPV2>;
-    deployContract(
-      name: "EmmetLPV2Admin",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLPV2Admin>;
-    deployContract(
-      name: "USDC",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.USDC>;
-    deployContract(
-      name: "EmmetMultisigAdmin",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigAdmin>;
-    deployContract(
-      name: "EmmetMultisig",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisig>;
-    deployContract(
-      name: "EmmetMultisigUtilities",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigUtilities>;
-    deployContract(
-      name: "TestEmmetToken",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TestEmmetToken>;
-    deployContract(
-      name: "MultisigStaker",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.MultisigStaker>;
-    deployContract(
-      name: "EmmetMultisigStorage",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigStorage>;
-    deployContract(
-      name: "MultiSigTypes",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.MultiSigTypes>;
+    ): Promise<Contracts.SigTester>;
     deployContract(
       name: "EmmetPriceFeed",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetPriceFeed>;
     deployContract(
-      name: "GasFees",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GasFees>;
-    deployContract(
-      name: "GasFeesAdmin",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GasFeesAdmin>;
-    deployContract(
-      name: "ICombinedGasFees",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.ICombinedGasFees>;
-    deployContract(
       name: "IEmmetPriceFeedAdmin",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetPriceFeedAdmin>;
     deployContract(
-      name: "IGasFees",
+      name: "IPriceFeedInterface",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IGasFees>;
+    ): Promise<Contracts.IPriceFeedInterface>;
     deployContract(
-      name: "IGasFeesAdmin",
+      name: "EFD",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IGasFeesAdmin>;
+    ): Promise<Contracts.EFD>;
+    deployContract(
+      name: "EMMET",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EMMET>;
+    deployContract(
+      name: "Emmet",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Emmet>;
+    deployContract(
+      name: "MATIC",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.MATIC>;
 
+    deployContract(
+      name: "AccessControlUpgradeable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AccessControlUpgradeable>;
+    deployContract(
+      name: "Initializable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Initializable>;
+    deployContract(
+      name: "UUPSUpgradeable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.UUPSUpgradeable>;
+    deployContract(
+      name: "ERC20Upgradeable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ERC20Upgradeable>;
+    deployContract(
+      name: "ContextUpgradeable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ContextUpgradeable>;
+    deployContract(
+      name: "ERC165Upgradeable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ERC165Upgradeable>;
+    deployContract(
+      name: "PausableUpgradeable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.PausableUpgradeable>;
+    deployContract(
+      name: "ReentrancyGuardUpgradeable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ReentrancyGuardUpgradeable>;
     deployContract(
       name: "AccessControl",
       args: any[],
@@ -1119,10 +1094,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IAccessControl>;
     deployContract(
-      name: "Ownable",
+      name: "IERC1822Proxiable",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Ownable>;
+    ): Promise<Contracts.IERC1822Proxiable>;
     deployContract(
       name: "IERC1155Errors",
       args: any[],
@@ -1138,6 +1113,16 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC721Errors>;
+    deployContract(
+      name: "IBeacon",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IBeacon>;
+    deployContract(
+      name: "ERC1967Utils",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ERC1967Utils>;
     deployContract(
       name: "ERC20",
       args: any[],
@@ -1179,6 +1164,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC165>;
     deployContract(
+      name: "Pausable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Pausable>;
+    deployContract(
       name: "ReentrancyGuard",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -1188,6 +1178,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetAddressBook>;
+    deployContract(
+      name: "AddressStorageHelper",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AddressStorageHelper>;
     deployContract(
       name: "IAddressBook",
       args: any[],
@@ -1199,75 +1194,115 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetAdmin>;
     deployContract(
-      name: "Initializable",
+      name: "BridgeModule",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Initializable>;
+    ): Promise<Contracts.BridgeModule>;
     deployContract(
-      name: "UpdatableBridge",
+      name: "BridgeTypes",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.UpdatableBridge>;
+    ): Promise<Contracts.BridgeTypes>;
     deployContract(
-      name: "EmmetBridge",
+      name: "CCTPModule",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridge>;
-    deployContract(
-      name: "EmmetBridgeAdmin",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridgeAdmin>;
-    deployContract(
-      name: "EmmetBridgeStorage",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridgeStorage>;
-    deployContract(
-      name: "EmmetBridgeUtilities",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetBridgeUtilities>;
-    deployContract(
-      name: "IEmmetBridge",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetBridge>;
-    deployContract(
-      name: "IEmmetBridgeAdmin",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetBridgeAdmin>;
-    deployContract(
-      name: "IEmmetBridgeTypes",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetBridgeTypes>;
-    deployContract(
-      name: "EmmetTokenVault",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetTokenVault>;
-    deployContract(
-      name: "IEmmetTokenVault",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetTokenVault>;
-    deployContract(
-      name: "IEmmetVaultAdmin",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetVaultAdmin>;
+    ): Promise<Contracts.CCTPModule>;
     deployContract(
       name: "IWERC20",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IWERC20>;
     deployContract(
+      name: "LockAndMint",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.LockAndMint>;
+    deployContract(
       name: "WrappedERC20",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.WrappedERC20>;
+    deployContract(
+      name: "WrappedERC20Upgradable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.WrappedERC20Upgradable>;
+    deployContract(
+      name: "IBridgeModule",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IBridgeModule>;
+    deployContract(
+      name: "EmmetLP",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLP>;
+    deployContract(
+      name: "IEmmetLP",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IEmmetLP>;
+    deployContract(
+      name: "EmmetLPAdmin",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetLPAdmin>;
+    deployContract(
+      name: "LPModule",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.LPModule>;
+    deployContract(
+      name: "EmmetBridge",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridge>;
+    deployContract(
+      name: "EmmetBridgeHelper",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridgeHelper>;
+    deployContract(
+      name: "EmmetBridgeManager",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EmmetBridgeManager>;
+    deployContract(
+      name: "IEmmetBridge",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IEmmetBridge>;
+    deployContract(
+      name: "Consensus",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Consensus>;
+    deployContract(
+      name: "RelayerStakesAndRoles",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.RelayerStakesAndRoles>;
+    deployContract(
+      name: "Signatures",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Signatures>;
+    deployContract(
+      name: "TestEmmetToken",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.TestEmmetToken>;
+    deployContract(
+      name: "BridgeStats",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BridgeStats>;
+    deployContract(
+      name: "DataStorage",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.DataStorage>;
     deployContract(
       name: "EmmetData",
       args: any[],
@@ -1279,10 +1314,15 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetDataAdmin>;
     deployContract(
-      name: "EmmetDataUtilities",
+      name: "EmmetDataEvents",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetDataUtilities>;
+    ): Promise<Contracts.EmmetDataEvents>;
+    deployContract(
+      name: "IBridgeStats",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IBridgeStats>;
     deployContract(
       name: "IEmmetData",
       args: any[],
@@ -1294,240 +1334,110 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetDataAdmin>;
     deployContract(
-      name: "IEmmetDataTypes",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetDataTypes>;
-    deployContract(
-      name: "IPool",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IPool>;
-    deployContract(
-      name: "IVault",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IVault>;
-    deployContract(
       name: "IMessageTransmitter",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IMessageTransmitter>;
-    deployContract(
-      name: "IPriceFeedInterface",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IPriceFeedInterface>;
     deployContract(
       name: "ITokenMessenger",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ITokenMessenger>;
     deployContract(
-      name: "IUniswapV2Pair",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV2Pair>;
-    deployContract(
-      name: "IUniswapV2Router",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV2Router>;
-    deployContract(
-      name: "IUniswapV3Factory",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV3Factory>;
-    deployContract(
-      name: "IUniswapV3Pool",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV3Pool>;
-    deployContract(
-      name: "IUniswapV3Router",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IUniswapV3Router>;
-    deployContract(
-      name: "IBridgeUtility",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IBridgeUtility>;
-    deployContract(
-      name: "AddressStorageHelper",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.AddressStorageHelper>;
-    deployContract(
-      name: "BalancerHelper",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BalancerHelper>;
-    deployContract(
-      name: "BytesHelper",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BytesHelper>;
-    deployContract(
-      name: "CCTPHelper",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.CCTPHelper>;
-    deployContract(
       name: "HashHelper",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.HashHelper>;
     deployContract(
-      name: "PriceFeedHelper",
+      name: "RelayerRewards",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.PriceFeedHelper>;
+    ): Promise<Contracts.RelayerRewards>;
     deployContract(
-      name: "Rewards",
+      name: "CCMStorage",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Rewards>;
+    ): Promise<Contracts.CCMStorage>;
     deployContract(
-      name: "SignatureVerifier",
+      name: "CCMUtils",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.SignatureVerifier>;
+    ): Promise<Contracts.CCMUtils>;
     deployContract(
-      name: "EmmetTokenStrategy",
+      name: "CrossChainMessenger",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetTokenStrategy>;
+    ): Promise<Contracts.CrossChainMessenger>;
     deployContract(
-      name: "UniswapV3Helper",
+      name: "CrossChainMessengerAdmin",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.UniswapV3Helper>;
+    ): Promise<Contracts.CrossChainMessengerAdmin>;
     deployContract(
-      name: "EmmetLiquidityPoolV1",
+      name: "ICrossChainMessenger",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLiquidityPoolV1>;
+    ): Promise<Contracts.ICrossChainMessenger>;
     deployContract(
-      name: "EmmetLiquidityPool",
+      name: "Mock",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLiquidityPool>;
+    ): Promise<Contracts.Mock>;
     deployContract(
-      name: "EmmetRestaking",
+      name: "MockCCMUser",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetRestaking>;
+    ): Promise<Contracts.MockCCMUser>;
     deployContract(
-      name: "IEmmetLP",
+      name: "MockERC20",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetLP>;
+    ): Promise<Contracts.MockERC20>;
     deployContract(
-      name: "IEmmetRestaking",
+      name: "MockRelayerRewards",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetRestaking>;
+    ): Promise<Contracts.MockRelayerRewards>;
     deployContract(
-      name: "IEmmetRestakingAdmin",
+      name: "SigTester",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IEmmetRestakingAdmin>;
-    deployContract(
-      name: "EmmetLPFactory",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLPFactory>;
-    deployContract(
-      name: "LPDB",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.LPDB>;
-    deployContract(
-      name: "EmmetLPV2",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLPV2>;
-    deployContract(
-      name: "EmmetLPV2Admin",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetLPV2Admin>;
-    deployContract(
-      name: "USDC",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.USDC>;
-    deployContract(
-      name: "EmmetMultisigAdmin",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigAdmin>;
-    deployContract(
-      name: "EmmetMultisig",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisig>;
-    deployContract(
-      name: "EmmetMultisigUtilities",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigUtilities>;
-    deployContract(
-      name: "TestEmmetToken",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.TestEmmetToken>;
-    deployContract(
-      name: "MultisigStaker",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.MultisigStaker>;
-    deployContract(
-      name: "EmmetMultisigStorage",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.EmmetMultisigStorage>;
-    deployContract(
-      name: "MultiSigTypes",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.MultiSigTypes>;
+    ): Promise<Contracts.SigTester>;
     deployContract(
       name: "EmmetPriceFeed",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EmmetPriceFeed>;
     deployContract(
-      name: "GasFees",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GasFees>;
-    deployContract(
-      name: "GasFeesAdmin",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.GasFeesAdmin>;
-    deployContract(
-      name: "ICombinedGasFees",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.ICombinedGasFees>;
-    deployContract(
       name: "IEmmetPriceFeedAdmin",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IEmmetPriceFeedAdmin>;
     deployContract(
-      name: "IGasFees",
+      name: "IPriceFeedInterface",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IGasFees>;
+    ): Promise<Contracts.IPriceFeedInterface>;
     deployContract(
-      name: "IGasFeesAdmin",
+      name: "EFD",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.IGasFeesAdmin>;
+    ): Promise<Contracts.EFD>;
+    deployContract(
+      name: "EMMET",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.EMMET>;
+    deployContract(
+      name: "Emmet",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Emmet>;
+    deployContract(
+      name: "MATIC",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.MATIC>;
 
     // default types
     getContractFactory(
