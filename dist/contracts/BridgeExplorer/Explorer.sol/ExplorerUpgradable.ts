@@ -19,9 +19,9 @@ import type {
   TypedEventLog,
   TypedListener,
   TypedContractMethod,
-} from "../../common";
+} from "../../../common";
 
-export declare namespace Explorer {
+export declare namespace ExplorerUpgradable {
   export type ExplorerTransactionStruct = {
     txHash: BytesLike;
     start: BigNumberish;
@@ -38,8 +38,6 @@ export declare namespace Explorer {
     recipient: string;
     fromToken: string;
     toToken: string;
-    originalHash: string;
-    destinationHash: string;
   };
 
   export type ExplorerTransactionStructOutput = [
@@ -57,9 +55,7 @@ export declare namespace Explorer {
     sender: string,
     recipient: string,
     fromToken: string,
-    toToken: string,
-    originalHash: string,
-    destinationHash: string
+    toToken: string
   ] & {
     txHash: string;
     start: bigint;
@@ -76,12 +72,10 @@ export declare namespace Explorer {
     recipient: string;
     fromToken: string;
     toToken: string;
-    originalHash: string;
-    destinationHash: string;
   };
 }
 
-export interface ExplorerInterface extends Interface {
+export interface ExplorerUpgradableInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "ADMIN_ROLE"
@@ -215,11 +209,11 @@ export interface ExplorerInterface extends Interface {
   ): Result;
 }
 
-export interface Explorer extends BaseContract {
-  connect(runner?: ContractRunner | null): Explorer;
+export interface ExplorerUpgradable extends BaseContract {
+  connect(runner?: ContractRunner | null): ExplorerUpgradable;
   waitForDeployment(): Promise<this>;
 
-  interface: ExplorerInterface;
+  interface: ExplorerUpgradableInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -295,13 +289,13 @@ export interface Explorer extends BaseContract {
 
   getTransaction: TypedContractMethod<
     [txHash: BytesLike],
-    [Explorer.ExplorerTransactionStructOutput],
+    [ExplorerUpgradable.ExplorerTransactionStructOutput],
     "view"
   >;
 
   getTransactions: TypedContractMethod<
     [batch: BigNumberish, offset: BigNumberish],
-    [Explorer.ExplorerTransactionStructOutput[]],
+    [ExplorerUpgradable.ExplorerTransactionStructOutput[]],
     "view"
   >;
 
@@ -384,14 +378,14 @@ export interface Explorer extends BaseContract {
     nameOrSignature: "getTransaction"
   ): TypedContractMethod<
     [txHash: BytesLike],
-    [Explorer.ExplorerTransactionStructOutput],
+    [ExplorerUpgradable.ExplorerTransactionStructOutput],
     "view"
   >;
   getFunction(
     nameOrSignature: "getTransactions"
   ): TypedContractMethod<
     [batch: BigNumberish, offset: BigNumberish],
-    [Explorer.ExplorerTransactionStructOutput[]],
+    [ExplorerUpgradable.ExplorerTransactionStructOutput[]],
     "view"
   >;
   getFunction(

@@ -19,7 +19,7 @@ import type {
   TypedEventLog,
   TypedListener,
   TypedContractMethod,
-} from "../../common";
+} from "../../../common";
 
 export declare namespace Explorer {
   export type ExplorerTransactionStruct = {
@@ -38,8 +38,6 @@ export declare namespace Explorer {
     recipient: string;
     fromToken: string;
     toToken: string;
-    originalHash: string;
-    destinationHash: string;
   };
 
   export type ExplorerTransactionStructOutput = [
@@ -57,9 +55,7 @@ export declare namespace Explorer {
     sender: string,
     recipient: string,
     fromToken: string,
-    toToken: string,
-    originalHash: string,
-    destinationHash: string
+    toToken: string
   ] & {
     txHash: string;
     start: bigint;
@@ -76,8 +72,6 @@ export declare namespace Explorer {
     recipient: string;
     fromToken: string;
     toToken: string;
-    originalHash: string;
-    destinationHash: string;
   };
 }
 

@@ -333,50 +333,6 @@ const _abi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint128",
-        name: "fromChainId",
-        type: "uint128",
-      },
-      {
-        internalType: "uint128",
-        name: "toChainid",
-        type: "uint128",
-      },
-      {
-        internalType: "uint256",
-        name: "value",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "nonce",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "timestamp",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
-      },
-    ],
-    name: "_generateTransactionHash",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "txHash",
-        type: "bytes32",
-      },
-    ],
-    stateMutability: "pure",
-    type: "function",
-  },
-  {
     inputs: [],
     name: "admin",
     outputs: [

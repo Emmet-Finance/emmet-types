@@ -133,7 +133,6 @@ export interface CrossChainMessengerInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "UPGRADE_INTERFACE_VERSION"
-      | "_generateTransactionHash"
       | "admin"
       | "chains"
       | "estimateFee"
@@ -191,17 +190,6 @@ export interface CrossChainMessengerInterface extends Interface {
   encodeFunctionData(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
     values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_generateTransactionHash",
-    values: [
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BytesLike
-    ]
   ): string;
   encodeFunctionData(functionFragment: "admin", values?: undefined): string;
   encodeFunctionData(
@@ -318,10 +306,6 @@ export interface CrossChainMessengerInterface extends Interface {
 
   decodeFunctionResult(
     functionFragment: "UPGRADE_INTERFACE_VERSION",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_generateTransactionHash",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "admin", data: BytesLike): Result;
@@ -730,19 +714,6 @@ export interface CrossChainMessenger extends BaseContract {
 
   UPGRADE_INTERFACE_VERSION: TypedContractMethod<[], [string], "view">;
 
-  _generateTransactionHash: TypedContractMethod<
-    [
-      fromChainId: BigNumberish,
-      toChainid: BigNumberish,
-      value: BigNumberish,
-      nonce: BigNumberish,
-      timestamp: BigNumberish,
-      data: BytesLike
-    ],
-    [string],
-    "view"
-  >;
-
   admin: TypedContractMethod<[], [string], "view">;
 
   chains: TypedContractMethod<
@@ -935,20 +906,6 @@ export interface CrossChainMessenger extends BaseContract {
   getFunction(
     nameOrSignature: "UPGRADE_INTERFACE_VERSION"
   ): TypedContractMethod<[], [string], "view">;
-  getFunction(
-    nameOrSignature: "_generateTransactionHash"
-  ): TypedContractMethod<
-    [
-      fromChainId: BigNumberish,
-      toChainid: BigNumberish,
-      value: BigNumberish,
-      nonce: BigNumberish,
-      timestamp: BigNumberish,
-      data: BytesLike
-    ],
-    [string],
-    "view"
-  >;
   getFunction(
     nameOrSignature: "admin"
   ): TypedContractMethod<[], [string], "view">;
