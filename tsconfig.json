@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",                // Modern JavaScript target
+    "module": "commonjs",              // CommonJS for Node.js compatibility
+    "declaration": true,               // Generate .d.ts files
+    "declarationDir": "src",        // Output .d.ts files in dist folder
+    "outDir": "dist",                // Output compiled JS in dist folder
+    "strict": true,                    // Enable strict type-checking
+    "esModuleInterop": true,           // Interop for CommonJS and ESModules
+    "skipLibCheck": true,              // Skip checking .d.ts files from libraries
+    "forceConsistentCasingInFileNames": true,  // Enforce consistent file naming
+  },
+  "include": ["src/**/*.ts"],          // Include all TypeScript files in the src directory
+  "exclude": ["node_modules"]          // Exclude node_modules from compilation
+}
+
