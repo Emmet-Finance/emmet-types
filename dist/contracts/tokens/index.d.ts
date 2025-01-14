@@ -1,7 +1,11 @@
 import type * as emmetSol from "./Emmet.sol";
 export type { emmetSol };
+import type * as wBolgurSol from "./WBolgur.sol";
+export type { wBolgurSol };
 import type * as wEmmetSol from "./WEmmet.sol";
 export type { wEmmetSol };
 import type * as wMaticSol from "./WMatic.sol";
 export type { wMaticSol };
+import type * as wtonSol from "./WTON.sol";
+export type { wtonSol };
 export type { EFD } from "./EFD";

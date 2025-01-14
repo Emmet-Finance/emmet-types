@@ -415,6 +415,10 @@ export declare class EmmetLPAdmin__factory {
             readonly name: "protocolFee_";
             readonly type: "uint256";
         }, {
+            readonly internalType: "uint256";
+            readonly name: "tokenFee_";
+            readonly type: "uint256";
+        }, {
             readonly internalType: "address";
             readonly name: "token_";
             readonly type: "address";

@@ -1,7 +1,7 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../../common";
 export interface EmmetLPInterface extends Interface {
-    getFunction(nameOrSignature: "BRIDGE_ROLE" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "SIGNER_ROLE" | "UPGRADE_INTERFACE_VERSION" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "ccm" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getProviderRewards" | "getRoleAdmin" | "getTokenFee" | "grantRole" | "hasRole" | "initialize" | "initializeAdmin" | "initializeLP" | "manageBridge" | "name" | "pause" | "paused" | "protocolFee" | "protocolFeeAmount" | "proxiableUUID" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "unpause" | "updateCCM" | "updateProtocolFee" | "updateTokenFee" | "upgradeToAndCall" | "withdrawFees" | "withdrawProtocolFees" | "withdrawTokens" | "withdrawnRewards"): FunctionFragment;
+    getFunction(nameOrSignature: "BRIDGE_ROLE" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SECONDS_IN_A_YEAR" | "SIGNER_ROLE" | "UPGRADE_INTERFACE_VERSION" | "allowance" | "approve" | "balanceOf" | "boost" | "bridge" | "ccm" | "currentAPY" | "decimals" | "deposit" | "deposits" | "feeDecimals" | "feeGrowthGlobal" | "getData" | "getPosition" | "getProviderRewards" | "getRoleAdmin" | "getTokenFee" | "grantRole" | "hasRole" | "initialize" | "initializeAdmin" | "initializeLP" | "manageBridge" | "name" | "pause" | "paused" | "protocolFee" | "protocolFeeAmount" | "proxiableUUID" | "releaseTokens" | "renounceRole" | "revokeRole" | "supportsInterface" | "symbol" | "token" | "tokenFee" | "totalSupply" | "transfer" | "transferFrom" | "unpause" | "updateCCM" | "updateProtocolFee" | "updateTokenFee" | "upgradeToAndCall" | "withdrawFees" | "withdrawProtocolFees" | "withdrawRebalance" | "withdrawTokens" | "withdrawnRewards"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Approval" | "BridgeUpdated" | "CCMUpdated" | "Deposited" | "Initialized" | "LpTransfer" | "Paused" | "ProtocolFeeUpdated" | "ProtocolFeesWithdrawn" | "ReleasedToken" | "RewardPaid" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "TokenFeeUpdated" | "Transfer" | "Unpaused" | "Upgraded" | "Withdrawn"): EventFragment;
     encodeFunctionData(functionFragment: "BRIDGE_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
@@ -22,19 +22,23 @@ export interface EmmetLPInterface extends Interface {
     encodeFunctionData(functionFragment: "deposits", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "feeDecimals", values?: undefined): string;
     encodeFunctionData(functionFragment: "feeGrowthGlobal", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getData", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getPosition", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "getProviderRewards", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "getTokenFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "initialize", values: [AddressLike, AddressLike]): string;
-    encodeFunctionData(functionFragment: "initializeAdmin", values: [BigNumberish, AddressLike, AddressLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "initializeAdmin", values: [BigNumberish, BigNumberish, AddressLike, AddressLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "initializeLP", values: [
+        BigNumberish,
         BigNumberish,
         AddressLike,
         BigNumberish,
         string,
         string,
+        AddressLike,
         AddressLike,
         AddressLike
     ]): string;
@@ -62,6 +66,7 @@ export interface EmmetLPInterface extends Interface {
     encodeFunctionData(functionFragment: "upgradeToAndCall", values: [AddressLike, BytesLike]): string;
     encodeFunctionData(functionFragment: "withdrawFees", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawProtocolFees", values?: undefined): string;
+    encodeFunctionData(functionFragment: "withdrawRebalance", values?: undefined): string;
     encodeFunctionData(functionFragment: "withdrawTokens", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "withdrawnRewards", values?: undefined): string;
     decodeFunctionResult(functionFragment: "BRIDGE_ROLE", data: BytesLike): Result;
@@ -83,6 +88,8 @@ export interface EmmetLPInterface extends Interface {
     decodeFunctionResult(functionFragment: "deposits", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "feeDecimals", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "feeGrowthGlobal", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getData", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getPosition", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getProviderRewards", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getTokenFee", data: BytesLike): Result;
@@ -115,6 +122,7 @@ export interface EmmetLPInterface extends Interface {
     decodeFunctionResult(functionFragment: "upgradeToAndCall", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawFees", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawProtocolFees", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "withdrawRebalance", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawTokens", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdrawnRewards", data: BytesLike): Result;
 }
@@ -426,6 +434,41 @@ export interface EmmetLP extends BaseContract {
     ], "view">;
     feeDecimals: TypedContractMethod<[], [bigint], "view">;
     feeGrowthGlobal: TypedContractMethod<[], [bigint], "view">;
+    getData: TypedContractMethod<[
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint
+        ] & {
+            apy: bigint;
+            availableUnderlying: bigint;
+            tokenDecimals: bigint;
+            globalRewards: bigint;
+            feesDecimals: bigint;
+            communityFee: bigint;
+            stakerFee: bigint;
+            supply: bigint;
+        }
+    ], "view">;
+    getPosition: TypedContractMethod<[
+        provider: AddressLike
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint
+        ] & {
+            balance: bigint;
+            internalFeeGrowth: bigint;
+            rewards: bigint;
+        }
+    ], "view">;
     getProviderRewards: TypedContractMethod<[
         provider: AddressLike
     ], [
@@ -453,6 +496,7 @@ export interface EmmetLP extends BaseContract {
     ], "nonpayable">;
     initializeAdmin: TypedContractMethod<[
         protocolFee_: BigNumberish,
+        tokenFee_: BigNumberish,
         token_: AddressLike,
         cfo_: AddressLike,
         manager_: AddressLike
@@ -461,12 +505,14 @@ export interface EmmetLP extends BaseContract {
     ], "nonpayable">;
     initializeLP: TypedContractMethod<[
         protocolFee_: BigNumberish,
+        tokenFee_: BigNumberish,
         token_: AddressLike,
         decimals_: BigNumberish,
         name_: string,
         symbol_: string,
         cfo_: AddressLike,
-        manager_: AddressLike
+        manager_: AddressLike,
+        bridge_: AddressLike
     ], [
         void
     ], "nonpayable">;
@@ -541,6 +587,7 @@ export interface EmmetLP extends BaseContract {
     ], "payable">;
     withdrawFees: TypedContractMethod<[], [void], "nonpayable">;
     withdrawProtocolFees: TypedContractMethod<[], [void], "nonpayable">;
+    withdrawRebalance: TypedContractMethod<[], [void], "nonpayable">;
     withdrawTokens: TypedContractMethod<[
         amount: BigNumberish
     ], [
@@ -584,6 +631,41 @@ export interface EmmetLP extends BaseContract {
     ], "view">;
     getFunction(nameOrSignature: "feeDecimals"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "feeGrowthGlobal"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "getData"): TypedContractMethod<[
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint
+        ] & {
+            apy: bigint;
+            availableUnderlying: bigint;
+            tokenDecimals: bigint;
+            globalRewards: bigint;
+            feesDecimals: bigint;
+            communityFee: bigint;
+            stakerFee: bigint;
+            supply: bigint;
+        }
+    ], "view">;
+    getFunction(nameOrSignature: "getPosition"): TypedContractMethod<[
+        provider: AddressLike
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint
+        ] & {
+            balance: bigint;
+            internalFeeGrowth: bigint;
+            rewards: bigint;
+        }
+    ], "view">;
     getFunction(nameOrSignature: "getProviderRewards"): TypedContractMethod<[provider: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "getRoleAdmin"): TypedContractMethod<[role: BytesLike], [string], "view">;
     getFunction(nameOrSignature: "getTokenFee"): TypedContractMethod<[amount: BigNumberish], [bigint], "view">;
@@ -607,6 +689,7 @@ export interface EmmetLP extends BaseContract {
     ], "nonpayable">;
     getFunction(nameOrSignature: "initializeAdmin"): TypedContractMethod<[
         protocolFee_: BigNumberish,
+        tokenFee_: BigNumberish,
         token_: AddressLike,
         cfo_: AddressLike,
         manager_: AddressLike
@@ -615,12 +698,14 @@ export interface EmmetLP extends BaseContract {
     ], "nonpayable">;
     getFunction(nameOrSignature: "initializeLP"): TypedContractMethod<[
         protocolFee_: BigNumberish,
+        tokenFee_: BigNumberish,
         token_: AddressLike,
         decimals_: BigNumberish,
         name_: string,
         symbol_: string,
         cfo_: AddressLike,
-        manager_: AddressLike
+        manager_: AddressLike,
+        bridge_: AddressLike
     ], [
         void
     ], "nonpayable">;
@@ -679,6 +764,7 @@ export interface EmmetLP extends BaseContract {
     ], "payable">;
     getFunction(nameOrSignature: "withdrawFees"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawProtocolFees"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "withdrawRebalance"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawTokens"): TypedContractMethod<[amount: BigNumberish], [void], "nonpayable">;
     getFunction(nameOrSignature: "withdrawnRewards"): TypedContractMethod<[], [bigint], "view">;
     getEvent(key: "Approval"): TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
