@@ -132,7 +132,7 @@ export declare class EmmetBridgeManager__factory {
             readonly type: "address";
         }, {
             readonly indexed: false;
-            readonly internalType: "enum BridgeTypes.Step";
+            readonly internalType: "enum IDataTypes.Step";
             readonly name: "step";
             readonly type: "uint8";
         }, {
@@ -252,17 +252,7 @@ export declare class EmmetBridgeManager__factory {
         readonly inputs: readonly [];
         readonly name: "BridgeSettings";
         readonly outputs: readonly [{
-            readonly internalType: "contract IEmmetData";
-            readonly name: "";
-            readonly type: "address";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "BridgeSettingsAdmin";
-        readonly outputs: readonly [{
-            readonly internalType: "contract IEmmetDataAdmin";
+            readonly internalType: "contract IEmmetDataV2";
             readonly name: "";
             readonly type: "address";
         }];
@@ -324,7 +314,7 @@ export declare class EmmetBridgeManager__factory {
             readonly name: "module";
             readonly type: "address";
         }, {
-            readonly internalType: "enum BridgeTypes.Step[]";
+            readonly internalType: "enum IDataTypes.Step[]";
             readonly name: "steps";
             readonly type: "uint8[]";
         }];
@@ -410,7 +400,7 @@ export declare class EmmetBridgeManager__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "enum BridgeTypes.Step";
+            readonly internalType: "enum IDataTypes.Step";
             readonly name: "step";
             readonly type: "uint8";
         }];
@@ -527,16 +517,6 @@ export declare class EmmetBridgeManager__factory {
             readonly type: "address";
         }];
         readonly name: "updateEmmetData";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "address";
-            readonly name: "newDataAdmin";
-            readonly type: "address";
-        }];
-        readonly name: "updateEmmetDataAdmin";
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";

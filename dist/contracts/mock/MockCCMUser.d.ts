@@ -4,9 +4,9 @@ export interface MockCCMUserInterface extends Interface {
     getFunction(nameOrSignature: "ccm" | "estimateFee" | "feedback" | "sendMessage"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Feedback"): EventFragment;
     encodeFunctionData(functionFragment: "ccm", values?: undefined): string;
-    encodeFunctionData(functionFragment: "estimateFee", values: [BigNumberish, BigNumberish, boolean]): string;
+    encodeFunctionData(functionFragment: "estimateFee", values?: undefined): string;
     encodeFunctionData(functionFragment: "feedback", values: [BytesLike, boolean, string, BytesLike[], string[]]): string;
-    encodeFunctionData(functionFragment: "sendMessage", values: [BigNumberish, BigNumberish, string, BytesLike, BytesLike, boolean]): string;
+    encodeFunctionData(functionFragment: "sendMessage", values: [BigNumberish, BigNumberish, string, BytesLike, BytesLike]): string;
     decodeFunctionResult(functionFragment: "ccm", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "estimateFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "feedback", data: BytesLike): Result;
@@ -53,16 +53,7 @@ export interface MockCCMUser extends BaseContract {
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
     ccm: TypedContractMethod<[], [string], "view">;
-    estimateFee: TypedContractMethod<[
-        toChainId: BigNumberish,
-        value: BigNumberish,
-        isFeeERC20: boolean
-    ], [
-        [bigint, bigint] & {
-            compensation: bigint;
-            fee: bigint;
-        }
-    ], "view">;
+    estimateFee: TypedContractMethod<[], [bigint], "view">;
     feedback: TypedContractMethod<[
         txHash: BytesLike,
         isSuccess: boolean,
@@ -77,23 +68,13 @@ export interface MockCCMUser extends BaseContract {
         toChainId: BigNumberish,
         receiver: string,
         data: BytesLike,
-        selector: BytesLike,
-        isFeeERC20: boolean
+        selector: BytesLike
     ], [
         void
     ], "payable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "ccm"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "estimateFee"): TypedContractMethod<[
-        toChainId: BigNumberish,
-        value: BigNumberish,
-        isFeeERC20: boolean
-    ], [
-        [bigint, bigint] & {
-            compensation: bigint;
-            fee: bigint;
-        }
-    ], "view">;
+    getFunction(nameOrSignature: "estimateFee"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "feedback"): TypedContractMethod<[
         txHash: BytesLike,
         isSuccess: boolean,
@@ -108,8 +89,7 @@ export interface MockCCMUser extends BaseContract {
         toChainId: BigNumberish,
         receiver: string,
         data: BytesLike,
-        selector: BytesLike,
-        isFeeERC20: boolean
+        selector: BytesLike
     ], [
         void
     ], "payable">;

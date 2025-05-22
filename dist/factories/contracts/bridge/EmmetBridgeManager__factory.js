@@ -175,7 +175,7 @@ const _abi = [
             },
             {
                 indexed: false,
-                internalType: "enum BridgeTypes.Step",
+                internalType: "enum IDataTypes.Step",
                 name: "step",
                 type: "uint8",
             },
@@ -327,20 +327,7 @@ const _abi = [
         name: "BridgeSettings",
         outputs: [
             {
-                internalType: "contract IEmmetData",
-                name: "",
-                type: "address",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "BridgeSettingsAdmin",
-        outputs: [
-            {
-                internalType: "contract IEmmetDataAdmin",
+                internalType: "contract IEmmetDataV2",
                 name: "",
                 type: "address",
             },
@@ -421,7 +408,7 @@ const _abi = [
                 type: "address",
             },
             {
-                internalType: "enum BridgeTypes.Step[]",
+                internalType: "enum IDataTypes.Step[]",
                 name: "steps",
                 type: "uint8[]",
             },
@@ -533,7 +520,7 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "enum BridgeTypes.Step",
+                internalType: "enum IDataTypes.Step",
                 name: "step",
                 type: "uint8",
             },
@@ -684,19 +671,6 @@ const _abi = [
             },
         ],
         name: "updateEmmetData",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "address",
-                name: "newDataAdmin",
-                type: "address",
-            },
-        ],
-        name: "updateEmmetDataAdmin",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",

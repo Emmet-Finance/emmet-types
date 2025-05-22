@@ -164,81 +164,12 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "uint128",
+                internalType: "uint256",
                 name: "chainId",
-                type: "uint128",
+                type: "uint256",
             },
         ],
         name: "chains",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "fee",
-                type: "uint256",
-            },
-            {
-                internalType: "address",
-                name: "priceFeed",
-                type: "address",
-            },
-            {
-                internalType: "uint8",
-                name: "decimals",
-                type: "uint8",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "inNonce",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "",
-                type: "uint256",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "address",
-                name: "feeToken",
-                type: "address",
-            },
-            {
-                internalType: "uint256",
-                name: "nativeTokenFee",
-                type: "uint256",
-            },
-            {
-                internalType: "uint256",
-                name: "erc20Fee",
-                type: "uint256",
-            },
-            {
-                internalType: "address",
-                name: "priceFeed",
-                type: "address",
-            },
-            {
-                internalType: "uint16",
-                name: "relayerShare",
-                type: "uint16",
-            },
-        ],
-        name: "initiate",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "isRelayerPaymentInERC20",
         outputs: [
             {
                 internalType: "bool",
@@ -250,13 +181,29 @@ const _abi = [
         type: "function",
     },
     {
-        inputs: [],
-        name: "outNonce",
+        inputs: [
+            {
+                internalType: "address",
+                name: "sender",
+                type: "address",
+            },
+            {
+                internalType: "uint16",
+                name: "chainId",
+                type: "uint16",
+            },
+            {
+                internalType: "string",
+                name: "target",
+                type: "string",
+            },
+        ],
+        name: "isContractMapped",
         outputs: [
             {
-                internalType: "uint256",
+                internalType: "bool",
                 name: "",
-                type: "uint256",
+                type: "bool",
             },
         ],
         stateMutability: "view",
@@ -276,25 +223,6 @@ const _abi = [
         type: "function",
     },
     {
-        inputs: [
-            {
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-        ],
-        name: "processed",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "index",
-                type: "uint256",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
         inputs: [],
         name: "proxiableUUID",
         outputs: [
@@ -308,161 +236,8 @@ const _abi = [
         type: "function",
     },
     {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "index",
-                type: "uint256",
-            },
-        ],
-        name: "received",
-        outputs: [
-            {
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-            {
-                internalType: "uint256",
-                name: "value",
-                type: "uint256",
-            },
-            {
-                internalType: "uint128",
-                name: "fromChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "uint128",
-                name: "toChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "address",
-                name: "receiver",
-                type: "address",
-            },
-            {
-                internalType: "uint256",
-                name: "signatures",
-                type: "uint256",
-            },
-            {
-                internalType: "string",
-                name: "sender",
-                type: "string",
-            },
-            {
-                internalType: "bytes",
-                name: "data",
-                type: "bytes",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "address",
-                name: "",
-                type: "address",
-            },
-        ],
-        name: "relayers",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "relayersCount",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "",
-                type: "uint256",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
         inputs: [],
         name: "selfChainId",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "",
-                type: "uint256",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "index",
-                type: "uint256",
-            },
-        ],
-        name: "sent",
-        outputs: [
-            {
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-            {
-                internalType: "uint256",
-                name: "value",
-                type: "uint256",
-            },
-            {
-                internalType: "uint128",
-                name: "fromChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "uint128",
-                name: "toChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "address",
-                name: "sender",
-                type: "address",
-            },
-            {
-                internalType: "address",
-                name: "contr",
-                type: "address",
-            },
-            {
-                internalType: "string",
-                name: "receiver",
-                type: "string",
-            },
-            {
-                internalType: "bytes",
-                name: "data",
-                type: "bytes",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "threshold",
         outputs: [
             {
                 internalType: "uint256",

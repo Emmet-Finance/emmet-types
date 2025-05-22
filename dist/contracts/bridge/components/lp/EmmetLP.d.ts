@@ -427,9 +427,14 @@ export interface EmmetLP extends BaseContract {
     deposits: TypedContractMethod<[
         arg0: AddressLike
     ], [
-        [bigint, bigint] & {
+        [
+            bigint,
+            bigint,
+            bigint
+        ] & {
             lastInternalFeeGrowth: bigint;
             rewards: bigint;
+            internalTotalSupply: bigint;
         }
     ], "view">;
     feeDecimals: TypedContractMethod<[], [bigint], "view">;
@@ -462,11 +467,13 @@ export interface EmmetLP extends BaseContract {
         [
             bigint,
             bigint,
+            bigint,
             bigint
         ] & {
             balance: bigint;
             internalFeeGrowth: bigint;
             rewards: bigint;
+            internalTotalSupply: bigint;
         }
     ], "view">;
     getProviderRewards: TypedContractMethod<[
@@ -624,9 +631,14 @@ export interface EmmetLP extends BaseContract {
     getFunction(nameOrSignature: "deposits"): TypedContractMethod<[
         arg0: AddressLike
     ], [
-        [bigint, bigint] & {
+        [
+            bigint,
+            bigint,
+            bigint
+        ] & {
             lastInternalFeeGrowth: bigint;
             rewards: bigint;
+            internalTotalSupply: bigint;
         }
     ], "view">;
     getFunction(nameOrSignature: "feeDecimals"): TypedContractMethod<[], [bigint], "view">;
@@ -659,11 +671,13 @@ export interface EmmetLP extends BaseContract {
         [
             bigint,
             bigint,
+            bigint,
             bigint
         ] & {
             balance: bigint;
             internalFeeGrowth: bigint;
             rewards: bigint;
+            internalTotalSupply: bigint;
         }
     ], "view">;
     getFunction(nameOrSignature: "getProviderRewards"): TypedContractMethod<[provider: AddressLike], [bigint], "view">;

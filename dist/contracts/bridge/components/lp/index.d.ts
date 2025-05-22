@@ -1,5 +1,11 @@
+import type * as emmetLpV2Sol from "./EmmetLpV2.sol";
+export type { emmetLpV2Sol };
 import type * as lpAdminSol from "./LPAdmin.sol";
 export type { lpAdminSol };
+import type * as lperc20Sol from "./LPERC20.sol";
+export type { lperc20Sol };
 export type { EmmetLP } from "./EmmetLP";
 export type { IEmmetLP } from "./IEmmetLP";
+export type { IEmmetLPV2 } from "./IEmmetLPV2";
 export type { LPModule } from "./LPModule";
+export type { LiquidERC20 } from "./LiquidERC20";

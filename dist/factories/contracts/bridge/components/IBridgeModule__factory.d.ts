@@ -3,7 +3,21 @@ import type { IBridgeModule, IBridgeModuleInterface } from "../../../../contract
 export declare class IBridgeModule__factory {
     static readonly abi: readonly [{
         readonly inputs: readonly [{
-            readonly internalType: "enum BridgeTypes.Step";
+            readonly internalType: "string";
+            readonly name: "symbol";
+            readonly type: "string";
+        }];
+        readonly name: "getTokenReceiver";
+        readonly outputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "";
+            readonly type: "address";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "enum IDataTypes.Step";
             readonly name: "step";
             readonly type: "uint8";
         }, {
@@ -70,7 +84,7 @@ export declare class IBridgeModule__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "enum BridgeTypes.Step";
+            readonly internalType: "enum IDataTypes.Step";
             readonly name: "step";
             readonly type: "uint8";
         }, {

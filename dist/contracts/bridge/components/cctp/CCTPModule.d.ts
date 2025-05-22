@@ -76,13 +76,14 @@ export declare namespace BridgeTypes {
     };
 }
 export interface CCTPModuleInterface extends Interface {
-    getFunction(nameOrSignature: "BridgeSettings" | "admin" | "bridge" | "cctpIds" | "coinWithdraw" | "messageTransmitter" | "pause" | "paused" | "receiveInstallment" | "sendInstallment" | "supportsInterface" | "tokenFees" | "tokenMessenger" | "tokenWithdraw" | "tokens" | "unpause" | "updateAdmin" | "updateBridge" | "updateChain" | "updateData" | "updateToken" | "updateTokenFee"): FunctionFragment;
+    getFunction(nameOrSignature: "BridgeSettings" | "admin" | "bridge" | "cctpIds" | "coinWithdraw" | "getTokenReceiver" | "messageTransmitter" | "pause" | "paused" | "receiveInstallment" | "sendInstallment" | "supportsInterface" | "tokenFees" | "tokenMessenger" | "tokenWithdraw" | "tokens" | "unpause" | "updateAdmin" | "updateBridge" | "updateChain" | "updateData" | "updateToken" | "updateTokenFee"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "AdminUpdated" | "BridgeUpdated" | "DataUpdated" | "Paused" | "Unpaused" | "UpdateChain" | "UpdateToken" | "UpdateTokenFee" | "Withdraw"): EventFragment;
     encodeFunctionData(functionFragment: "BridgeSettings", values?: undefined): string;
     encodeFunctionData(functionFragment: "admin", values?: undefined): string;
     encodeFunctionData(functionFragment: "bridge", values?: undefined): string;
     encodeFunctionData(functionFragment: "cctpIds", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "coinWithdraw", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getTokenReceiver", values: [string]): string;
     encodeFunctionData(functionFragment: "messageTransmitter", values?: undefined): string;
     encodeFunctionData(functionFragment: "pause", values?: undefined): string;
     encodeFunctionData(functionFragment: "paused", values?: undefined): string;
@@ -105,6 +106,7 @@ export interface CCTPModuleInterface extends Interface {
     decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "cctpIds", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "coinWithdraw", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getTokenReceiver", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "messageTransmitter", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
@@ -244,6 +246,7 @@ export interface CCTPModule extends BaseContract {
     bridge: TypedContractMethod<[], [string], "view">;
     cctpIds: TypedContractMethod<[chainId: BigNumberish], [bigint], "view">;
     coinWithdraw: TypedContractMethod<[], [void], "nonpayable">;
+    getTokenReceiver: TypedContractMethod<[symbol: string], [string], "view">;
     messageTransmitter: TypedContractMethod<[], [string], "view">;
     pause: TypedContractMethod<[], [void], "nonpayable">;
     paused: TypedContractMethod<[], [boolean], "view">;
@@ -313,6 +316,7 @@ export interface CCTPModule extends BaseContract {
     getFunction(nameOrSignature: "bridge"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "cctpIds"): TypedContractMethod<[chainId: BigNumberish], [bigint], "view">;
     getFunction(nameOrSignature: "coinWithdraw"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "getTokenReceiver"): TypedContractMethod<[symbol: string], [string], "view">;
     getFunction(nameOrSignature: "messageTransmitter"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "pause"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;

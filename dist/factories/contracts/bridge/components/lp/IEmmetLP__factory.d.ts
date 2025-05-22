@@ -112,6 +112,44 @@ export declare class IEmmetLP__factory {
         readonly stateMutability: "nonpayable";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [];
+        readonly name: "getData";
+        readonly outputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "apy";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "availableUnderlying";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "tokenDecimals";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "globalRewards";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "feesDecimals";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "communityFee";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "stakerFee";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "supply";
+            readonly type: "uint256";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [{
             readonly internalType: "address";
             readonly name: "provider";

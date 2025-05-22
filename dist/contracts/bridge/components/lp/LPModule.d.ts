@@ -76,12 +76,13 @@ export declare namespace BridgeTypes {
     };
 }
 export interface LPModuleInterface extends Interface {
-    getFunction(nameOrSignature: "BridgeSettings" | "admin" | "bridge" | "coinWithdraw" | "pause" | "paused" | "pools" | "receiveInstallment" | "sendInstallment" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateAdmin" | "updateBridge" | "updateData" | "updateLP"): FunctionFragment;
+    getFunction(nameOrSignature: "BridgeSettings" | "admin" | "bridge" | "coinWithdraw" | "getTokenReceiver" | "pause" | "paused" | "pools" | "receiveInstallment" | "sendInstallment" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateAdmin" | "updateBridge" | "updateData" | "updateLP"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "AdminUpdated" | "BridgeUpdated" | "DataUpdated" | "LPUpdate" | "Paused" | "Unpaused" | "Withdraw"): EventFragment;
     encodeFunctionData(functionFragment: "BridgeSettings", values?: undefined): string;
     encodeFunctionData(functionFragment: "admin", values?: undefined): string;
     encodeFunctionData(functionFragment: "bridge", values?: undefined): string;
     encodeFunctionData(functionFragment: "coinWithdraw", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getTokenReceiver", values: [string]): string;
     encodeFunctionData(functionFragment: "pause", values?: undefined): string;
     encodeFunctionData(functionFragment: "paused", values?: undefined): string;
     encodeFunctionData(functionFragment: "pools", values: [string]): string;
@@ -98,6 +99,7 @@ export interface LPModuleInterface extends Interface {
     decodeFunctionResult(functionFragment: "admin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "coinWithdraw", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getTokenReceiver", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "pools", data: BytesLike): Result;
@@ -207,6 +209,7 @@ export interface LPModule extends BaseContract {
     admin: TypedContractMethod<[], [string], "view">;
     bridge: TypedContractMethod<[], [string], "view">;
     coinWithdraw: TypedContractMethod<[], [void], "nonpayable">;
+    getTokenReceiver: TypedContractMethod<[symbol: string], [string], "view">;
     pause: TypedContractMethod<[], [void], "nonpayable">;
     paused: TypedContractMethod<[], [boolean], "view">;
     pools: TypedContractMethod<[symbol: string], [string], "view">;
@@ -260,6 +263,7 @@ export interface LPModule extends BaseContract {
     getFunction(nameOrSignature: "admin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "bridge"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "coinWithdraw"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "getTokenReceiver"): TypedContractMethod<[symbol: string], [string], "view">;
     getFunction(nameOrSignature: "pause"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;
     getFunction(nameOrSignature: "pools"): TypedContractMethod<[symbol: string], [string], "view">;

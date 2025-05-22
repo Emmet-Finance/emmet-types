@@ -148,6 +148,54 @@ const _abi = [
         type: "function",
     },
     {
+        inputs: [],
+        name: "getData",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "apy",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "availableUnderlying",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "tokenDecimals",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "globalRewards",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "feesDecimals",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "communityFee",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "stakerFee",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "supply",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
         inputs: [
             {
                 internalType: "address",

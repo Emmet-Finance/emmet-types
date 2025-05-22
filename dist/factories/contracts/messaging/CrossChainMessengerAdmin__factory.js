@@ -21,17 +21,6 @@ const _abi = [
         inputs: [
             {
                 internalType: "address",
-                name: "account",
-                type: "address",
-            },
-        ],
-        name: "AddressInsufficientBalance",
-        type: "error",
-    },
-    {
-        inputs: [
-            {
-                internalType: "address",
                 name: "implementation",
                 type: "address",
             },
@@ -75,17 +64,6 @@ const _abi = [
         type: "error",
     },
     {
-        inputs: [
-            {
-                internalType: "address",
-                name: "token",
-                type: "address",
-            },
-        ],
-        name: "SafeERC20FailedOperation",
-        type: "error",
-    },
-    {
         inputs: [],
         name: "UUPSUnauthorizedCallContext",
         type: "error",
@@ -119,21 +97,15 @@ const _abi = [
         inputs: [
             {
                 indexed: true,
-                internalType: "uint128",
+                internalType: "uint256",
                 name: "id",
-                type: "uint128",
-            },
-            {
-                indexed: true,
-                internalType: "address",
-                name: "priceFeed",
-                type: "address",
+                type: "uint256",
             },
             {
                 indexed: false,
-                internalType: "uint256",
-                name: "fee",
-                type: "uint256",
+                internalType: "bool",
+                name: "supported",
+                type: "bool",
             },
         ],
         name: "ChainUpdate",
@@ -150,25 +122,6 @@ const _abi = [
             },
         ],
         name: "FeeTokenUpdate",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            {
-                indexed: true,
-                internalType: "address",
-                name: "newFeeToken",
-                type: "address",
-            },
-            {
-                indexed: true,
-                internalType: "address",
-                name: "priceFeed",
-                type: "address",
-            },
-        ],
-        name: "FeeTokenUpdated",
         type: "event",
     },
     {
@@ -201,44 +154,6 @@ const _abi = [
         anonymous: false,
         inputs: [
             {
-                indexed: false,
-                internalType: "uint256",
-                name: "newProtocolFee",
-                type: "uint256",
-            },
-        ],
-        name: "ProtocolFeeUpdated",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            {
-                indexed: true,
-                internalType: "address",
-                name: "to",
-                type: "address",
-            },
-            {
-                indexed: true,
-                internalType: "address",
-                name: "token",
-                type: "address",
-            },
-            {
-                indexed: false,
-                internalType: "uint256",
-                name: "amount",
-                type: "uint256",
-            },
-        ],
-        name: "ProtocolRewardsWithdrawn",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            {
                 indexed: true,
                 internalType: "address",
                 name: "relayer",
@@ -252,38 +167,6 @@ const _abi = [
             },
         ],
         name: "RelayerModified",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            {
-                indexed: false,
-                internalType: "uint16",
-                name: "newRelayerShare",
-                type: "uint16",
-            },
-        ],
-        name: "RelayerShareUpdated",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            {
-                indexed: false,
-                internalType: "uint256",
-                name: "chainId",
-                type: "uint256",
-            },
-            {
-                indexed: false,
-                internalType: "address",
-                name: "target",
-                type: "address",
-            },
-        ],
-        name: "RewardFundingRequired",
         type: "event",
     },
     {
@@ -345,27 +228,17 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "uint128",
+                internalType: "uint256",
                 name: "chainId",
-                type: "uint128",
+                type: "uint256",
             },
         ],
         name: "chains",
         outputs: [
             {
-                internalType: "uint256",
-                name: "fee",
-                type: "uint256",
-            },
-            {
-                internalType: "address",
-                name: "priceFeed",
-                type: "address",
-            },
-            {
-                internalType: "uint8",
-                name: "decimals",
-                type: "uint8",
+                internalType: "bool",
+                name: "",
+                type: "bool",
             },
         ],
         stateMutability: "view",
@@ -379,54 +252,24 @@ const _abi = [
         type: "function",
     },
     {
-        inputs: [],
-        name: "inNonce",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "",
-                type: "uint256",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
         inputs: [
             {
                 internalType: "address",
-                name: "feeToken",
-                type: "address",
-            },
-            {
-                internalType: "uint256",
-                name: "nativeTokenFee",
-                type: "uint256",
-            },
-            {
-                internalType: "uint256",
-                name: "erc20Fee",
-                type: "uint256",
-            },
-            {
-                internalType: "address",
-                name: "priceFeed",
+                name: "sender",
                 type: "address",
             },
             {
                 internalType: "uint16",
-                name: "relayerShare",
+                name: "chainId",
                 type: "uint16",
             },
+            {
+                internalType: "string",
+                name: "target",
+                type: "string",
+            },
         ],
-        name: "initiate",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "isRelayerPaymentInERC20",
+        name: "isContractMapped",
         outputs: [
             {
                 internalType: "bool",
@@ -438,16 +281,26 @@ const _abi = [
         type: "function",
     },
     {
-        inputs: [],
-        name: "outNonce",
-        outputs: [
+        inputs: [
+            {
+                internalType: "address",
+                name: "sender",
+                type: "address",
+            },
             {
                 internalType: "uint256",
-                name: "",
+                name: "chainId",
                 type: "uint256",
             },
+            {
+                internalType: "string",
+                name: "target",
+                type: "string",
+            },
         ],
-        stateMutability: "view",
+        name: "mapContracts",
+        outputs: [],
+        stateMutability: "nonpayable",
         type: "function",
     },
     {
@@ -471,25 +324,6 @@ const _abi = [
         type: "function",
     },
     {
-        inputs: [
-            {
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-        ],
-        name: "processed",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "index",
-                type: "uint256",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
         inputs: [],
         name: "proxiableUUID",
         outputs: [
@@ -497,92 +331,6 @@ const _abi = [
                 internalType: "bytes32",
                 name: "",
                 type: "bytes32",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "index",
-                type: "uint256",
-            },
-        ],
-        name: "received",
-        outputs: [
-            {
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-            {
-                internalType: "uint256",
-                name: "value",
-                type: "uint256",
-            },
-            {
-                internalType: "uint128",
-                name: "fromChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "uint128",
-                name: "toChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "address",
-                name: "receiver",
-                type: "address",
-            },
-            {
-                internalType: "uint256",
-                name: "signatures",
-                type: "uint256",
-            },
-            {
-                internalType: "string",
-                name: "sender",
-                type: "string",
-            },
-            {
-                internalType: "bytes",
-                name: "data",
-                type: "bytes",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "address",
-                name: "",
-                type: "address",
-            },
-        ],
-        name: "relayers",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "relayersCount",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "",
-                type: "uint256",
             },
         ],
         stateMutability: "view",
@@ -604,68 +352,19 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "uint256",
-                name: "index",
-                type: "uint256",
-            },
-        ],
-        name: "sent",
-        outputs: [
-            {
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-            {
-                internalType: "uint256",
-                name: "value",
-                type: "uint256",
-            },
-            {
-                internalType: "uint128",
-                name: "fromChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "uint128",
-                name: "toChainId",
-                type: "uint128",
-            },
-            {
                 internalType: "address",
-                name: "sender",
+                name: "a",
                 type: "address",
             },
             {
-                internalType: "address",
-                name: "contr",
-                type: "address",
-            },
-            {
-                internalType: "string",
-                name: "receiver",
-                type: "string",
-            },
-            {
-                internalType: "bytes",
-                name: "data",
-                type: "bytes",
+                internalType: "bool",
+                name: "flag",
+                type: "bool",
             },
         ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "threshold",
-        outputs: [
-            {
-                internalType: "uint256",
-                name: "",
-                type: "uint256",
-            },
-        ],
-        stateMutability: "view",
+        name: "setBl",
+        outputs: [],
+        stateMutability: "nonpayable",
         type: "function",
     },
     {
@@ -691,24 +390,14 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "uint128",
-                name: "chainId",
-                type: "uint128",
-            },
-            {
                 internalType: "uint256",
-                name: "fee",
+                name: "chainId",
                 type: "uint256",
             },
             {
-                internalType: "address",
-                name: "priceFeed",
-                type: "address",
-            },
-            {
-                internalType: "uint8",
-                name: "decimals",
-                type: "uint8",
+                internalType: "bool",
+                name: "supported",
+                type: "bool",
             },
         ],
         name: "updateChain",
@@ -719,9 +408,19 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "address",
-                name: "newFeeToken",
-                type: "address",
+                internalType: "uint128",
+                name: "protocol",
+                type: "uint128",
+            },
+            {
+                internalType: "uint128",
+                name: "consensus",
+                type: "uint128",
+            },
+            {
+                internalType: "uint8",
+                name: "tokenDecimals",
+                type: "uint8",
             },
             {
                 internalType: "address",
@@ -729,38 +428,7 @@ const _abi = [
                 type: "address",
             },
         ],
-        name: "updateFeeToken",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "nativeTokenFee",
-                type: "uint256",
-            },
-            {
-                internalType: "uint256",
-                name: "erc20Fee",
-                type: "uint256",
-            },
-        ],
         name: "updateFees",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "bool",
-                name: "inERC20",
-                type: "bool",
-            },
-        ],
-        name: "updateIsRelayerPaymentInERC20",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -799,24 +467,6 @@ const _abi = [
         name: "upgradeToAndCall",
         outputs: [],
         stateMutability: "payable",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "amount",
-                type: "uint256",
-            },
-            {
-                internalType: "bool",
-                name: "isERC20",
-                type: "bool",
-            },
-        ],
-        name: "withdrawProtocolFee",
-        outputs: [],
-        stateMutability: "nonpayable",
         type: "function",
     },
     {

@@ -78,7 +78,7 @@ export declare class BridgeModule__factory {
         readonly inputs: readonly [];
         readonly name: "BridgeSettings";
         readonly outputs: readonly [{
-            readonly internalType: "contract IEmmetData";
+            readonly internalType: "contract IEmmetDataV2";
             readonly name: "";
             readonly type: "address";
         }];
@@ -111,6 +111,20 @@ export declare class BridgeModule__factory {
         readonly stateMutability: "nonpayable";
         readonly type: "function";
     }, {
+        readonly inputs: readonly [{
+            readonly internalType: "string";
+            readonly name: "symbol";
+            readonly type: "string";
+        }];
+        readonly name: "getTokenReceiver";
+        readonly outputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "";
+            readonly type: "address";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
         readonly inputs: readonly [];
         readonly name: "pause";
         readonly outputs: readonly [];
@@ -128,7 +142,7 @@ export declare class BridgeModule__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "enum BridgeTypes.Step";
+            readonly internalType: "enum IDataTypes.Step";
             readonly name: "step";
             readonly type: "uint8";
         }, {
@@ -195,7 +209,7 @@ export declare class BridgeModule__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "enum BridgeTypes.Step";
+            readonly internalType: "enum IDataTypes.Step";
             readonly name: "step";
             readonly type: "uint8";
         }, {

@@ -1,5 +1,15 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
+export declare namespace BytesHelper {
+    type DataStruct = {
+        part1: BytesLike;
+        part2: BytesLike;
+    };
+    type DataStructOutput = [part1: string, part2: string] & {
+        part1: string;
+        part2: string;
+    };
+}
 export declare namespace BridgeTypes {
     type ReceiveParamsStruct = {
         blockNumber: BigNumberish;
@@ -76,10 +86,9 @@ export declare namespace BridgeTypes {
     };
 }
 export interface EmmetBridgeInterface extends Interface {
-    getFunction(nameOrSignature: "BridgeSettings" | "BridgeSettingsAdmin" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "UPGRADE_INTERFACE_VERSION" | "addBridgeModule" | "ccm" | "coinWithdraw" | "estimateFee" | "feedback" | "getRoleAdmin" | "grantRole" | "hasRole" | "initialize" | "modules" | "outIndex" | "pause" | "paused" | "proxiableUUID" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "sendMessage" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateCCM" | "updateEmmetData" | "updateEmmetDataAdmin" | "upgradeToAndCall" | "withdrawStuck"): FunctionFragment;
+    getFunction(nameOrSignature: "BridgeSettings" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "UPGRADE_INTERFACE_VERSION" | "addBridgeModule" | "ccm" | "coinWithdraw" | "estimateFee" | "feedback" | "getRoleAdmin" | "grantRole" | "hasRole" | "inHashToIndex" | "inTransactions" | "initialize" | "modules" | "outHashToIndex" | "outIndex" | "outTransactions" | "pause" | "paused" | "proxiableUUID" | "receiveInstallment" | "renounceRole" | "revokeRole" | "sendInstallment" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateCCM" | "updateEmmetData" | "upgradeToAndCall"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "BridgeDataAdminUpdated" | "BridgeDataUpdated" | "CCMUpdated" | "Initialized" | "ModuleUpdated" | "Paused" | "ReceivedInstallment" | "Refund" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "SentInstallment" | "Unpaused" | "Upgraded" | "Withdraw"): EventFragment;
     encodeFunctionData(functionFragment: "BridgeSettings", values?: undefined): string;
-    encodeFunctionData(functionFragment: "BridgeSettingsAdmin", values?: undefined): string;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -88,14 +97,18 @@ export interface EmmetBridgeInterface extends Interface {
     encodeFunctionData(functionFragment: "addBridgeModule", values: [AddressLike, BigNumberish[]]): string;
     encodeFunctionData(functionFragment: "ccm", values?: undefined): string;
     encodeFunctionData(functionFragment: "coinWithdraw", values?: undefined): string;
-    encodeFunctionData(functionFragment: "estimateFee", values: [BigNumberish, string, string, boolean]): string;
+    encodeFunctionData(functionFragment: "estimateFee", values: [BigNumberish, string, string]): string;
     encodeFunctionData(functionFragment: "feedback", values: [BytesLike, boolean, string]): string;
     encodeFunctionData(functionFragment: "getRoleAdmin", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "grantRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "hasRole", values: [BytesLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "inHashToIndex", values: [BytesLike]): string;
+    encodeFunctionData(functionFragment: "inTransactions", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "initialize", values: [AddressLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "modules", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "outHashToIndex", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "outIndex", values?: undefined): string;
+    encodeFunctionData(functionFragment: "outTransactions", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "pause", values?: undefined): string;
     encodeFunctionData(functionFragment: "paused", values?: undefined): string;
     encodeFunctionData(functionFragment: "proxiableUUID", values?: undefined): string;
@@ -103,17 +116,13 @@ export interface EmmetBridgeInterface extends Interface {
     encodeFunctionData(functionFragment: "renounceRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "revokeRole", values: [BytesLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "sendInstallment", values: [BridgeTypes.SendParamsStruct]): string;
-    encodeFunctionData(functionFragment: "sendMessage", values: [BigNumberish, BigNumberish, string, BytesLike, BytesLike, boolean]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "tokenWithdraw", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
     encodeFunctionData(functionFragment: "updateCCM", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "updateEmmetData", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateEmmetDataAdmin", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "upgradeToAndCall", values: [AddressLike, BytesLike]): string;
-    encodeFunctionData(functionFragment: "withdrawStuck", values: [BytesLike]): string;
     decodeFunctionResult(functionFragment: "BridgeSettings", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "BridgeSettingsAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "CFO_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "MANAGER_ROLE", data: BytesLike): Result;
@@ -127,9 +136,13 @@ export interface EmmetBridgeInterface extends Interface {
     decodeFunctionResult(functionFragment: "getRoleAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "inHashToIndex", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "inTransactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "modules", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "outHashToIndex", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "outIndex", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "outTransactions", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "proxiableUUID", data: BytesLike): Result;
@@ -137,15 +150,12 @@ export interface EmmetBridgeInterface extends Interface {
     decodeFunctionResult(functionFragment: "renounceRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "sendInstallment", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "sendMessage", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "tokenWithdraw", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateCCM", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateEmmetData", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateEmmetDataAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "upgradeToAndCall", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "withdrawStuck", data: BytesLike): Result;
 }
 export declare namespace BridgeDataAdminUpdatedEvent {
     type InputTuple = [
@@ -410,7 +420,6 @@ export interface EmmetBridge extends BaseContract {
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
     BridgeSettings: TypedContractMethod<[], [string], "view">;
-    BridgeSettingsAdmin: TypedContractMethod<[], [string], "view">;
     CFO_ROLE: TypedContractMethod<[], [string], "view">;
     DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
     MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
@@ -427,8 +436,7 @@ export interface EmmetBridge extends BaseContract {
     estimateFee: TypedContractMethod<[
         toChainId: BigNumberish,
         fromToken: string,
-        toToken: string,
-        isFeeERC20: boolean
+        toToken: string
     ], [
         bigint
     ], "view">;
@@ -452,6 +460,8 @@ export interface EmmetBridge extends BaseContract {
     ], [
         boolean
     ], "view">;
+    inHashToIndex: TypedContractMethod<[txHash: BytesLike], [bigint], "view">;
+    inTransactions: TypedContractMethod<[index: BigNumberish], [bigint], "view">;
     initialize: TypedContractMethod<[
         cfo_: AddressLike,
         manager_: AddressLike
@@ -459,7 +469,33 @@ export interface EmmetBridge extends BaseContract {
         void
     ], "nonpayable">;
     modules: TypedContractMethod<[step: BigNumberish], [string], "view">;
+    outHashToIndex: TypedContractMethod<[txHash: BytesLike], [bigint], "view">;
     outIndex: TypedContractMethod<[], [bigint], "view">;
+    outTransactions: TypedContractMethod<[
+        index: BigNumberish
+    ], [
+        [
+            string,
+            bigint,
+            bigint,
+            bigint,
+            string,
+            string,
+            BytesHelper.DataStructOutput,
+            boolean,
+            string
+        ] & {
+            txHash: string;
+            blockNumber: bigint;
+            sentAmount: bigint;
+            toChainId: bigint;
+            fromToken: string;
+            toToken: string;
+            to: BytesHelper.DataStructOutput;
+            isSuccess: boolean;
+            outcome: string;
+        }
+    ], "view">;
     pause: TypedContractMethod<[], [void], "nonpayable">;
     paused: TypedContractMethod<[], [boolean], "view">;
     proxiableUUID: TypedContractMethod<[], [string], "view">;
@@ -486,16 +522,6 @@ export interface EmmetBridge extends BaseContract {
     ], [
         void
     ], "payable">;
-    sendMessage: TypedContractMethod<[
-        value: BigNumberish,
-        toChainId: BigNumberish,
-        receiver: string,
-        data: BytesLike,
-        selector: BytesLike,
-        isFeeERC20: boolean
-    ], [
-        string
-    ], "payable">;
     supportsInterface: TypedContractMethod<[
         interfaceId: BytesLike
     ], [
@@ -514,21 +540,14 @@ export interface EmmetBridge extends BaseContract {
     ], [
         void
     ], "nonpayable">;
-    updateEmmetDataAdmin: TypedContractMethod<[
-        newDataAdmin: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
     upgradeToAndCall: TypedContractMethod<[
         newImplementation: AddressLike,
         data: BytesLike
     ], [
         void
     ], "payable">;
-    withdrawStuck: TypedContractMethod<[txHash: BytesLike], [void], "nonpayable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "BridgeSettings"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "BridgeSettingsAdmin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "CFO_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
@@ -545,8 +564,7 @@ export interface EmmetBridge extends BaseContract {
     getFunction(nameOrSignature: "estimateFee"): TypedContractMethod<[
         toChainId: BigNumberish,
         fromToken: string,
-        toToken: string,
-        isFeeERC20: boolean
+        toToken: string
     ], [
         bigint
     ], "view">;
@@ -570,6 +588,8 @@ export interface EmmetBridge extends BaseContract {
     ], [
         boolean
     ], "view">;
+    getFunction(nameOrSignature: "inHashToIndex"): TypedContractMethod<[txHash: BytesLike], [bigint], "view">;
+    getFunction(nameOrSignature: "inTransactions"): TypedContractMethod<[index: BigNumberish], [bigint], "view">;
     getFunction(nameOrSignature: "initialize"): TypedContractMethod<[
         cfo_: AddressLike,
         manager_: AddressLike
@@ -577,7 +597,33 @@ export interface EmmetBridge extends BaseContract {
         void
     ], "nonpayable">;
     getFunction(nameOrSignature: "modules"): TypedContractMethod<[step: BigNumberish], [string], "view">;
+    getFunction(nameOrSignature: "outHashToIndex"): TypedContractMethod<[txHash: BytesLike], [bigint], "view">;
     getFunction(nameOrSignature: "outIndex"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "outTransactions"): TypedContractMethod<[
+        index: BigNumberish
+    ], [
+        [
+            string,
+            bigint,
+            bigint,
+            bigint,
+            string,
+            string,
+            BytesHelper.DataStructOutput,
+            boolean,
+            string
+        ] & {
+            txHash: string;
+            blockNumber: bigint;
+            sentAmount: bigint;
+            toChainId: bigint;
+            fromToken: string;
+            toToken: string;
+            to: BytesHelper.DataStructOutput;
+            isSuccess: boolean;
+            outcome: string;
+        }
+    ], "view">;
     getFunction(nameOrSignature: "pause"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;
     getFunction(nameOrSignature: "proxiableUUID"): TypedContractMethod<[], [string], "view">;
@@ -604,16 +650,6 @@ export interface EmmetBridge extends BaseContract {
     ], [
         void
     ], "payable">;
-    getFunction(nameOrSignature: "sendMessage"): TypedContractMethod<[
-        value: BigNumberish,
-        toChainId: BigNumberish,
-        receiver: string,
-        data: BytesLike,
-        selector: BytesLike,
-        isFeeERC20: boolean
-    ], [
-        string
-    ], "payable">;
     getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
     getFunction(nameOrSignature: "tokenWithdraw"): TypedContractMethod<[
         tokenContract: AddressLike,
@@ -624,14 +660,12 @@ export interface EmmetBridge extends BaseContract {
     getFunction(nameOrSignature: "unpause"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateCCM"): TypedContractMethod<[ccm_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateEmmetData"): TypedContractMethod<[newData: AddressLike], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateEmmetDataAdmin"): TypedContractMethod<[newDataAdmin: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "upgradeToAndCall"): TypedContractMethod<[
         newImplementation: AddressLike,
         data: BytesLike
     ], [
         void
     ], "payable">;
-    getFunction(nameOrSignature: "withdrawStuck"): TypedContractMethod<[txHash: BytesLike], [void], "nonpayable">;
     getEvent(key: "BridgeDataAdminUpdated"): TypedContractEvent<BridgeDataAdminUpdatedEvent.InputTuple, BridgeDataAdminUpdatedEvent.OutputTuple, BridgeDataAdminUpdatedEvent.OutputObject>;
     getEvent(key: "BridgeDataUpdated"): TypedContractEvent<BridgeDataUpdatedEvent.InputTuple, BridgeDataUpdatedEvent.OutputTuple, BridgeDataUpdatedEvent.OutputObject>;
     getEvent(key: "CCMUpdated"): TypedContractEvent<CCMUpdatedEvent.InputTuple, CCMUpdatedEvent.OutputTuple, CCMUpdatedEvent.OutputObject>;

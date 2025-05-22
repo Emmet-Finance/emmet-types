@@ -7,199 +7,37 @@ exports.ICrossChainMessenger__factory = void 0;
 const ethers_1 = require("ethers");
 const _abi = [
     {
-        anonymous: false,
-        inputs: [
-            {
-                indexed: false,
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-            {
-                indexed: false,
-                internalType: "bool",
-                name: "isSuccess",
-                type: "bool",
-            },
-            {
-                indexed: false,
-                internalType: "bool",
-                name: "informedCaller",
-                type: "bool",
-            },
-            {
-                indexed: false,
-                internalType: "string",
-                name: "foreignMessage",
-                type: "string",
-            },
-            {
-                indexed: false,
-                internalType: "string",
-                name: "callerResponce",
-                type: "string",
-            },
-        ],
-        name: "FeedbackReceived",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            {
-                indexed: true,
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-            {
-                indexed: true,
-                internalType: "uint256",
-                name: "id",
-                type: "uint256",
-            },
-            {
-                indexed: true,
-                internalType: "uint128",
-                name: "fromChainId",
-                type: "uint128",
-            },
-            {
-                indexed: false,
-                internalType: "address",
-                name: "receiver",
-                type: "address",
-            },
-            {
-                indexed: false,
-                internalType: "uint256",
-                name: "value",
-                type: "uint256",
-            },
-            {
-                indexed: false,
-                internalType: "uint256",
-                name: "signatures",
-                type: "uint256",
-            },
-            {
-                indexed: false,
-                internalType: "bool",
-                name: "isSuccess",
-                type: "bool",
-            },
-            {
-                indexed: false,
-                internalType: "string",
-                name: "message",
-                type: "string",
-            },
-            {
-                indexed: false,
-                internalType: "string",
-                name: "sender",
-                type: "string",
-            },
-            {
-                indexed: false,
-                internalType: "bytes",
-                name: "data",
-                type: "bytes",
-            },
-        ],
-        name: "MessageReceived",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            {
-                indexed: true,
-                internalType: "bytes32",
-                name: "txHash",
-                type: "bytes32",
-            },
-            {
-                indexed: false,
-                internalType: "uint256",
-                name: "blockNumber",
-                type: "uint256",
-            },
-            {
-                indexed: true,
-                internalType: "uint256",
-                name: "id",
-                type: "uint256",
-            },
-            {
-                indexed: true,
-                internalType: "uint128",
-                name: "toChainId",
-                type: "uint128",
-            },
-            {
-                indexed: false,
-                internalType: "address",
-                name: "sender",
-                type: "address",
-            },
-            {
-                indexed: false,
-                internalType: "uint256",
-                name: "value",
-                type: "uint256",
-            },
-            {
-                indexed: false,
-                internalType: "uint256",
-                name: "timestamp",
-                type: "uint256",
-            },
-            {
-                indexed: false,
-                internalType: "string",
-                name: "receiver",
-                type: "string",
-            },
-            {
-                indexed: false,
-                internalType: "bytes",
-                name: "data",
-                type: "bytes",
-            },
-        ],
-        name: "MessageSent",
-        type: "event",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint128",
-                name: "toChainId",
-                type: "uint128",
-            },
-            {
-                internalType: "uint256",
-                name: "value",
-                type: "uint256",
-            },
-            {
-                internalType: "bool",
-                name: "isFeeERC20",
-                type: "bool",
-            },
-        ],
+        inputs: [],
         name: "estimateFee",
         outputs: [
             {
                 internalType: "uint256",
-                name: "compensation",
+                name: "",
                 type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "address",
+                name: "sender",
+                type: "address",
             },
             {
                 internalType: "uint256",
-                name: "fee",
+                name: "chainId",
                 type: "uint256",
+            },
+        ],
+        name: "getMappedContract",
+        outputs: [
+            {
+                internalType: "string",
+                name: "",
+                type: "string",
             },
         ],
         stateMutability: "view",
@@ -216,51 +54,9 @@ const _abi = [
         name: "getReceivedMessage",
         outputs: [
             {
-                components: [
-                    {
-                        internalType: "bytes32",
-                        name: "txHash",
-                        type: "bytes32",
-                    },
-                    {
-                        internalType: "uint256",
-                        name: "value",
-                        type: "uint256",
-                    },
-                    {
-                        internalType: "uint128",
-                        name: "fromChainId",
-                        type: "uint128",
-                    },
-                    {
-                        internalType: "uint128",
-                        name: "toChainId",
-                        type: "uint128",
-                    },
-                    {
-                        internalType: "address",
-                        name: "receiver",
-                        type: "address",
-                    },
-                    {
-                        internalType: "uint256",
-                        name: "signatures",
-                        type: "uint256",
-                    },
-                    {
-                        internalType: "string",
-                        name: "sender",
-                        type: "string",
-                    },
-                    {
-                        internalType: "bytes",
-                        name: "data",
-                        type: "bytes",
-                    },
-                ],
-                internalType: "struct CCMTypes.MessageIn",
-                name: "msgData",
-                type: "tuple",
+                internalType: "uint256",
+                name: "blockNumber",
+                type: "uint256",
             },
         ],
         stateMutability: "view",
@@ -279,52 +75,27 @@ const _abi = [
             {
                 components: [
                     {
-                        internalType: "bytes32",
-                        name: "txHash",
-                        type: "bytes32",
-                    },
-                    {
-                        internalType: "uint256",
-                        name: "value",
-                        type: "uint256",
-                    },
-                    {
-                        internalType: "uint128",
-                        name: "fromChainId",
-                        type: "uint128",
-                    },
-                    {
-                        internalType: "uint128",
-                        name: "toChainId",
-                        type: "uint128",
-                    },
-                    {
                         internalType: "address",
                         name: "sender",
                         type: "address",
                     },
                     {
-                        internalType: "address",
-                        name: "contr",
-                        type: "address",
+                        internalType: "uint16",
+                        name: "toChainId",
+                        type: "uint16",
                     },
                     {
-                        internalType: "string",
-                        name: "receiver",
-                        type: "string",
-                    },
-                    {
-                        internalType: "bytes",
-                        name: "data",
-                        type: "bytes",
+                        internalType: "uint256",
+                        name: "blockNumber",
+                        type: "uint256",
                     },
                 ],
-                internalType: "struct CCMTypes.MessageOut",
-                name: "msgData",
+                internalType: "struct TransactionRegister.Outgoing",
+                name: "out",
                 type: "tuple",
             },
         ],
-        stateMutability: "nonpayable",
+        stateMutability: "view",
         type: "function",
     },
     {
@@ -358,11 +129,6 @@ const _abi = [
                 internalType: "bytes4",
                 name: "selector",
                 type: "bytes4",
-            },
-            {
-                internalType: "bool",
-                name: "isFeeERC20",
-                type: "bool",
             },
         ],
         name: "sendMsg",

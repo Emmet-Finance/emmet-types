@@ -76,10 +76,12 @@ export declare namespace BridgeTypes {
     };
 }
 export interface IBridgeModuleInterface extends Interface {
-    getFunction(nameOrSignature: "receiveInstallment" | "sendInstallment" | "supportsInterface"): FunctionFragment;
+    getFunction(nameOrSignature: "getTokenReceiver" | "receiveInstallment" | "sendInstallment" | "supportsInterface"): FunctionFragment;
+    encodeFunctionData(functionFragment: "getTokenReceiver", values: [string]): string;
     encodeFunctionData(functionFragment: "receiveInstallment", values: [BigNumberish, BridgeTypes.ReceiveParamsStruct]): string;
     encodeFunctionData(functionFragment: "sendInstallment", values: [BigNumberish, BridgeTypes.SendParamsStruct]): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
+    decodeFunctionResult(functionFragment: "getTokenReceiver", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "receiveInstallment", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "sendInstallment", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
@@ -97,6 +99,7 @@ export interface IBridgeModule extends BaseContract {
     listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    getTokenReceiver: TypedContractMethod<[symbol: string], [string], "view">;
     receiveInstallment: TypedContractMethod<[
         step: BigNumberish,
         params: BridgeTypes.ReceiveParamsStruct
@@ -115,6 +118,7 @@ export interface IBridgeModule extends BaseContract {
         boolean
     ], "view">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "getTokenReceiver"): TypedContractMethod<[symbol: string], [string], "view">;
     getFunction(nameOrSignature: "receiveInstallment"): TypedContractMethod<[
         step: BigNumberish,
         params: BridgeTypes.ReceiveParamsStruct

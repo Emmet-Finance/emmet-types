@@ -122,65 +122,11 @@ export declare class CCMStorage__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "uint128";
+            readonly internalType: "uint256";
             readonly name: "chainId";
-            readonly type: "uint128";
+            readonly type: "uint256";
         }];
         readonly name: "chains";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "fee";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "address";
-            readonly name: "priceFeed";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint8";
-            readonly name: "decimals";
-            readonly type: "uint8";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "inNonce";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "";
-            readonly type: "uint256";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "address";
-            readonly name: "feeToken";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "nativeTokenFee";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "erc20Fee";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "address";
-            readonly name: "priceFeed";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint16";
-            readonly name: "relayerShare";
-            readonly type: "uint16";
-        }];
-        readonly name: "initiate";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "isRelayerPaymentInERC20";
         readonly outputs: readonly [{
             readonly internalType: "bool";
             readonly name: "";
@@ -189,12 +135,24 @@ export declare class CCMStorage__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [];
-        readonly name: "outNonce";
+        readonly inputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "sender";
+            readonly type: "address";
+        }, {
+            readonly internalType: "uint16";
+            readonly name: "chainId";
+            readonly type: "uint16";
+        }, {
+            readonly internalType: "string";
+            readonly name: "target";
+            readonly type: "string";
+        }];
+        readonly name: "isContractMapped";
         readonly outputs: readonly [{
-            readonly internalType: "uint256";
+            readonly internalType: "bool";
             readonly name: "";
-            readonly type: "uint256";
+            readonly type: "bool";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -209,20 +167,6 @@ export declare class CCMStorage__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }];
-        readonly name: "processed";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "index";
-            readonly type: "uint256";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
         readonly inputs: readonly [];
         readonly name: "proxiableUUID";
         readonly outputs: readonly [{
@@ -233,126 +177,8 @@ export declare class CCMStorage__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "index";
-            readonly type: "uint256";
-        }];
-        readonly name: "received";
-        readonly outputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "value";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "fromChainId";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "toChainId";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "address";
-            readonly name: "receiver";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "signatures";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "string";
-            readonly name: "sender";
-            readonly type: "string";
-        }, {
-            readonly internalType: "bytes";
-            readonly name: "data";
-            readonly type: "bytes";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "address";
-            readonly name: "";
-            readonly type: "address";
-        }];
-        readonly name: "relayers";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "relayersCount";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "";
-            readonly type: "uint256";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
         readonly inputs: readonly [];
         readonly name: "selfChainId";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "";
-            readonly type: "uint256";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "index";
-            readonly type: "uint256";
-        }];
-        readonly name: "sent";
-        readonly outputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "value";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "fromChainId";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "toChainId";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "address";
-            readonly name: "sender";
-            readonly type: "address";
-        }, {
-            readonly internalType: "address";
-            readonly name: "contr";
-            readonly type: "address";
-        }, {
-            readonly internalType: "string";
-            readonly name: "receiver";
-            readonly type: "string";
-        }, {
-            readonly internalType: "bytes";
-            readonly name: "data";
-            readonly type: "bytes";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "threshold";
         readonly outputs: readonly [{
             readonly internalType: "uint256";
             readonly name: "";

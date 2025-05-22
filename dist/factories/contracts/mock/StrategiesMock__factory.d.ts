@@ -1,0 +1,176 @@
+import { ContractFactory, ContractTransactionResponse } from "ethers";
+import type { Signer, ContractDeployTransaction, ContractRunner } from "ethers";
+import type { NonPayableOverrides } from "../../../common";
+import type { StrategiesMock, StrategiesMockInterface } from "../../../contracts/mock/StrategiesMock";
+type StrategiesMockConstructorParams = [signer?: Signer] | ConstructorParameters<typeof ContractFactory>;
+export declare class StrategiesMock__factory extends ContractFactory {
+    constructor(...args: StrategiesMockConstructorParams);
+    getDeployTransaction(overrides?: NonPayableOverrides & {
+        from?: string;
+    }): Promise<ContractDeployTransaction>;
+    deploy(overrides?: NonPayableOverrides & {
+        from?: string;
+    }): Promise<StrategiesMock & {
+        deploymentTransaction(): ContractTransactionResponse;
+    }>;
+    connect(runner: ContractRunner | null): StrategiesMock__factory;
+    static readonly bytecode = "0x608060405234801561001057600080fd5b50610b2b806100206000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80638ba18bf81161005b5780638ba18bf8146100d157806396c8cc72146100f25780639cb9a59414610107578063b6fe7e221461012957600080fd5b80630a1d427f1461008257806310419e6c146100ab578063104e9e76146100be575b600080fd5b6100956100903660046106d2565b61013c565b6040516100a2919061072a565b60405180910390f35b6100956100b93660046107fb565b61014d565b6100956100cc3660046107fb565b610164565b6100e46100df3660046108f6565b610173565b6040519081526020016100a2565b61010561010036600461092b565b61017e565b005b61011a6101153660046107fb565b610196565b6040516100a293929190610a05565b6100956101373660046107fb565b6101b6565b6060610147826101c5565b92915050565b606061015c6000858585610276565b949350505050565b606061015c60008585856102d6565b60006101478261032d565b61018e600087878787878761041d565b505050505050565b606080806101a760008787876104c0565b92509250925093509350939050565b606061015c60008585856104f9565b60608160ff811667ffffffffffffffff8111156101e4576101e4610744565b60405190808252806020026020018201604052801561020d578160200160208202803683370190505b50915060005b8160ff168160ff16101561026f5761022c816008610a5e565b6102379060f8610a81565b60ff1684901c60001c838260ff168151811061025557610255610a9a565b60ff90921660209283029190910190910152600101610213565b5050919050565b6000838152602085905260409081902090516060916102cd9161029a908690610ab0565b9081526020016040518091039020836040516102b69190610ab0565b90815260200160405180910390206001015461054a565b95945050505050565b6000838152602085905260409081902090516060916102cd916102fa908690610ab0565b9081526020016040518091039020836040516103169190610ab0565b90815260200160405180910390206002015461054a565b8051600090601f60ff821611156103a5576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600e60248201527f546f6f206d616e7920737465707300000000000000000000000000000000000060448201526064015b60405180910390fd5b6000805b8260ff168160ff161015610410576103c2816008610a5e565b6103cd9060f8610a81565b60ff16858260ff16815181106103e5576103e5610a9a565b6020026020010151600e8111156103fe576103fe610adf565b60ff16901b91909117906001016103a9565b5060ff9091161792915050565b6040518060600160405280610431856105f4565b815260200161043f846105f4565b815260200161044d836105f4565b905260008781526020899052604090819020905161046c908890610ab0565b9081526020016040518091039020856040516104889190610ab0565b908152602001604051809103902060008201518160000155602082015181600101556040820151816002015590505050505050505050565b60608060606104d1878787876104f9565b92506104df87878787610276565b91506104ed878787876102d6565b90509450945094915050565b6000838152602085905260409081902090516060916102cd9161051d908690610ab0565b9081526020016040518091039020836040516105399190610ab0565b908152604051908190036020019020545b60608160ff811667ffffffffffffffff81111561056957610569610744565b604051908082528060200260200182016040528015610592578160200160208202803683370190505b50915060005b8160ff168160ff16101561026f576105b1816008610a5e565b6105bc9060f8610a81565b60ff1684901c60001c838260ff16815181106105da576105da610a9a565b60ff90921660209283029190910190910152600101610598565b8051600090601f60ff82161115610667576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600e60248201527f546f6f206d616e79207374657073000000000000000000000000000000000000604482015260640161039c565b6000805b8260ff168160ff16101561041057610684816008610a5e565b61068f9060f8610a81565b60ff16858260ff16815181106106a7576106a7610a9a565b6020026020010151600e8111156106c0576106c0610adf565b60ff16901b919091179060010161066b565b6000602082840312156106e457600080fd5b5035919050565b60008151808452602080850194506020840160005b8381101561071f57815160ff1687529582019590820190600101610700565b509495945050505050565b60208152600061073d60208301846106eb565b9392505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff8111828210171561078357610783610744565b604052919050565b600082601f83011261079c57600080fd5b813567ffffffffffffffff8111156107b6576107b6610744565b6107c96020601f19601f8401160161075a565b8181528460208386010111156107de57600080fd5b816020850160208301376000918101602001919091529392505050565b60008060006060848603121561081057600080fd5b83359250602084013567ffffffffffffffff8082111561082f57600080fd5b61083b8783880161078b565b9350604086013591508082111561085157600080fd5b5061085e8682870161078b565b9150509250925092565b600082601f83011261087957600080fd5b8135602067ffffffffffffffff82111561089557610895610744565b8160051b6108a482820161075a565b92835284810182019282810190878511156108be57600080fd5b83870192505b848310156108eb578235600f81106108dc5760008081fd5b825291830191908301906108c4565b979650505050505050565b60006020828403121561090857600080fd5b813567ffffffffffffffff81111561091f57600080fd5b61015c84828501610868565b60008060008060008060c0878903121561094457600080fd5b86359550602087013567ffffffffffffffff8082111561096357600080fd5b61096f8a838b0161078b565b9650604089013591508082111561098557600080fd5b6109918a838b0161078b565b955060608901359150808211156109a757600080fd5b6109b38a838b01610868565b945060808901359150808211156109c957600080fd5b6109d58a838b01610868565b935060a08901359150808211156109eb57600080fd5b506109f889828a01610868565b9150509295509295509295565b606081526000610a1860608301866106eb565b8281036020840152610a2a81866106eb565b90508281036040840152610a3e81856106eb565b9695505050505050565b634e487b7160e01b600052601160045260246000fd5b60ff8181168382160290811690818114610a7a57610a7a610a48565b5092915050565b60ff828116828216039081111561014757610147610a48565b634e487b7160e01b600052603260045260246000fd5b6000825160005b81811015610ad15760208186018101518583015201610ab7565b506000920191825250919050565b634e487b7160e01b600052602160045260246000fdfea26469706673582212204f67e0d3547eca9430e1ba1469923a73d4fbd9a7461dc9a5060b9a2c3408e66064736f6c63430008180033";
+    static readonly abi: readonly [{
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "toToken";
+            readonly type: "string";
+        }];
+        readonly name: "getForeignStrategies";
+        readonly outputs: readonly [{
+            readonly internalType: "uint8[]";
+            readonly name: "";
+            readonly type: "uint8[]";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "toToken";
+            readonly type: "string";
+        }];
+        readonly name: "getIncomingStrategies";
+        readonly outputs: readonly [{
+            readonly internalType: "uint8[]";
+            readonly name: "";
+            readonly type: "uint8[]";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "toToken";
+            readonly type: "string";
+        }];
+        readonly name: "getLocalStrategies";
+        readonly outputs: readonly [{
+            readonly internalType: "uint8[]";
+            readonly name: "";
+            readonly type: "uint8[]";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "toToken";
+            readonly type: "string";
+        }];
+        readonly name: "getStrategies";
+        readonly outputs: readonly [{
+            readonly internalType: "uint8[]";
+            readonly name: "foreign";
+            readonly type: "uint8[]";
+        }, {
+            readonly internalType: "uint8[]";
+            readonly name: "incoming";
+            readonly type: "uint8[]";
+        }, {
+            readonly internalType: "uint8[]";
+            readonly name: "local";
+            readonly type: "uint8[]";
+        }];
+        readonly stateMutability: "view";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "enum IDataTypes.Step[]";
+            readonly name: "steps";
+            readonly type: "uint8[]";
+        }];
+        readonly name: "packStrategies";
+        readonly outputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "";
+            readonly type: "bytes32";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "chainId";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "fromToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "string";
+            readonly name: "toToken";
+            readonly type: "string";
+        }, {
+            readonly internalType: "enum IDataTypes.Step[]";
+            readonly name: "foreign";
+            readonly type: "uint8[]";
+        }, {
+            readonly internalType: "enum IDataTypes.Step[]";
+            readonly name: "incoming";
+            readonly type: "uint8[]";
+        }, {
+            readonly internalType: "enum IDataTypes.Step[]";
+            readonly name: "local";
+            readonly type: "uint8[]";
+        }];
+        readonly name: "setStrategies";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "bytes32";
+            readonly name: "packedData";
+            readonly type: "bytes32";
+        }];
+        readonly name: "unpackStrategies";
+        readonly outputs: readonly [{
+            readonly internalType: "uint8[]";
+            readonly name: "";
+            readonly type: "uint8[]";
+        }];
+        readonly stateMutability: "pure";
+        readonly type: "function";
+    }];
+    static createInterface(): StrategiesMockInterface;
+    static connect(address: string, runner?: ContractRunner | null): StrategiesMock;
+}
+export {};

@@ -105,7 +105,7 @@ const _abi = [
         name: "BridgeSettings",
         outputs: [
             {
-                internalType: "contract IEmmetData",
+                internalType: "contract IEmmetDataV2",
                 name: "",
                 type: "address",
             },
@@ -147,6 +147,25 @@ const _abi = [
         type: "function",
     },
     {
+        inputs: [
+            {
+                internalType: "string",
+                name: "symbol",
+                type: "string",
+            },
+        ],
+        name: "getTokenReceiver",
+        outputs: [
+            {
+                internalType: "address",
+                name: "",
+                type: "address",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
         inputs: [],
         name: "pause",
         outputs: [],
@@ -169,7 +188,7 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "enum BridgeTypes.Step",
+                internalType: "enum IDataTypes.Step",
                 name: "step",
                 type: "uint8",
             },
@@ -255,7 +274,7 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "enum BridgeTypes.Step",
+                internalType: "enum IDataTypes.Step",
                 name: "step",
                 type: "uint8",
             },

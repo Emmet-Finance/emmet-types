@@ -1,6 +1,7 @@
 export * as bridgeExplorer from "./BridgeExplorer";
 export * as addressbook from "./addressbook";
 export * as admin from "./admin";
+export * as airdrop from "./airdrop";
 export * as bridge from "./bridge";
 export * as consensus from "./consensus";
 export * as data from "./data";
@@ -9,4 +10,6 @@ export * as libs from "./libs";
 export * as messaging from "./messaging";
 export * as mock from "./mock";
 export * as oracles from "./oracles";
+export * as staking from "./staking";
 export * as tokens from "./tokens";
+export * as tokensale from "./tokensale";

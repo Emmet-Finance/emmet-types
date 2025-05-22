@@ -1,10 +1,9 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
 export interface EmmetBridgeManagerInterface extends Interface {
-    getFunction(nameOrSignature: "BridgeSettings" | "BridgeSettingsAdmin" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "UPGRADE_INTERFACE_VERSION" | "addBridgeModule" | "ccm" | "coinWithdraw" | "getRoleAdmin" | "grantRole" | "hasRole" | "initialize" | "modules" | "pause" | "paused" | "proxiableUUID" | "renounceRole" | "revokeRole" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateCCM" | "updateEmmetData" | "updateEmmetDataAdmin" | "upgradeToAndCall"): FunctionFragment;
+    getFunction(nameOrSignature: "BridgeSettings" | "CFO_ROLE" | "DEFAULT_ADMIN_ROLE" | "MANAGER_ROLE" | "SIGNER_ROLE" | "UPGRADE_INTERFACE_VERSION" | "addBridgeModule" | "ccm" | "coinWithdraw" | "getRoleAdmin" | "grantRole" | "hasRole" | "initialize" | "modules" | "pause" | "paused" | "proxiableUUID" | "renounceRole" | "revokeRole" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateCCM" | "updateEmmetData" | "upgradeToAndCall"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "BridgeDataAdminUpdated" | "BridgeDataUpdated" | "CCMUpdated" | "Initialized" | "ModuleUpdated" | "Paused" | "RoleAdminChanged" | "RoleGranted" | "RoleRevoked" | "Unpaused" | "Upgraded" | "Withdraw"): EventFragment;
     encodeFunctionData(functionFragment: "BridgeSettings", values?: undefined): string;
-    encodeFunctionData(functionFragment: "BridgeSettingsAdmin", values?: undefined): string;
     encodeFunctionData(functionFragment: "CFO_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "DEFAULT_ADMIN_ROLE", values?: undefined): string;
     encodeFunctionData(functionFragment: "MANAGER_ROLE", values?: undefined): string;
@@ -28,10 +27,8 @@ export interface EmmetBridgeManagerInterface extends Interface {
     encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
     encodeFunctionData(functionFragment: "updateCCM", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "updateEmmetData", values: [AddressLike]): string;
-    encodeFunctionData(functionFragment: "updateEmmetDataAdmin", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "upgradeToAndCall", values: [AddressLike, BytesLike]): string;
     decodeFunctionResult(functionFragment: "BridgeSettings", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "BridgeSettingsAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "CFO_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "DEFAULT_ADMIN_ROLE", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "MANAGER_ROLE", data: BytesLike): Result;
@@ -55,7 +52,6 @@ export interface EmmetBridgeManagerInterface extends Interface {
     decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateCCM", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "updateEmmetData", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateEmmetDataAdmin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "upgradeToAndCall", data: BytesLike): Result;
 }
 export declare namespace BridgeDataAdminUpdatedEvent {
@@ -238,7 +234,6 @@ export interface EmmetBridgeManager extends BaseContract {
     listeners(eventName?: string): Promise<Array<Listener>>;
     removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
     BridgeSettings: TypedContractMethod<[], [string], "view">;
-    BridgeSettingsAdmin: TypedContractMethod<[], [string], "view">;
     CFO_ROLE: TypedContractMethod<[], [string], "view">;
     DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
     MANAGER_ROLE: TypedContractMethod<[], [string], "view">;
@@ -305,11 +300,6 @@ export interface EmmetBridgeManager extends BaseContract {
     ], [
         void
     ], "nonpayable">;
-    updateEmmetDataAdmin: TypedContractMethod<[
-        newDataAdmin: AddressLike
-    ], [
-        void
-    ], "nonpayable">;
     upgradeToAndCall: TypedContractMethod<[
         newImplementation: AddressLike,
         data: BytesLike
@@ -318,7 +308,6 @@ export interface EmmetBridgeManager extends BaseContract {
     ], "payable">;
     getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
     getFunction(nameOrSignature: "BridgeSettings"): TypedContractMethod<[], [string], "view">;
-    getFunction(nameOrSignature: "BridgeSettingsAdmin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "CFO_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "DEFAULT_ADMIN_ROLE"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "MANAGER_ROLE"): TypedContractMethod<[], [string], "view">;
@@ -377,7 +366,6 @@ export interface EmmetBridgeManager extends BaseContract {
     getFunction(nameOrSignature: "unpause"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateCCM"): TypedContractMethod<[ccm_: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "updateEmmetData"): TypedContractMethod<[newData: AddressLike], [void], "nonpayable">;
-    getFunction(nameOrSignature: "updateEmmetDataAdmin"): TypedContractMethod<[newDataAdmin: AddressLike], [void], "nonpayable">;
     getFunction(nameOrSignature: "upgradeToAndCall"): TypedContractMethod<[
         newImplementation: AddressLike,
         data: BytesLike

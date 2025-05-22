@@ -1,12 +1,13 @@
 import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
 import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../../../common";
 export interface IEmmetLPInterface extends Interface {
-    getFunction(nameOrSignature: "boost" | "currentAPY" | "decimals" | "deposit" | "getProviderRewards" | "getTokenFee" | "releaseTokens" | "withdrawFees" | "withdrawTokens"): FunctionFragment;
+    getFunction(nameOrSignature: "boost" | "currentAPY" | "decimals" | "deposit" | "getData" | "getProviderRewards" | "getTokenFee" | "releaseTokens" | "withdrawFees" | "withdrawTokens"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "Deposited" | "LpTransfer" | "ReleasedToken" | "RewardPaid" | "Withdrawn"): EventFragment;
     encodeFunctionData(functionFragment: "boost", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "currentAPY", values?: undefined): string;
     encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
     encodeFunctionData(functionFragment: "deposit", values: [BigNumberish]): string;
+    encodeFunctionData(functionFragment: "getData", values?: undefined): string;
     encodeFunctionData(functionFragment: "getProviderRewards", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "getTokenFee", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "releaseTokens", values: [AddressLike, BigNumberish]): string;
@@ -16,6 +17,7 @@ export interface IEmmetLPInterface extends Interface {
     decodeFunctionResult(functionFragment: "currentAPY", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getProviderRewards", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getTokenFee", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "releaseTokens", data: BytesLike): Result;
@@ -98,6 +100,28 @@ export interface IEmmetLP extends BaseContract {
     currentAPY: TypedContractMethod<[], [bigint], "view">;
     decimals: TypedContractMethod<[], [bigint], "view">;
     deposit: TypedContractMethod<[amount: BigNumberish], [void], "nonpayable">;
+    getData: TypedContractMethod<[
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint
+        ] & {
+            apy: bigint;
+            availableUnderlying: bigint;
+            tokenDecimals: bigint;
+            globalRewards: bigint;
+            feesDecimals: bigint;
+            communityFee: bigint;
+            stakerFee: bigint;
+            supply: bigint;
+        }
+    ], "view">;
     getProviderRewards: TypedContractMethod<[
         provider: AddressLike
     ], [
@@ -125,6 +149,28 @@ export interface IEmmetLP extends BaseContract {
     getFunction(nameOrSignature: "currentAPY"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
     getFunction(nameOrSignature: "deposit"): TypedContractMethod<[amount: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "getData"): TypedContractMethod<[
+    ], [
+        [
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint,
+            bigint
+        ] & {
+            apy: bigint;
+            availableUnderlying: bigint;
+            tokenDecimals: bigint;
+            globalRewards: bigint;
+            feesDecimals: bigint;
+            communityFee: bigint;
+            stakerFee: bigint;
+            supply: bigint;
+        }
+    ], "view">;
     getFunction(nameOrSignature: "getProviderRewards"): TypedContractMethod<[provider: AddressLike], [bigint], "view">;
     getFunction(nameOrSignature: "getTokenFee"): TypedContractMethod<[amount: BigNumberish], [bigint], "nonpayable">;
     getFunction(nameOrSignature: "releaseTokens"): TypedContractMethod<[

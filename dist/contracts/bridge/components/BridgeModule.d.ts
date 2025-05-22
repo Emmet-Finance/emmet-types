@@ -76,12 +76,13 @@ export declare namespace BridgeTypes {
     };
 }
 export interface BridgeModuleInterface extends Interface {
-    getFunction(nameOrSignature: "BridgeSettings" | "admin" | "bridge" | "coinWithdraw" | "pause" | "paused" | "receiveInstallment" | "sendInstallment" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateAdmin" | "updateBridge" | "updateData"): FunctionFragment;
+    getFunction(nameOrSignature: "BridgeSettings" | "admin" | "bridge" | "coinWithdraw" | "getTokenReceiver" | "pause" | "paused" | "receiveInstallment" | "sendInstallment" | "supportsInterface" | "tokenWithdraw" | "unpause" | "updateAdmin" | "updateBridge" | "updateData"): FunctionFragment;
     getEvent(nameOrSignatureOrTopic: "AdminUpdated" | "BridgeUpdated" | "DataUpdated" | "Paused" | "Unpaused" | "Withdraw"): EventFragment;
     encodeFunctionData(functionFragment: "BridgeSettings", values?: undefined): string;
     encodeFunctionData(functionFragment: "admin", values?: undefined): string;
     encodeFunctionData(functionFragment: "bridge", values?: undefined): string;
     encodeFunctionData(functionFragment: "coinWithdraw", values?: undefined): string;
+    encodeFunctionData(functionFragment: "getTokenReceiver", values: [string]): string;
     encodeFunctionData(functionFragment: "pause", values?: undefined): string;
     encodeFunctionData(functionFragment: "paused", values?: undefined): string;
     encodeFunctionData(functionFragment: "receiveInstallment", values: [BigNumberish, BridgeTypes.ReceiveParamsStruct]): string;
@@ -96,6 +97,7 @@ export interface BridgeModuleInterface extends Interface {
     decodeFunctionResult(functionFragment: "admin", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "coinWithdraw", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getTokenReceiver", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "receiveInstallment", data: BytesLike): Result;
@@ -191,6 +193,7 @@ export interface BridgeModule extends BaseContract {
     admin: TypedContractMethod<[], [string], "view">;
     bridge: TypedContractMethod<[], [string], "view">;
     coinWithdraw: TypedContractMethod<[], [void], "nonpayable">;
+    getTokenReceiver: TypedContractMethod<[symbol: string], [string], "view">;
     pause: TypedContractMethod<[], [void], "nonpayable">;
     paused: TypedContractMethod<[], [boolean], "view">;
     receiveInstallment: TypedContractMethod<[
@@ -237,6 +240,7 @@ export interface BridgeModule extends BaseContract {
     getFunction(nameOrSignature: "admin"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "bridge"): TypedContractMethod<[], [string], "view">;
     getFunction(nameOrSignature: "coinWithdraw"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "getTokenReceiver"): TypedContractMethod<[symbol: string], [string], "view">;
     getFunction(nameOrSignature: "pause"): TypedContractMethod<[], [void], "nonpayable">;
     getFunction(nameOrSignature: "paused"): TypedContractMethod<[], [boolean], "view">;
     getFunction(nameOrSignature: "receiveInstallment"): TypedContractMethod<[

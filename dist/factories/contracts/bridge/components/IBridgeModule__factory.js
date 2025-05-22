@@ -9,7 +9,26 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "enum BridgeTypes.Step",
+                internalType: "string",
+                name: "symbol",
+                type: "string",
+            },
+        ],
+        name: "getTokenReceiver",
+        outputs: [
+            {
+                internalType: "address",
+                name: "",
+                type: "address",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "enum IDataTypes.Step",
                 name: "step",
                 type: "uint8",
             },
@@ -95,7 +114,7 @@ const _abi = [
     {
         inputs: [
             {
-                internalType: "enum BridgeTypes.Step",
+                internalType: "enum IDataTypes.Step",
                 name: "step",
                 type: "uint8",
             },

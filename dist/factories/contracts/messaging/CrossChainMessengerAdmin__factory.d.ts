@@ -12,14 +12,6 @@ export declare class CrossChainMessengerAdmin__factory {
     }, {
         readonly inputs: readonly [{
             readonly internalType: "address";
-            readonly name: "account";
-            readonly type: "address";
-        }];
-        readonly name: "AddressInsufficientBalance";
-        readonly type: "error";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "address";
             readonly name: "implementation";
             readonly type: "address";
         }];
@@ -54,14 +46,6 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly name: "ReentrancyGuardReentrantCall";
         readonly type: "error";
     }, {
-        readonly inputs: readonly [{
-            readonly internalType: "address";
-            readonly name: "token";
-            readonly type: "address";
-        }];
-        readonly name: "SafeERC20FailedOperation";
-        readonly type: "error";
-    }, {
         readonly inputs: readonly [];
         readonly name: "UUPSUnauthorizedCallContext";
         readonly type: "error";
@@ -87,19 +71,14 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly anonymous: false;
         readonly inputs: readonly [{
             readonly indexed: true;
-            readonly internalType: "uint128";
+            readonly internalType: "uint256";
             readonly name: "id";
-            readonly type: "uint128";
-        }, {
-            readonly indexed: true;
-            readonly internalType: "address";
-            readonly name: "priceFeed";
-            readonly type: "address";
+            readonly type: "uint256";
         }, {
             readonly indexed: false;
-            readonly internalType: "uint256";
-            readonly name: "fee";
-            readonly type: "uint256";
+            readonly internalType: "bool";
+            readonly name: "supported";
+            readonly type: "bool";
         }];
         readonly name: "ChainUpdate";
         readonly type: "event";
@@ -112,21 +91,6 @@ export declare class CrossChainMessengerAdmin__factory {
             readonly type: "address";
         }];
         readonly name: "FeeTokenUpdate";
-        readonly type: "event";
-    }, {
-        readonly anonymous: false;
-        readonly inputs: readonly [{
-            readonly indexed: true;
-            readonly internalType: "address";
-            readonly name: "newFeeToken";
-            readonly type: "address";
-        }, {
-            readonly indexed: true;
-            readonly internalType: "address";
-            readonly name: "priceFeed";
-            readonly type: "address";
-        }];
-        readonly name: "FeeTokenUpdated";
         readonly type: "event";
     }, {
         readonly anonymous: false;
@@ -151,36 +115,6 @@ export declare class CrossChainMessengerAdmin__factory {
     }, {
         readonly anonymous: false;
         readonly inputs: readonly [{
-            readonly indexed: false;
-            readonly internalType: "uint256";
-            readonly name: "newProtocolFee";
-            readonly type: "uint256";
-        }];
-        readonly name: "ProtocolFeeUpdated";
-        readonly type: "event";
-    }, {
-        readonly anonymous: false;
-        readonly inputs: readonly [{
-            readonly indexed: true;
-            readonly internalType: "address";
-            readonly name: "to";
-            readonly type: "address";
-        }, {
-            readonly indexed: true;
-            readonly internalType: "address";
-            readonly name: "token";
-            readonly type: "address";
-        }, {
-            readonly indexed: false;
-            readonly internalType: "uint256";
-            readonly name: "amount";
-            readonly type: "uint256";
-        }];
-        readonly name: "ProtocolRewardsWithdrawn";
-        readonly type: "event";
-    }, {
-        readonly anonymous: false;
-        readonly inputs: readonly [{
             readonly indexed: true;
             readonly internalType: "address";
             readonly name: "relayer";
@@ -192,31 +126,6 @@ export declare class CrossChainMessengerAdmin__factory {
             readonly type: "string";
         }];
         readonly name: "RelayerModified";
-        readonly type: "event";
-    }, {
-        readonly anonymous: false;
-        readonly inputs: readonly [{
-            readonly indexed: false;
-            readonly internalType: "uint16";
-            readonly name: "newRelayerShare";
-            readonly type: "uint16";
-        }];
-        readonly name: "RelayerShareUpdated";
-        readonly type: "event";
-    }, {
-        readonly anonymous: false;
-        readonly inputs: readonly [{
-            readonly indexed: false;
-            readonly internalType: "uint256";
-            readonly name: "chainId";
-            readonly type: "uint256";
-        }, {
-            readonly indexed: false;
-            readonly internalType: "address";
-            readonly name: "target";
-            readonly type: "address";
-        }];
-        readonly name: "RewardFundingRequired";
         readonly type: "event";
     }, {
         readonly anonymous: false;
@@ -263,23 +172,15 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "uint128";
+            readonly internalType: "uint256";
             readonly name: "chainId";
-            readonly type: "uint128";
+            readonly type: "uint256";
         }];
         readonly name: "chains";
         readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "fee";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "address";
-            readonly name: "priceFeed";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint8";
-            readonly name: "decimals";
-            readonly type: "uint8";
+            readonly internalType: "bool";
+            readonly name: "";
+            readonly type: "bool";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -290,44 +191,20 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly stateMutability: "payable";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [];
-        readonly name: "inNonce";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "";
-            readonly type: "uint256";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
         readonly inputs: readonly [{
             readonly internalType: "address";
-            readonly name: "feeToken";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "nativeTokenFee";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "erc20Fee";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "address";
-            readonly name: "priceFeed";
+            readonly name: "sender";
             readonly type: "address";
         }, {
             readonly internalType: "uint16";
-            readonly name: "relayerShare";
+            readonly name: "chainId";
             readonly type: "uint16";
+        }, {
+            readonly internalType: "string";
+            readonly name: "target";
+            readonly type: "string";
         }];
-        readonly name: "initiate";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "isRelayerPaymentInERC20";
+        readonly name: "isContractMapped";
         readonly outputs: readonly [{
             readonly internalType: "bool";
             readonly name: "";
@@ -336,14 +213,22 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [];
-        readonly name: "outNonce";
-        readonly outputs: readonly [{
+        readonly inputs: readonly [{
+            readonly internalType: "address";
+            readonly name: "sender";
+            readonly type: "address";
+        }, {
             readonly internalType: "uint256";
-            readonly name: "";
+            readonly name: "chainId";
             readonly type: "uint256";
+        }, {
+            readonly internalType: "string";
+            readonly name: "target";
+            readonly type: "string";
         }];
-        readonly stateMutability: "view";
+        readonly name: "mapContracts";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
         readonly type: "function";
     }, {
         readonly inputs: readonly [];
@@ -362,92 +247,12 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }];
-        readonly name: "processed";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "index";
-            readonly type: "uint256";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
         readonly inputs: readonly [];
         readonly name: "proxiableUUID";
         readonly outputs: readonly [{
             readonly internalType: "bytes32";
             readonly name: "";
             readonly type: "bytes32";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "index";
-            readonly type: "uint256";
-        }];
-        readonly name: "received";
-        readonly outputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "value";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "fromChainId";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "toChainId";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "address";
-            readonly name: "receiver";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "signatures";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "string";
-            readonly name: "sender";
-            readonly type: "string";
-        }, {
-            readonly internalType: "bytes";
-            readonly name: "data";
-            readonly type: "bytes";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "address";
-            readonly name: "";
-            readonly type: "address";
-        }];
-        readonly name: "relayers";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "relayersCount";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "";
-            readonly type: "uint256";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -463,55 +268,17 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "index";
-            readonly type: "uint256";
-        }];
-        readonly name: "sent";
-        readonly outputs: readonly [{
-            readonly internalType: "bytes32";
-            readonly name: "txHash";
-            readonly type: "bytes32";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "value";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "fromChainId";
-            readonly type: "uint128";
-        }, {
-            readonly internalType: "uint128";
-            readonly name: "toChainId";
-            readonly type: "uint128";
-        }, {
             readonly internalType: "address";
-            readonly name: "sender";
+            readonly name: "a";
             readonly type: "address";
         }, {
-            readonly internalType: "address";
-            readonly name: "contr";
-            readonly type: "address";
-        }, {
-            readonly internalType: "string";
-            readonly name: "receiver";
-            readonly type: "string";
-        }, {
-            readonly internalType: "bytes";
-            readonly name: "data";
-            readonly type: "bytes";
+            readonly internalType: "bool";
+            readonly name: "flag";
+            readonly type: "bool";
         }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "threshold";
-        readonly outputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "";
-            readonly type: "uint256";
-        }];
-        readonly stateMutability: "view";
+        readonly name: "setBl";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
         readonly type: "function";
     }, {
         readonly inputs: readonly [];
@@ -531,21 +298,13 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "uint128";
-            readonly name: "chainId";
-            readonly type: "uint128";
-        }, {
             readonly internalType: "uint256";
-            readonly name: "fee";
+            readonly name: "chainId";
             readonly type: "uint256";
         }, {
-            readonly internalType: "address";
-            readonly name: "priceFeed";
-            readonly type: "address";
-        }, {
-            readonly internalType: "uint8";
-            readonly name: "decimals";
-            readonly type: "uint8";
+            readonly internalType: "bool";
+            readonly name: "supported";
+            readonly type: "bool";
         }];
         readonly name: "updateChain";
         readonly outputs: readonly [];
@@ -553,39 +312,23 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [{
-            readonly internalType: "address";
-            readonly name: "newFeeToken";
-            readonly type: "address";
+            readonly internalType: "uint128";
+            readonly name: "protocol";
+            readonly type: "uint128";
+        }, {
+            readonly internalType: "uint128";
+            readonly name: "consensus";
+            readonly type: "uint128";
+        }, {
+            readonly internalType: "uint8";
+            readonly name: "tokenDecimals";
+            readonly type: "uint8";
         }, {
             readonly internalType: "address";
             readonly name: "priceFeed";
             readonly type: "address";
         }];
-        readonly name: "updateFeeToken";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "nativeTokenFee";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "uint256";
-            readonly name: "erc20Fee";
-            readonly type: "uint256";
-        }];
         readonly name: "updateFees";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "inERC20";
-            readonly type: "bool";
-        }];
-        readonly name: "updateIsRelayerPaymentInERC20";
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";
@@ -616,20 +359,6 @@ export declare class CrossChainMessengerAdmin__factory {
         readonly name: "upgradeToAndCall";
         readonly outputs: readonly [];
         readonly stateMutability: "payable";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "amount";
-            readonly type: "uint256";
-        }, {
-            readonly internalType: "bool";
-            readonly name: "isERC20";
-            readonly type: "bool";
-        }];
-        readonly name: "withdrawProtocolFee";
-        readonly outputs: readonly [];
-        readonly stateMutability: "nonpayable";
         readonly type: "function";
     }, {
         readonly stateMutability: "payable";
